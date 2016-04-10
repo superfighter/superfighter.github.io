@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,regExp," />
+  <meta name="keywords" content="王土达" />
 
 
 
@@ -57,31 +57,15 @@
 
 
 
-<meta name="description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
-<meta property="og:type" content="article">
-<meta property="og:title" content="regExp for ID card">
-<meta property="og:url" content="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/index.html">
+<meta name="description" content="新一天新积累I Belive I Can.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="有道">
+<meta property="og:url" content="http://superfighter.github.io/tags/seajs-javascript/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
-<meta property="og:updated_time" content="2016-04-02T06:56:52.000Z">
+<meta property="og:description" content="新一天新积累I Belive I Can.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="regExp for ID card">
-<meta name="twitter:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="twitter:title" content="有道">
+<meta name="twitter:description" content="新一天新积累I Belive I Can.">
 
 
 
@@ -99,7 +83,7 @@
   };
 </script>
 
-  <title> regExp for ID card | 有道 </title>
+  <title> 标签: seajs javascript | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -126,7 +110,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,166 +208,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                regExp for ID card
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T12:26:10+08:00" content="2016-03-31">
-              2016-03-31
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/31/regExp-for-ID-card/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/regExp-for-ID-card/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <ul>
-<li><p>要处理的字符串</p>
-<pre><code>卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-</code></pre><p>  要求从中取出所有的身份证</p>
-<a id="more"></a></li>
-<li>正则：<code>\d{17}(?:[xX])|\d{15,18}</code></li>
-<li><p>执行</p>
-<pre><code>变量.match(/\d{17}(?:[xX])|\d{15,18}/igm)
-</code></pre></li>
-<li><p>得到</p>
-<pre><code>[&quot;12000019880919801X&quot;, 
-&quot;522635198308283119&quot;, 
-&quot;451025197206119300&quot;, 
-&quot;110105710923582&quot;]
-</code></pre></li>
-<li><p>分析</p>
-<ul>
-<li>思路<ul>
-<li>身份证有十五位和十八位</li>
-<li>十八位里分全数字和数字加Xx</li>
-</ul>
-</li>
-<li>解析<ul>
-<li><code>\d{17}(?:[xX])</code><ul>
-<li>?: 是分组，把项组合到一个单元，但不记忆与该组相匹配的字符，不生成引用</li>
-<li>如果换成 <code>?=</code> 则不会匹配到xX</li>
-</ul>
-</li>
-<li><code>|</code> </li>
-<li><code>\d{15,18}</code><ul>
-<li>简单匹配15~18个数字</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        seajs javascript
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
+            <a class="post-title-link" href="/2016/04/09/analyse-Seajs-3-0/" itemprop="url">
+              
+                <span itemprop="name">analyse Seajs-3.0</span>
+              
+            </a>
+        
+      </h1>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-            <a href="/tags/regExp/" rel="tag">#regExp</a>
-          
-        </div>
-      
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-04-09T17:56:46+08:00"
+              content="2016-04-09" >
+          04-09
+        </time>
+      </div>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/03/30/json-parse/" rel="next" title="JSON两个api用法简介">
-                <i class="fa fa-chevron-left"></i> JSON两个api用法简介
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/31/string-repeat/" rel="prev" title="string.repeat">
-                string.repeat <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -391,14 +255,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/03/31/regExp-for-ID-card/"
-           data-title="regExp for ID card" data-url="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -418,17 +274,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/head.gif"
@@ -480,17 +327,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -582,10 +418,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
-
 
   
 

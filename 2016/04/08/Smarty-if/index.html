@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,regExp," />
+  <meta name="keywords" content="smarty," />
 
 
 
@@ -57,31 +57,19 @@
 
 
 
-<meta name="description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="description" content="来源：让一切容易学会–易百
+if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="regExp for ID card">
-<meta property="og:url" content="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/index.html">
+<meta property="og:title" content="Smarty if">
+<meta property="og:url" content="http://superfighter.github.io/2016/04/08/Smarty-if/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
-<meta property="og:updated_time" content="2016-04-02T06:56:52.000Z">
+<meta property="og:description" content="来源：让一切容易学会–易百
+if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd">
+<meta property="og:updated_time" content="2016-04-10T09:48:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="regExp for ID card">
-<meta name="twitter:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="twitter:title" content="Smarty if">
+<meta name="twitter:description" content="来源：让一切容易学会–易百
+if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd">
 
 
 
@@ -99,7 +87,7 @@
   };
 </script>
 
-  <title> regExp for ID card | 有道 </title>
+  <title> Smarty if | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +233,7 @@
             
             
               
-                regExp for ID card
+                Smarty if
               
             
           </h1>
@@ -257,8 +245,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T12:26:10+08:00" content="2016-03-31">
-              2016-03-31
+            <time itemprop="dateCreated" datetime="2016-04-08T15:28:27+08:00" content="2016-04-08">
+              2016-04-08
             </time>
           </span>
 
@@ -268,8 +256,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/31/regExp-for-ID-card/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/regExp-for-ID-card/" itemprop="commentsCount"></span>
+                <a href="/2016/04/08/Smarty-if/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/Smarty-if/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -291,48 +279,71 @@
       
 
       
-        <ul>
-<li><p>要处理的字符串</p>
-<pre><code>卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-</code></pre><p>  要求从中取出所有的身份证</p>
-<a id="more"></a></li>
-<li>正则：<code>\d{17}(?:[xX])|\d{15,18}</code></li>
-<li><p>执行</p>
-<pre><code>变量.match(/\d{17}(?:[xX])|\d{15,18}/igm)
-</code></pre></li>
-<li><p>得到</p>
-<pre><code>[&quot;12000019880919801X&quot;, 
-&quot;522635198308283119&quot;, 
-&quot;451025197206119300&quot;, 
-&quot;110105710923582&quot;]
-</code></pre></li>
-<li><p>分析</p>
-<ul>
-<li>思路<ul>
-<li>身份证有十五位和十八位</li>
-<li>十八位里分全数字和数字加Xx</li>
-</ul>
-</li>
-<li>解析<ul>
-<li><code>\d{17}(?:[xX])</code><ul>
-<li>?: 是分组，把项组合到一个单元，但不记忆与该组相匹配的字符，不生成引用</li>
-<li>如果换成 <code>?=</code> 则不会匹配到xX</li>
-</ul>
-</li>
-<li><code>|</code> </li>
-<li><code>\d{15,18}</code><ul>
-<li>简单匹配15~18个数字</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+        <p>来源：<a href="http://www.yiibai.com/smarty/smarty_ifelseif.html" target="_blank" rel="external">让一切容易学会–易百</a></p>
+<h3 id="if-elseif-else"><a href="#if-elseif-else" class="headerlink" title="if elseif else"></a>if elseif else</h3><p>Smarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd、not、mod、div by、even by、odd by、==、!=、&gt;、&lt;、&lt;=、&gt;=. 使用这些修饰词时必须和变量或常量用空格格开</p>
+<a id="more"></a>
+<pre><code>{if $name eq &quot;Fred&quot;}
+    Welcome Sir.
+{elseif $name eq &quot;Wilma&quot;}
+    Welcome Ma&apos;am.
+{else}
+    Welcome, whatever you are.
+{/if}
 
+{* an example with &quot;or&quot; logic *}
+{if $name eq &quot;Fred&quot; or $name eq &quot;Wilma&quot;}
+    ...
+{/if}
+
+{* same as above *}
+{if $name == &quot;Fred&quot; || $name == &quot;Wilma&quot;}
+    ...
+{/if}
+
+{* the following syntax will NOT work, conditional qualifiers
+ must be separated from surrounding elements by spaces *}
+{if $name==&quot;Fred&quot; || $name==&quot;Wilma&quot;}
+    ...
+{/if}
+
+
+{* parenthesis are allowed *}
+{if ( $amount &lt; 0 or $amount &gt; 1000 ) and $volume &gt;= #minVolAmt#}
+    ...
+{/if}
+
+{* you can also embed php function calls *}
+{if count($var) gt 0}
+    ...
+{/if}
+
+{* test if values are even or odd *}
+{if $var is even}
+    ...
+{/if}
+{if $var is odd}
+    ...
+{/if}
+{if $var is not odd}
+    ...
+{/if}
+
+{* test if var is divisible by 4 *}
+{if $var is div by 4}
+    ...
+{/if}
+
+{* test if var is even, grouped by two. i.e.,
+0=even, 1=even, 2=odd, 3=odd, 4=even, 5=even, etc. *}
+{if $var is even by 2}
+    ...
+{/if}
+
+{* 0=even, 1=even, 2=even, 3=odd, 4=odd, 5=odd, etc. *}
+{if $var is even by 3}
+    ...
+{/if}
+</code></pre>
       
     </div>
 
@@ -346,9 +357,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-            <a href="/tags/regExp/" rel="tag">#regExp</a>
+            <a href="/tags/smarty/" rel="tag">#smarty</a>
           
         </div>
       
@@ -357,16 +366,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/30/json-parse/" rel="next" title="JSON两个api用法简介">
-                <i class="fa fa-chevron-left"></i> JSON两个api用法简介
+              <a href="/2016/04/05/history/" rel="next" title="html5-history">
+                <i class="fa fa-chevron-left"></i> html5-history
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/31/string-repeat/" rel="prev" title="string.repeat">
-                string.repeat <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/09/analyse-Seajs-3-0/" rel="prev" title="analyse Seajs-3.0">
+                analyse Seajs-3.0 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -393,8 +402,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/31/regExp-for-ID-card/"
-           data-title="regExp for ID card" data-url="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/">
+      <div class="ds-thread" data-thread-key="2016/04/08/Smarty-if/"
+           data-title="Smarty if" data-url="http://superfighter.github.io/2016/04/08/Smarty-if/">
       </div>
     
   </div>
@@ -487,7 +496,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-elseif-else"><span class="nav-number">1.</span> <span class="nav-text">if elseif else</span></a></li></ol></div>
             
           </div>
         </section>

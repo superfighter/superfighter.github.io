@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,regExp," />
+  <meta name="keywords" content="seajs javascript," />
 
 
 
@@ -57,31 +57,58 @@
 
 
 
-<meta name="description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="description" content="1、检测seajs对象
+2、初始化seajs对象
+    * data
+3、lang 辅助方法
+    * isObject
+    * isString
+    * isArray
+    * isFunction
+    * isUndefined
+4、_cid变量自增
+5、data.events对象
+6、定义事件绑定、解绑方法
+7、emit方法定义触发事件
+8、path 辅助方法
+    *">
 <meta property="og:type" content="article">
-<meta property="og:title" content="regExp for ID card">
-<meta property="og:url" content="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/index.html">
+<meta property="og:title" content="analyse Seajs-3.0">
+<meta property="og:url" content="http://superfighter.github.io/2016/04/09/analyse-Seajs-3-0/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
-<meta property="og:updated_time" content="2016-04-02T06:56:52.000Z">
+<meta property="og:description" content="1、检测seajs对象
+2、初始化seajs对象
+    * data
+3、lang 辅助方法
+    * isObject
+    * isString
+    * isArray
+    * isFunction
+    * isUndefined
+4、_cid变量自增
+5、data.events对象
+6、定义事件绑定、解绑方法
+7、emit方法定义触发事件
+8、path 辅助方法
+    *">
+<meta property="og:updated_time" content="2016-04-09T10:00:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="regExp for ID card">
-<meta name="twitter:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="twitter:title" content="analyse Seajs-3.0">
+<meta name="twitter:description" content="1、检测seajs对象
+2、初始化seajs对象
+    * data
+3、lang 辅助方法
+    * isObject
+    * isString
+    * isArray
+    * isFunction
+    * isUndefined
+4、_cid变量自增
+5、data.events对象
+6、定义事件绑定、解绑方法
+7、emit方法定义触发事件
+8、path 辅助方法
+    *">
 
 
 
@@ -99,7 +126,7 @@
   };
 </script>
 
-  <title> regExp for ID card | 有道 </title>
+  <title> analyse Seajs-3.0 | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +272,7 @@
             
             
               
-                regExp for ID card
+                analyse Seajs-3.0
               
             
           </h1>
@@ -257,8 +284,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T12:26:10+08:00" content="2016-03-31">
-              2016-03-31
+            <time itemprop="dateCreated" datetime="2016-04-09T17:56:46+08:00" content="2016-04-09">
+              2016-04-09
             </time>
           </span>
 
@@ -268,8 +295,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/31/regExp-for-ID-card/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/regExp-for-ID-card/" itemprop="commentsCount"></span>
+                <a href="/2016/04/09/analyse-Seajs-3-0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/analyse-Seajs-3-0/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -291,48 +318,77 @@
       
 
       
-        <ul>
-<li><p>要处理的字符串</p>
-<pre><code>卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-</code></pre><p>  要求从中取出所有的身份证</p>
-<a id="more"></a></li>
-<li>正则：<code>\d{17}(?:[xX])|\d{15,18}</code></li>
-<li><p>执行</p>
-<pre><code>变量.match(/\d{17}(?:[xX])|\d{15,18}/igm)
-</code></pre></li>
-<li><p>得到</p>
-<pre><code>[&quot;12000019880919801X&quot;, 
-&quot;522635198308283119&quot;, 
-&quot;451025197206119300&quot;, 
-&quot;110105710923582&quot;]
-</code></pre></li>
-<li><p>分析</p>
-<ul>
-<li>思路<ul>
-<li>身份证有十五位和十八位</li>
-<li>十八位里分全数字和数字加Xx</li>
-</ul>
-</li>
-<li>解析<ul>
-<li><code>\d{17}(?:[xX])</code><ul>
-<li>?: 是分组，把项组合到一个单元，但不记忆与该组相匹配的字符，不生成引用</li>
-<li>如果换成 <code>?=</code> 则不会匹配到xX</li>
-</ul>
-</li>
-<li><code>|</code> </li>
-<li><code>\d{15,18}</code><ul>
-<li>简单匹配15~18个数字</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+        <pre><code>1、检测seajs对象
+2、初始化seajs对象
+    * data
+3、lang 辅助方法
+    * isObject
+    * isString
+    * isArray
+    * isFunction
+    * isUndefined
+4、_cid变量自增
+5、data.events对象
+6、定义事件绑定、解绑方法
+7、emit方法定义触发事件
+8、path 辅助方法
+    * 目录正则
+    * 同级正则
+    * 上级正则
+    * 多斜杠正则
+    * 序列化绝对地址
+    * 正常化模块js地址
+    * 路径正则
+    * config中配置的vars正则/*{}*/
+    * 解析配置中alias属性值
+    * 解析配置中paths属性值
+    * 解析配置中vars的属性值
+    * 解析配置中map的属性值
+    * 定义追加base路径方法
+    * 定义id2uri方法
+</code></pre><a id="more"></a>
+<pre><code>9、seajs.resolve = id2uri
+10、定义判定环境变量
+11、忽略本地路径判断正则
+12、定义当前路径变量
+13、定义当前模块所处地址
+14、定义request方法，插入script标签加载对应模块路径
+    * 定义addOnload方法
+        * 定义onload方法
+15、seajs.request = request
+16、解析依赖deps方法
+    * 处理空格
+    * 处理单双引号
+    * 处理peek
+        * 处理正则
+    * 处理单词
+    * 处理数字
+    * 处理左括号
+    * 处理右括号
+    * 处理左大括号
+    * 处理右大括号
+    * 返回res
+17、seajs.cache 属性
+18、定义匿名Meta变量、正在抓取列表、已抓取列表、回调列表
+19、定义状态码
+20、定义Module构造函数
+    * 处理依赖，返回地址数组
+    * 验证是否入栈？
+    * 加载模块依赖方法
+    * 加载后执行方法
+    * 出错方法
+    * 解析模块代码
+    * 抓取模块方法
+    * 定义模块的id2uri方法
+    * define方法
+    * save方法保存define定义的模块&lt;存到cachedMods&gt;
+    * get获取module
+    * use使用等同于加载匿名模块
+21、seajs.use
+22、定义define.cmd和define
+23、seajs.require
+24、处理config
+</code></pre>
       
     </div>
 
@@ -346,9 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-            <a href="/tags/regExp/" rel="tag">#regExp</a>
+            <a href="/tags/seajs-javascript/" rel="tag">#seajs javascript</a>
           
         </div>
       
@@ -357,17 +411,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/30/json-parse/" rel="next" title="JSON两个api用法简介">
-                <i class="fa fa-chevron-left"></i> JSON两个api用法简介
+              <a href="/2016/04/08/Smarty-if/" rel="next" title="Smarty if">
+                <i class="fa fa-chevron-left"></i> Smarty if
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/31/string-repeat/" rel="prev" title="string.repeat">
-                string.repeat <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -393,8 +443,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/31/regExp-for-ID-card/"
-           data-title="regExp for ID card" data-url="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/">
+      <div class="ds-thread" data-thread-key="2016/04/09/analyse-Seajs-3-0/"
+           data-title="analyse Seajs-3.0" data-url="http://superfighter.github.io/2016/04/09/analyse-Seajs-3-0/">
       </div>
     
   </div>

@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,regExp," />
+  <meta name="keywords" content="html5," />
 
 
 
@@ -57,31 +57,16 @@
 
 
 
-<meta name="description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="description" content="我是美女，想知道我的名字就点我吧！我是丑女，想知道我的名字就点我吧！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="regExp for ID card">
-<meta property="og:url" content="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/index.html">
+<meta property="og:title" content="html5-history">
+<meta property="og:url" content="http://superfighter.github.io/2016/04/05/history/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
-<meta property="og:updated_time" content="2016-04-02T06:56:52.000Z">
+<meta property="og:description" content="我是美女，想知道我的名字就点我吧！我是丑女，想知道我的名字就点我吧！">
+<meta property="og:updated_time" content="2016-04-10T09:48:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="regExp for ID card">
-<meta name="twitter:description" content="要处理的字符串
-卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-  要求从中取出所有的身份证">
+<meta name="twitter:title" content="html5-history">
+<meta name="twitter:description" content="我是美女，想知道我的名字就点我吧！我是丑女，想知道我的名字就点我吧！">
 
 
 
@@ -99,7 +84,7 @@
   };
 </script>
 
-  <title> regExp for ID card | 有道 </title>
+  <title> html5-history | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +230,7 @@
             
             
               
-                regExp for ID card
+                html5-history
               
             
           </h1>
@@ -257,8 +242,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T12:26:10+08:00" content="2016-03-31">
-              2016-03-31
+            <time itemprop="dateCreated" datetime="2016-04-05T10:41:56+08:00" content="2016-04-05">
+              2016-04-05
             </time>
           </span>
 
@@ -268,8 +253,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/31/regExp-for-ID-card/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/regExp-for-ID-card/" itemprop="commentsCount"></span>
+                <a href="/2016/04/05/history/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/05/history/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -291,47 +276,46 @@
       
 
       
-        <ul>
-<li><p>要处理的字符串</p>
-<pre><code>卫*怡 12000019880919801X
-汤*功 522635198308283119
-黄*悦 451025197206119300
-匿名 110105710923582
-</code></pre><p>  要求从中取出所有的身份证</p>
-<a id="more"></a></li>
-<li>正则：<code>\d{17}(?:[xX])|\d{15,18}</code></li>
-<li><p>执行</p>
-<pre><code>变量.match(/\d{17}(?:[xX])|\d{15,18}/igm)
-</code></pre></li>
-<li><p>得到</p>
-<pre><code>[&quot;12000019880919801X&quot;, 
-&quot;522635198308283119&quot;, 
-&quot;451025197206119300&quot;, 
-&quot;110105710923582&quot;]
-</code></pre></li>
-<li><p>分析</p>
-<ul>
-<li>思路<ul>
-<li>身份证有十五位和十八位</li>
-<li>十八位里分全数字和数字加Xx</li>
-</ul>
-</li>
-<li>解析<ul>
-<li><code>\d{17}(?:[xX])</code><ul>
-<li>?: 是分组，把项组合到一个单元，但不记忆与该组相匹配的字符，不生成引用</li>
-<li>如果换成 <code>?=</code> 则不会匹配到xX</li>
-</ul>
-</li>
-<li><code>|</code> </li>
-<li><code>\d{15,18}</code><ul>
-<li>简单匹配15~18个数字</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+        <p><a class="a" href="?id=a" title="想看美女 | 有道">我是美女，想知道我的名字就点我吧！</a><br><a class="a" href="?id=b" title="想看丑女 | 有道">我是丑女，想知道我的名字就点我吧！</a><br><strong style="display:none"></strong><br><a id="more"></a></p>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+    var title = document.title;
+    function setName(h){
+        var search = /\?([^=]*)=(.*)/igm.exec(h);
+        if(search && search[2]){
+            $.get('/json/test.json',function(data){
+                $.each(data,function(k,v){
+                    if(v.id == search[2]){
+                        $('strong').html('很高兴认识你，我是' + getName(v)).show();    
+                        document.title = getName(v) + '| 有道';
+                        return false;
+                    }
+                });
+            });
+        } else {
+            document.title = title;
+            $('strong').hide();
+        }
+
+        function getName(d){
+            return d.name;
+        }
+    }
+    $('.a').bind('click',function(e){
+        setName($(this).attr('href'));
+        history.pushState(null, $(this).attr('title'), $(this).attr('href'));
+        e.preventDefault();
+    });
+
+    if(history.pushState){
+        window.addEventListener("popstate", function(){
+            setName(location.href);
+        })
+        setName(location.href);
+    }
+})
+</script>
 
       
     </div>
@@ -346,9 +330,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-            <a href="/tags/regExp/" rel="tag">#regExp</a>
+            <a href="/tags/html5/" rel="tag">#html5</a>
           
         </div>
       
@@ -357,16 +339,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/30/json-parse/" rel="next" title="JSON两个api用法简介">
-                <i class="fa fa-chevron-left"></i> JSON两个api用法简介
+              <a href="/2016/04/04/巧用callback/" rel="next" title="巧用callback实现链式调用">
+                <i class="fa fa-chevron-left"></i> 巧用callback实现链式调用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/31/string-repeat/" rel="prev" title="string.repeat">
-                string.repeat <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/08/Smarty-if/" rel="prev" title="Smarty if">
+                Smarty if <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -393,8 +375,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/31/regExp-for-ID-card/"
-           data-title="regExp for ID card" data-url="http://superfighter.github.io/2016/03/31/regExp-for-ID-card/">
+      <div class="ds-thread" data-thread-key="2016/04/05/history/"
+           data-title="html5-history" data-url="http://superfighter.github.io/2016/04/05/history/">
       </div>
     
   </div>
