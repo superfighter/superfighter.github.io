@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="model javascript," />
 
 
 
@@ -57,22 +57,16 @@
 
 
 
-<meta name="description" content="简单介绍补零方案
-
-123function pad(s)&amp;#123;	return (&amp;apos;0&amp;apos; + s).slice(-2);&amp;#125;">
+<meta name="description" content="设计模式之工厂模式角色定义从武侠游戏角色角度设计，可以是武林至尊、绝世高手、高手、小虾米等，我们可以把它实例化成任和一个角色，并且任意转换。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="string.slice">
-<meta property="og:url" content="http://superfighter.github.io/2016/04/01/string.slice/index.html">
+<meta property="og:title" content="model-factory">
+<meta property="og:url" content="http://superfighter.github.io/2016/04/11/model-factory/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="简单介绍补零方案
-
-123function pad(s)&amp;#123;	return (&amp;apos;0&amp;apos; + s).slice(-2);&amp;#125;">
-<meta property="og:updated_time" content="2016-04-02T09:02:55.000Z">
+<meta property="og:description" content="设计模式之工厂模式角色定义从武侠游戏角色角度设计，可以是武林至尊、绝世高手、高手、小虾米等，我们可以把它实例化成任和一个角色，并且任意转换。">
+<meta property="og:updated_time" content="2016-04-11T15:19:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="string.slice">
-<meta name="twitter:description" content="简单介绍补零方案
-
-123function pad(s)&amp;#123;	return (&amp;apos;0&amp;apos; + s).slice(-2);&amp;#125;">
+<meta name="twitter:title" content="model-factory">
+<meta name="twitter:description" content="设计模式之工厂模式角色定义从武侠游戏角色角度设计，可以是武林至尊、绝世高手、高手、小虾米等，我们可以把它实例化成任和一个角色，并且任意转换。">
 
 
 
@@ -90,7 +84,7 @@
   };
 </script>
 
-  <title> string.slice | 有道 </title>
+  <title> model-factory | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -236,7 +230,7 @@
             
             
               
-                string.slice
+                model-factory
               
             
           </h1>
@@ -248,38 +242,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-01T09:02:21+08:00" content="2016-04-01">
-              2016-04-01
+            <time itemprop="dateCreated" datetime="2016-04-11T21:28:52+08:00" content="2016-04-11">
+              2016-04-11
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/string/" itemprop="url" rel="index">
-                    <span itemprop="name">string</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/01/string.slice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/01/string.slice/" itemprop="commentsCount"></span>
+                <a href="/2016/04/11/model-factory/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/model-factory/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -301,15 +276,12 @@
       
 
       
-        <ul>
-<li>简单介绍补零方案</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function pad(s)&#123;</span><br><span class="line">	return (&apos;0&apos; + s).slice(-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<ul>
-<li>使用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//如果满足大于一位字符串，则取最后两位 </span><br><span class="line">//不满足就在前面补0</span><br><span class="line">//适用于时间、日期格式</span><br><span class="line">pad(1);// 01</span><br><span class="line">pad(12);// 12</span><br></pre></td></tr></table></figure>
+        <h1 id="设计模式之工厂模式"><a href="#设计模式之工厂模式" class="headerlink" title="设计模式之工厂模式"></a>设计模式之工厂模式</h1><h3 id="角色定义"><a href="#角色定义" class="headerlink" title="角色定义"></a>角色定义</h3><p>从武侠游戏角色角度设计，可以是武林至尊、绝世高手、高手、小虾米等，我们可以把它实例化成任和一个角色，并且任意转换。<br><a id="more"></a></p>
+<h3 id="生产角色"><a href="#生产角色" class="headerlink" title="生产角色"></a>生产角色</h3><p>我们可以通过以下代码实现角色定义：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Wulin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">Wulin.prototype = &#123;</span><br><span class="line">    <span class="keyword">var</span> person;</span><br><span class="line">    initRole:<span class="function"><span class="keyword">function</span> (<span class="params">model</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">switch</span>(model)&#123;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">'king'</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> King();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">'higher'</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> Gao();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">'small'</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> Small();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             <span class="keyword">default</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> Small();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    person.initSkills();</span><br><span class="line">    <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>我们可以使用工厂模式进行优化，把<code>createRole</code>抽离出来，采用单体来实现这个工厂对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> RoleFactory = &#123;</span><br><span class="line">    createRole:<span class="function"><span class="keyword">function</span> (<span class="params">model</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> person;</span><br><span class="line">        <span class="keyword">switch</span>(model)&#123;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">'king'</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> King();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">'higher'</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> Gao();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">'small'</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> Small();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             <span class="keyword">default</span>:</span><br><span class="line">                 person = <span class="keyword">new</span> Small();</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后，使用工厂对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Wulin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">Wulin.prototype = &#123;</span><br><span class="line">    initRole:<span class="function"><span class="keyword">function</span>(<span class="params">model</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> person = RoleFactory.createRole(model);</span><br><span class="line">        person.initSkills();</span><br><span class="line">        <span class="keyword">return</span> person;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>以上是简单的工厂模式使用，相比没有使用工厂模式的代码片段的好处是角色相关信息都集中在一个地方管理，在新增一个角色时不影响<code>Wulin</code>这个大类的代码，后者相比前者更容易维护<code>Wulin</code>类和角色类型。</p>
+
       
     </div>
 
@@ -323,7 +295,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
+            <a href="/tags/model-javascript/" rel="tag">#model javascript</a>
           
         </div>
       
@@ -332,17 +304,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/31/string-repeat/" rel="next" title="string.repeat">
-                <i class="fa fa-chevron-left"></i> string.repeat
+              <a href="/2016/04/09/analyse-Seajs-3-0/" rel="next" title="analyse Seajs-3.0">
+                <i class="fa fa-chevron-left"></i> analyse Seajs-3.0
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/04/巧用callback/" rel="prev" title="巧用callback实现链式调用">
-                巧用callback实现链式调用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -368,8 +336,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/01/string.slice/"
-           data-title="string.slice" data-url="http://superfighter.github.io/2016/04/01/string.slice/">
+      <div class="ds-thread" data-thread-key="2016/04/11/model-factory/"
+           data-title="model-factory" data-url="http://superfighter.github.io/2016/04/11/model-factory/">
       </div>
     
   </div>
@@ -462,7 +430,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式之工厂模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式之工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角色定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">角色定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产角色"><span class="nav-number">1.0.2.</span> <span class="nav-text">生产角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂模式"><span class="nav-number">1.0.3.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.0.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
