@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="smarty," />
+  <meta name="keywords" content="css3 media," />
 
 
 
@@ -57,19 +57,34 @@
 
 
 
-<meta name="description" content="来源：让一切容易学会–易百
-if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd">
+<meta name="description" content="Media Query
+内容部分参照于W3C Plus
+
+含义
+Media Query 直译就是”媒体查询”，常见于检测展示页面所属终端，针对不同终端赋予不同样式。
+
+代码片段">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Smarty if">
-<meta property="og:url" content="http://superfighter.github.io/2016/04/08/Smarty-if/index.html">
+<meta property="og:title" content="Media query">
+<meta property="og:url" content="http://superfighter.github.io/2016/04/14/Media-query/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="来源：让一切容易学会–易百
-if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd">
-<meta property="og:updated_time" content="2016-04-10T09:48:13.000Z">
+<meta property="og:description" content="Media Query
+内容部分参照于W3C Plus
+
+含义
+Media Query 直译就是”媒体查询”，常见于检测展示页面所属终端，针对不同终端赋予不同样式。
+
+代码片段">
+<meta property="og:updated_time" content="2016-04-14T12:55:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Smarty if">
-<meta name="twitter:description" content="来源：让一切容易学会–易百
-if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd">
+<meta name="twitter:title" content="Media query">
+<meta name="twitter:description" content="Media Query
+内容部分参照于W3C Plus
+
+含义
+Media Query 直译就是”媒体查询”，常见于检测展示页面所属终端，针对不同终端赋予不同样式。
+
+代码片段">
 
 
 
@@ -87,7 +102,7 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
   };
 </script>
 
-  <title> Smarty if | 有道 </title>
+  <title> Media query | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +248,7 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
             
             
               
-                Smarty if
+                Media query
               
             
           </h1>
@@ -245,8 +260,8 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-08T15:28:27+08:00" content="2016-04-08">
-              2016-04-08
+            <time itemprop="dateCreated" datetime="2016-04-14T08:37:30+08:00" content="2016-04-14">
+              2016-04-14
             </time>
           </span>
 
@@ -256,8 +271,8 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/08/Smarty-if/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/Smarty-if/" itemprop="commentsCount"></span>
+                <a href="/2016/04/14/Media-query/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/Media-query/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -279,70 +294,73 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
       
 
       
-        <p>来源：<a href="http://www.yiibai.com/smarty/smarty_ifelseif.html" target="_blank" rel="external">让一切容易学会–易百</a></p>
-<h3 id="if-elseif-else"><a href="#if-elseif-else" class="headerlink" title="if elseif else"></a>if elseif else</h3><p>Smarty 中的 if 语句和 php 中的 if 语句一样灵活易用，并增加了几个特性以适宜模板引擎. if 必须于 /if 成对出现. 可以使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd、not、mod、div by、even by、odd by、==、!=、&gt;、&lt;、&lt;=、&gt;=. 使用这些修饰词时必须和变量或常量用空格格开</p>
-<a id="more"></a>
-<pre><code>{if $name eq &quot;Fred&quot;}
-    Welcome Sir.
-{elseif $name eq &quot;Wilma&quot;}
-    Welcome Ma&apos;am.
-{else}
-    Welcome, whatever you are.
-{/if}
-
-{* an example with &quot;or&quot; logic *}
-{if $name eq &quot;Fred&quot; or $name eq &quot;Wilma&quot;}
-    ...
-{/if}
-
-{* same as above *}
-{if $name == &quot;Fred&quot; || $name == &quot;Wilma&quot;}
-    ...
-{/if}
-
-{* the following syntax will NOT work, conditional qualifiers
- must be separated from surrounding elements by spaces *}
-{if $name==&quot;Fred&quot; || $name==&quot;Wilma&quot;}
-    ...
-{/if}
-
-
-{* parenthesis are allowed *}
-{if ( $amount &lt; 0 or $amount &gt; 1000 ) and $volume &gt;= #minVolAmt#}
-    ...
-{/if}
-
-{* you can also embed php function calls *}
-{if count($var) gt 0}
-    ...
-{/if}
-
-{* test if values are even or odd *}
-{if $var is even}
-    ...
-{/if}
-{if $var is odd}
-    ...
-{/if}
-{if $var is not odd}
-    ...
-{/if}
-
-{* test if var is divisible by 4 *}
-{if $var is div by 4}
-    ...
-{/if}
-
-{* test if var is even, grouped by two. i.e.,
-0=even, 1=even, 2=odd, 3=odd, 4=even, 5=even, etc. *}
-{if $var is even by 2}
-    ...
-{/if}
-
-{* 0=even, 1=even, 2=even, 3=odd, 4=odd, 5=odd, etc. *}
-{if $var is even by 3}
-    ...
-{/if}
+        <h2 id="Media-Query"><a href="#Media-Query" class="headerlink" title="Media Query"></a>Media Query</h2><blockquote>
+<p><code>内容部分参照于</code><a href="http://www.w3cplus.com/content/css3-media-queries" target="_blank" rel="external">W3C Plus</a></p>
+</blockquote>
+<h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><ul>
+<li>Media Query 直译就是”媒体查询”，常见于检测展示页面所属终端，针对不同终端赋予不同样式。</li>
+</ul>
+<h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3><a id="more"></a>
+<p>片段A</p>
+<pre><code>&lt;link href=&quot;css/reset.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+&lt;link href=&quot;css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all&quot; /&gt;
+&lt;link href=&quot;css/print.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;print&quot; /&gt;
+</code></pre><p>片段B</p>
+<pre><code>&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+  @import url(&quot;css/style.css&quot;);
+&lt;/style&gt;
+</code></pre><p>片段C</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (max-width: 600px)&quot; href=&quot;small.css&quot; /&gt;
+</code></pre><p>片段D</p>
+<pre><code>@media screen,3D and (max-width: 600px) {
+  选择器 {
+        属性：属性值；
+  }
+  }
+</code></pre><h3 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h3><h4 id="共性"><a href="#共性" class="headerlink" title="共性"></a>共性</h4><ul>
+<li>以上代码片段都是Media query的使用场景<ul>
+<li><code>link</code>方式引入和<code>@import</code>方式引入</li>
+<li><code>@media</code>方式引入</li>
+</ul>
+</li>
+<li>属性介绍<ul>
+<li>媒介类型(常用三种，齐全<a href="https://www.w3.org/TR/CSS2/media.html#media-types" target="_blank" rel="external">10种</a>,如3D,TV,handheld等.)<ul>
+<li><code>print</code> 打印</li>
+<li><code>screen</code> 屏幕</li>
+<li><code>all</code> 所有</li>
+</ul>
+</li>
+<li>关键词<ul>
+<li><code>and</code></li>
+<li><code>not</code></li>
+<li><code>only</code><ul>
+<li>only用来定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器。其实only很多时候是用来对那些不支持Media Query但却支持Media Type的设备隐藏样式表的。其主要有：支持媒体特性（Media Queries）的设备，正常调用样式，此时就当only不存在；对于不支持媒体特性(Media Queries)但又支持媒体类型(Media Type)的设备，这样就会不读了样式，因为其先读only而不是screen；另外不支持Media Qqueries的浏览器，不论是否支持only，样式都不会被采用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>媒体特性(常见width,更多见<a href="https://www.w3.org/TR/css3-mediaqueries/#media1" target="_blank" rel="external">Media features</a>)<ul>
+<li><code>max-width</code></li>
+<li><code>min-width</code></li>
+<li><code>max-device-width</code></li>
+<li><code>min-device-width</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Media-query和Css-语法结构区别"><a href="#Media-query和Css-语法结构区别" class="headerlink" title="Media query和Css 语法结构区别"></a>Media query和Css 语法结构区别</h4><ul>
+<li>Media query只接受单个的逻辑表达式作为值，或者没有值</li>
+<li>css属性用于声明如何表现；Media query是一个用于判断设备是否满足某种条件的表达式</li>
+<li>Media query中大部分接受min/max前缀，用来表示其逻辑关系，表示应用于大于等于或者小于等于某个值的情况</li>
+<li>css属性要求必须有属性值，Media query可以没有值，因为其表达式返回的只有真或者假</li>
+</ul>
+<h4 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h4><p>iphone4</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; media=&quot;only screen and (-webkit-min-device-pixel-ratio: 2)&quot; type=&quot;text/css&quot; href=&quot;iphone4.css&quot; /&gt;
+</code></pre><p>ipad</p>
+<pre><code> &lt;!-- 竖横屏 --&gt;    
+&lt;link rel=&quot;stylesheet&quot; media=&quot;all and (orientation:portrait)&quot; href=&quot;portrait.css&quot; type=&quot;text/css&quot; /&gt; 
+&lt;link rel=&quot;stylesheet&quot; media=&quot;all and (orientation:landscape)&quot; href=&quot;landscape.css&quot;  type=&quot;text/css&quot; /&gt;
 </code></pre>
       
     </div>
@@ -357,7 +375,7 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
       
         <div class="post-tags">
           
-            <a href="/tags/smarty/" rel="tag">#smarty</a>
+            <a href="/tags/css3-media/" rel="tag">#css3 media</a>
           
         </div>
       
@@ -366,17 +384,13 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/05/history/" rel="next" title="html5-history">
-                <i class="fa fa-chevron-left"></i> html5-history
+              <a href="/2016/04/11/model-factory/" rel="next" title="model-factory">
+                <i class="fa fa-chevron-left"></i> model-factory
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/09/analyse-Seajs-3-0/" rel="prev" title="analyse Seajs-3.0">
-                analyse Seajs-3.0 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -402,8 +416,8 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/08/Smarty-if/"
-           data-title="Smarty if" data-url="http://superfighter.github.io/2016/04/08/Smarty-if/">
+      <div class="ds-thread" data-thread-key="2016/04/14/Media-query/"
+           data-title="Media query" data-url="http://superfighter.github.io/2016/04/14/Media-query/">
       </div>
     
   </div>
@@ -496,7 +510,7 @@ if elseif elseSmarty 中的 if 语句和 php 中的 if 语句一样灵活易用�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-elseif-else"><span class="nav-number">1.</span> <span class="nav-text">if elseif else</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Media-Query"><span class="nav-number">1.</span> <span class="nav-text">Media Query</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#含义"><span class="nav-number">1.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码片段"><span class="nav-number">1.2.</span> <span class="nav-text">代码片段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析代码"><span class="nav-number">1.3.</span> <span class="nav-text">分析代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#共性"><span class="nav-number">1.3.1.</span> <span class="nav-text">共性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Media-query和Css-语法结构区别"><span class="nav-number">1.3.2.</span> <span class="nav-text">Media query和Css 语法结构区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例"><span class="nav-number">1.3.3.</span> <span class="nav-text">单例</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
