@@ -1,0 +1,685 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,requirejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="定义常量reqsheadbaseElementdataMainsrcinteractiveScriptcurrentlyAddingScriptmainScriptsubPathversioncommentRegExpjsSuffixRegExpopostringhasOwnisBrowserisWebWorkerreadyRegExpdefContextNameisOperacontextscf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="analyse-requirejs">
+<meta property="og:url" content="http://superfighter.github.io/2016/04/26/analyse-requirejs/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="定义常量reqsheadbaseElementdataMainsrcinteractiveScriptcurrentlyAddingScriptmainScriptsubPathversioncommentRegExpjsSuffixRegExpopostringhasOwnisBrowserisWebWorkerreadyRegExpdefContextNameisOperacontextscf">
+<meta property="og:updated_time" content="2016-05-15T10:45:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="analyse-requirejs">
+<meta name="twitter:description" content="定义常量reqsheadbaseElementdataMainsrcinteractiveScriptcurrentlyAddingScriptmainScriptsubPathversioncommentRegExpjsSuffixRegExpopostringhasOwnisBrowserisWebWorkerreadyRegExpdefContextNameisOperacontextscf">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> analyse-requirejs | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                analyse-requirejs
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-26T08:51:03+08:00" content="2016-04-26">
+              2016-04-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/26/analyse-requirejs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/analyse-requirejs/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h3><p>req<br>s<br>head<br>baseElement<br>dataMain<br>src<br>interactiveScript<br>currentlyAddingScript<br>mainScript<br>subPath<br>version<br>commentRegExp<br>jsSuffixRegExp<br>op<br>ostring<br>hasOwn<br>isBrowser<br>isWebWorker<br>readyRegExp<br>defContextName<br>isOpera<br>contexts<br>cfg<br>globalDefQueue<br>useInteractive<br>handlers<br><a id="more"></a></p>
+<h3 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h3><p>commentReplace<br>isFunction<br>isArray<br>each<br>eachReverse<br>hasProp<br>getOwn<br>eachProp<br>mixin<br>bind<br>scripts<br>defaultOnError<br>getGlobal<br>makeError<br>newContext</p>
+<h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><p>newContext</p>
+<pre><code>* inCheckLoaded
+* Module
+* context
+* handlers
+* checkLoadedTimeoutId
+* config
+    * waitSeconds
+    * baseUrl
+    * paths
+    * bundles
+    * pkgs
+    * shim
+    * config
+* registry
+* enabledRegistry
+* undefEvents
+* defQueue
+* defined
+* bundlesMap
+* requireCounter
+* unnormalizedCounter
+* fun trimDots
+* fun normalize ****
+* fun removeScript
+* fun hasPathFallback
+* fun splitPrefix
+* fun getModule
+* fun cleanRegistry
+* fun breakCycle
+* fun checkLoaded
+</code></pre><p>Module</p>
+<pre><code>* this.events
+* this.map
+* this.depExports
+* this.depMaps
+* this.depMatched
+* this.pluginMaps
+* this.depCount
+* init
+    * this.errback
+    * this.inited
+    * this.ignore
+    * this.factory
+* defineDep
+* fetch
+* on
+* emit
+* load
+* check
+* callPlugin
+* enable
+* intakeDefines
+* takeGlobalQueue
+</code></pre><p>context</p>
+<ul>
+<li>config</li>
+<li>contextName</li>
+<li>registry</li>
+<li>defined</li>
+<li>urlFetched</li>
+<li>defQueue</li>
+<li>defQueueMap</li>
+<li>Module</li>
+<li>makeModuleMap</li>
+<li>nextTick</li>
+<li>onError</li>
+<li>makeShimExports</li>
+<li>makeRequire</li>
+<li>enable</li>
+<li>completeLoad</li>
+<li>nameToUrl</li>
+<li>load</li>
+<li>execCb</li>
+<li>onScriptLoad</li>
+<li>onScriptError</li>
+<li>configure<ul>
+<li>baseUrl</li>
+<li>urlArgs</li>
+<li>shim</li>
+<li>bundles</li>
+<li>packages</li>
+<li>deps</li>
+<li>callback</li>
+<li>skipDataMain<h3 id="从上至下逻辑"><a href="#从上至下逻辑" class="headerlink" title="从上至下逻辑"></a>从上至下逻辑</h3>检测是否存在AMD loder<br>检测是否存在requirejs接口<br>检测是否存在require配置对象<ul>
+<li>req.config 支持require.config协作其他AMD加载器</li>
+<li>req.nextTick 定时执行</li>
+<li>如果不存在require对象，赋值req</li>
+<li>req.version 版本</li>
+<li>req.jsExtRegExp</li>
+<li>req.isBrowser</li>
+<li>req.s</li>
+<li>req({}) 创建默认上下文</li>
+<li>给全局req对象导入一些人性化方法</li>
+<li>如果是浏览器环境，赋值s.head为head容器</li>
+<li>req.onError</li>
+<li>req.createNode</li>
+<li>req.load</li>
+<li>设定base路径</li>
+<li>req.exec<br>定义define<br>定义define.amd</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>加载完所需module后加载config.js执行require.config()?<br>normalize–&gt;name2url–&gt;enable–&gt;check–&gt;fetch–&gt;module.load–&gt;context.load–&gt;req.load最后加载map.url</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/requirejs/" rel="tag">#requirejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/26/regex-base1/" rel="next" title="词法分析基础">
+                <i class="fa fa-chevron-left"></i> 词法分析基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/26/selenium-webdriver/" rel="prev" title="selenium-webdriver">
+                selenium-webdriver <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/26/analyse-requirejs/"
+           data-title="analyse-requirejs" data-url="http://superfighter.github.io/2016/04/26/analyse-requirejs/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义常量"><span class="nav-number">1.</span> <span class="nav-text">定义常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义方法"><span class="nav-number">2.</span> <span class="nav-text">定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义类"><span class="nav-number">3.</span> <span class="nav-text">定义类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从上至下逻辑"><span class="nav-number">4.</span> <span class="nav-text">从上至下逻辑</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

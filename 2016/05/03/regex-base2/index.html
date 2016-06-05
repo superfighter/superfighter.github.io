@@ -1,0 +1,654 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,regExp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="主要参考陈梓瀚
+历史
+神经元问题概述
+如何分析正则表达式
+如何扩展NFA以便表达正则表达式的高级功能（预查、捕获等）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式基础">
+<meta property="og:url" content="http://superfighter.github.io/2016/05/03/regex-base2/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="主要参考陈梓瀚
+历史
+神经元问题概述
+如何分析正则表达式
+如何扩展NFA以便表达正则表达式的高级功能（预查、捕获等）">
+<meta property="og:image" content="http://superfighter.github.io/#">
+<meta property="og:image" content="http://superfighter.github.io/#">
+<meta property="og:image" content="http://superfighter.github.io/#">
+<meta property="og:updated_time" content="2016-05-15T10:45:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式基础">
+<meta name="twitter:description" content="主要参考陈梓瀚
+历史
+神经元问题概述
+如何分析正则表达式
+如何扩展NFA以便表达正则表达式的高级功能（预查、捕获等）">
+<meta name="twitter:image" content="http://superfighter.github.io/#">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 正则表达式基础 | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                正则表达式基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-03T17:00:06+08:00" content="2016-05-03">
+              2016-05-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/03/regex-base2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/regex-base2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>主要参考<a href="http://www.cppblog.com/vczh/" target="_blank" rel="external">陈梓瀚</a></p>
+<h3 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h3><ul>
+<li>神经元<h3 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h3></li>
+<li>如何分析正则表达式</li>
+<li>如何扩展NFA以便表达正则表达式的高级功能（预查、捕获等）<a id="more"></a>
+<h4 id="正则表达式的语法"><a href="#正则表达式的语法" class="headerlink" title="正则表达式的语法"></a>正则表达式的语法</h4></li>
+<li>字符集合</li>
+<li>并联串联</li>
+<li>重复</li>
+<li>表达式引用</li>
+<li>正向预查</li>
+<li>反向预查</li>
+<li>匿名捕获</li>
+<li>命名捕获</li>
+<li>命名检查</li>
+<li>边界</li>
+<li>非贪婪匹配<br>通过整理，得到以下几种元素及各自所需要的数据：<br>•字符集合    ：一个范围的列表<br>•串联        ：子树列表<br>•并联        ：子树列表<br>•重复        ：最小次数，最大次数，是否无限<br>•左边界<br>•右边界<br>•功能        ：子树<pre><code>功能（正常、匿名捕获、正向预查、反向预查）
+描述（表达式命名、表达式引用、命名捕获、命名检查）
+名字
+</code></pre></li>
+</ul>
+<h3 id="扩展正则表达式构造NFA"><a href="#扩展正则表达式构造NFA" class="headerlink" title="扩展正则表达式构造NFA"></a>扩展正则表达式构造NFA</h3><h4 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h4><h4 id="正向预查-反向预查"><a href="#正向预查-反向预查" class="headerlink" title="正向预查/反向预查"></a>正向预查/反向预查</h4><h4 id="匿名捕获-命名捕获"><a href="#匿名捕获-命名捕获" class="headerlink" title="匿名捕获/命名捕获"></a>匿名捕获/命名捕获</h4><h4 id="边界-命名检查"><a href="#边界-命名检查" class="headerlink" title="边界/命名检查"></a>边界/命名检查</h4><h3 id="NFA压缩算法"><a href="#NFA压缩算法" class="headerlink" title="NFA压缩算法"></a>NFA压缩算法</h3><h3 id="贪婪匹配算法"><a href="#贪婪匹配算法" class="headerlink" title="贪婪匹配算法"></a>贪婪匹配算法</h3><h4 id="捕获堆栈"><a href="#捕获堆栈" class="headerlink" title="捕获堆栈"></a>捕获堆栈</h4><p>每一个捕获堆栈的元素具有以下属性：<br>•名称（包括匿名）<br>•产生这个捕获元素的时候状态堆栈的深度<br>•捕获的起始位置<br>•捕获的长度</p>
+<h4 id="命令堆栈"><a href="#命令堆栈" class="headerlink" title="命令堆栈"></a>命令堆栈</h4><p>每一个命令堆栈的元素具有以下属性：<br>•功能边<br>•参数<br>•前一个未终结指令在堆栈中的位置<br>•产生这个命令的字符串起始位置</p>
+<h4 id="状态堆栈"><a href="#状态堆栈" class="headerlink" title="状态堆栈"></a>状态堆栈</h4><p>每一个状态堆栈的元素具有以下属性：<br>•NFA状态<br>•当前边序号<br>•状态产生的时候命令堆栈的深度<br>•字符串的起始位置</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><h5 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h5><ul>
+<li>回溯处理分支<ul>
+<li>/h(ello|appy) world/.test(“hello bigbone, happy world”);</li>
+<li>上面一行正则表达式用于匹配”hello world”或者”happy world”</li>
+<li>测试一开始查找一个h,接下来走到分支，按从左到右执行原则，先查找ello</li>
+<li>走到bigbone时,”b”无法匹配”w”，开始回溯到之前的最后一个检查点，即匹配首字母”h”</li>
+<li>继续走分支”appy”，由于从首字母”h”开始没有匹配到”ha”,所以从首字母开始的匹配尝试都失败</li>
+<li>继续从第二字母”e”开始匹配正则，但是”e”无法匹配”h”，也失败</li>
+<li>重复上一步骤，直到第15个字母”h”，这是”happy”的首字母，匹配了正则首字符”h”</li>
+<li>接下来成功匹配”happy world”</li>
+</ul>
+</li>
+<li>回溯处理重复量词<ul>
+<li>贪婪重复<ul>
+<li>var str = “<p>I’m page 1.</p><img src="#"><p>I’m page 2.</p><div>End.</div>“;</li>
+<li>/<p>.*</p>/i.test(str);</li>
+<li>上面的正则表达式用于匹配标签<p>开始和标签</p>结束的html</li>
+<li>由于*是贪婪匹配，所以再匹配了首字母<p>后，直接匹配了除换行符以外的字符</p></li>
+<li>又由于指定了<p></p>字符匹配，所以从末尾开始回溯&lt;</li>
+<li>回溯到的&lt;,’&lt;’匹配’&lt;’,继续匹配’/‘,但是’p’不能匹配’d’</li>
+<li>所以继续向前回溯到’2.<p></p>‘</li>
+<li>这时正则’<p></p>‘完全匹配字符串中的’<p></p>‘</li>
+<li>成功匹配结果 “<p>I’m page 1.</p><img src="#"><p>I’m page 2.</p>“</li>
+</ul>
+</li>
+<li>懒惰重复<ul>
+<li>var str = “<p>I’m page 1.</p><img src="#"><p>I’m page 2.</p><div>End.</div>“;</li>
+<li>/<p>.*?</p>/i.test(str);</li>
+<li>因为懒惰匹配是最少匹配原则，零重复</li>
+<li>因此在匹配首字符<p>后，优先跳过’.*?’，直接查找</p></li>
+<li>再继续匹配’.*?’</li>
+<li>结果就是”<p>I’m page 1.</p>“</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/regExp/" rel="tag">#regExp</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/29/解构赋值-ES6/" rel="next" title="解构赋值-ES6">
+                <i class="fa fa-chevron-left"></i> 解构赋值-ES6
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/06/String-ES6/" rel="prev" title="String-ES6">
+                String-ES6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/03/regex-base2/"
+           data-title="正则表达式基础" data-url="http://superfighter.github.io/2016/05/03/regex-base2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#历史"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题概述"><span class="nav-number">2.</span> <span class="nav-text">问题概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正则表达式的语法"><span class="nav-number">2.1.</span> <span class="nav-text">正则表达式的语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展正则表达式构造NFA"><span class="nav-number">3.</span> <span class="nav-text">扩展正则表达式构造NFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重复"><span class="nav-number">3.1.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正向预查-反向预查"><span class="nav-number">3.2.</span> <span class="nav-text">正向预查/反向预查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名捕获-命名捕获"><span class="nav-number">3.3.</span> <span class="nav-text">匿名捕获/命名捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界-命名检查"><span class="nav-number">3.4.</span> <span class="nav-text">边界/命名检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFA压缩算法"><span class="nav-number">4.</span> <span class="nav-text">NFA压缩算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪匹配算法"><span class="nav-number">5.</span> <span class="nav-text">贪婪匹配算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获堆栈"><span class="nav-number">5.1.</span> <span class="nav-text">捕获堆栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令堆栈"><span class="nav-number">5.2.</span> <span class="nav-text">命令堆栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态堆栈"><span class="nav-number">5.3.</span> <span class="nav-text">状态堆栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">5.4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回溯"><span class="nav-number">5.4.1.</span> <span class="nav-text">回溯</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
