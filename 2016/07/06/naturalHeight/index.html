@@ -1,0 +1,613 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html5,naturalHeight,naturalWidth," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="部分内容参考w3ctech
+预加载
+设定图片自定义属性放置图片真实的URL，src放置默认打底图片
+获取图片元素相对顶部的高度imageClientTop，如果滚动高度接近imageClientTop ，则设置图片的src属性为自定义属性的值，在图片onload时去除打底，展示真正的图片
+
+在未知预加图片宽高时，要想办法获取图片的真实宽高，有两种方案：支持H5 naturalHeight的和不支持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5 naturalHeight naturalWidth">
+<meta property="og:url" content="http://superfighter.github.io/2016/07/06/naturalHeight/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="部分内容参考w3ctech
+预加载
+设定图片自定义属性放置图片真实的URL，src放置默认打底图片
+获取图片元素相对顶部的高度imageClientTop，如果滚动高度接近imageClientTop ，则设置图片的src属性为自定义属性的值，在图片onload时去除打底，展示真正的图片
+
+在未知预加图片宽高时，要想办法获取图片的真实宽高，有两种方案：支持H5 naturalHeight的和不支持">
+<meta property="og:updated_time" content="2017-06-03T08:55:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5 naturalHeight naturalWidth">
+<meta name="twitter:description" content="部分内容参考w3ctech
+预加载
+设定图片自定义属性放置图片真实的URL，src放置默认打底图片
+获取图片元素相对顶部的高度imageClientTop，如果滚动高度接近imageClientTop ，则设置图片的src属性为自定义属性的值，在图片onload时去除打底，展示真正的图片
+
+在未知预加图片宽高时，要想办法获取图片的真实宽高，有两种方案：支持H5 naturalHeight的和不支持">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> HTML5 naturalHeight naturalWidth | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTML5 naturalHeight naturalWidth
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T09:41:12+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/06/naturalHeight/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/naturalHeight/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>部分内容参考<a href="http://www.w3ctech.com/topic/112" target="_blank" rel="external">w3ctech</a></p>
+<h3 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a>预加载</h3><ul>
+<li>设定图片自定义属性放置图片真实的URL，src放置默认打底图片</li>
+<li><p>获取图片元素相对顶部的高度<code>imageClientTop</code>，如果滚动高度接近<code>imageClientTop</code> ，则设置图片的src属性为自定义属性的值，在图片onload时去除打底，展示真正的图片</p>
+</li>
+<li><p>在未知预加图片宽高时，要想办法获取图片的真实宽高，有两种方案：支持H5 naturalHeight的和不支持的</p>
+</li>
+<li><p>支持的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 注意,这里也要在img onload状态后才能获取naturalWidth，动态插入直接读该属性可能返回0</span><br><span class="line">var </span><br><span class="line">  nWidth = document.getElementById(&apos;example&apos;).naturalWidth,</span><br><span class="line">  nHeight = document.getElementById(&apos;example&apos;).naturalHeight;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不支持的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getNatural (el) &#123;</span><br><span class="line">  var img = new Image();</span><br><span class="line">  img.src = el.src;</span><br><span class="line">  return &#123;width: img.width, height: img.height&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var </span><br><span class="line">natural = getNatural(document.getElementById(&apos;example&apos;)),</span><br><span class="line">nWidth = natural.width,</span><br><span class="line">nHeight = natural.height;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>jQuery自定义处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">(function($)&#123;</span><br><span class="line">    var</span><br><span class="line">    props = [&apos;Width&apos;, &apos;Height&apos;],</span><br><span class="line">    prop;</span><br><span class="line"></span><br><span class="line">    while (prop = props.pop()) &#123;</span><br><span class="line">    (function (natural, prop) &#123;</span><br><span class="line">      $.fn[natural] = (natural in new Image()) ? </span><br><span class="line">      function () &#123;</span><br><span class="line">      return this[0][natural];</span><br><span class="line">      &#125; : </span><br><span class="line">      function () &#123;</span><br><span class="line">      var </span><br><span class="line">      node = this[0],</span><br><span class="line">      img,</span><br><span class="line">      value;</span><br><span class="line"></span><br><span class="line">      if (node.tagName.toLowerCase() === &apos;img&apos;) &#123;</span><br><span class="line">        img = new Image();</span><br><span class="line">        img.src = node.src,</span><br><span class="line">        value = img[prop];</span><br><span class="line">      &#125;</span><br><span class="line">      return value;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;(&apos;natural&apos; + prop, prop.toLowerCase()));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;(jQuery));</span><br><span class="line"></span><br><span class="line">  // 如何使用:</span><br><span class="line">  var </span><br><span class="line">  nWidth = $(&apos;img#example&apos;).naturalWidth(),</span><br><span class="line">  nHeight = $(&apos;img#example&apos;).naturalHeight();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">// 时间戳不读缓存</span><br><span class="line">var start_time = new Date().getTime();</span><br><span class="line"> </span><br><span class="line">// 图片地址</span><br><span class="line">var img_url = $(self.defaultConf.imgEl).eq(el).attr(&apos;origin&apos;) + &apos;?v=&apos; +start_time;</span><br><span class="line"> </span><br><span class="line">// 创建对象</span><br><span class="line">var img = new Image();</span><br><span class="line"> </span><br><span class="line">// 改变图片的src</span><br><span class="line">img.src = img_url;</span><br><span class="line"> </span><br><span class="line">// 定时执行获取宽高，获取宽高速度比onload要快</span><br><span class="line">var check = function(el)&#123;</span><br><span class="line">    // 只要任何一方大于0</span><br><span class="line">    // 表示已经服务器已经返回宽高</span><br><span class="line"></span><br><span class="line">    if(img.width&gt;0 || img.height&gt;0)&#123;</span><br><span class="line">        clearInterval(set);</span><br><span class="line">        //设置预加载图片宽高</span><br><span class="line">        setWidth(img);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">var set = setInterval(function()&#123;check(el)&#125;,40);</span><br><span class="line">//加载失败状态展示</span><br><span class="line">img.onerror = function()&#123;</span><br><span class="line">    var t = function()&#123;</span><br><span class="line">        if($(self.defaultConf.imgEl).eq(el).parent(&apos;.imgWrapper&apos;))&#123;</span><br><span class="line">            $(self.defaultConf.imgEl).eq(el)</span><br><span class="line">                .addClass(&apos;loaded&apos;)</span><br><span class="line">            clearInterval(cc);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var cc = setInterval(t,40);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">// 加载完成获取宽高</span><br><span class="line">img.onload = function()&#123;</span><br><span class="line">    var t = function()&#123;</span><br><span class="line">        if($(self.defaultConf.imgEl).eq(el).parent(&apos;.imgWrapper&apos;))&#123;</span><br><span class="line">            $(self.defaultConf.imgEl).eq(el).hide()</span><br><span class="line">                .attr(&apos;src&apos;,$(self.defaultConf.imgEl).eq(el).attr(&apos;origin&apos;))</span><br><span class="line">                .addClass(&apos;loaded&apos;)</span><br><span class="line">                .fadeIn(10);</span><br><span class="line">            clearInterval(cc);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var cc = setInterval(t,40);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html5/" rel="tag">#html5</a>
+          
+            <a href="/tags/naturalHeight/" rel="tag">#naturalHeight</a>
+          
+            <a href="/tags/naturalWidth/" rel="tag">#naturalWidth</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/01/a-pixel-is-not-a-pixel/" rel="next" title="a pixel is not a pixel is not a pixel">
+                <i class="fa fa-chevron-left"></i> a pixel is not a pixel is not a pixel
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/20/Iterator/" rel="prev" title="Iterator">
+                Iterator <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/06/naturalHeight/"
+           data-title="HTML5 naturalHeight naturalWidth" data-url="http://superfighter.github.io/2016/07/06/naturalHeight/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#预加载"><span class="nav-number">1.</span> <span class="nav-text">预加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">2.</span> <span class="nav-text">Demo</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -232,8 +232,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/13/Function-ES6/" itemprop="url">
-                  Function-ES6
+                <a class="post-title-link" href="/2016/08/24/Promise-ES6/" itemprop="url">
+                  Promise-ES6
                 </a>
               
             
@@ -246,8 +246,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T11:16:55+08:00" content="2016-05-13">
-              2016-05-13
+            <time itemprop="dateCreated" datetime="2016-08-24T09:40:44+08:00" content="2016-08-24">
+              2016-08-24
             </time>
           </span>
 
@@ -257,8 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/13/Function-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/Function-ES6/" itemprop="commentsCount"></span>
+                <a href="/2016/08/24/Promise-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/Promise-ES6/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -282,704 +282,118 @@
       
         
           
-            <ul>
-<li>参数默认值</li>
-<li><p>arguments</p>
+            <h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><ul>
+<li>初始化之后无法取消</li>
+<li>不设置回调函数，Promise内部抛出错误，不会反应到外部</li>
+<li>处于Pending状态时，不清楚具体处于开始阶段还是即将结束阶段<h3 id="用武之地"><a href="#用武之地" class="headerlink" title="用武之地"></a>用武之地</h3></li>
+<li>内部状态不受外部干扰</li>
+<li>避免无限套回调函数</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/11/console/" itemprop="url">
+                  console
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T13:01:27+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/11/console/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/console/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>内容来源：<a href="http://www.codeceo.com/article/9-console-command.html">码农网</a></p>
 <ul>
-<li>length不包括rese参数(…values)</li>
-<li>length不包括赋默认值参数(values=1)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log((function A(a,dm,s,...v)&#123;&#125;).length) // 3</span><br><span class="line">console.log((function A(a,dm,s,v=1)&#123;&#125;).length) // 3</span><br></pre></td></tr></table></figure>
+<li><p>常用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   	console.log(&apos;hello&apos;);</span><br><span class="line">   	console.info(&apos;信息&apos;);</span><br><span class="line">   	console.error(&apos;错误&apos;);</span><br><span class="line">   	console.warn(&apos;警告&apos;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>信息分组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	console.group(&quot;第一组信息&quot;);</span><br><span class="line">		console.log(&quot;第一组第一条:我的博客(http://www.ido321.com)&quot;);</span><br><span class="line">		console.log(&quot;第一组第二条:CSDN(http://blog.csdn.net/u011043843)&quot;);</span><br><span class="line">　　console.groupEnd();</span><br><span class="line">	console.group(&quot;第二组信息&quot;);</span><br><span class="line">		console.log(&quot;第二组第一条&quot;);</span><br><span class="line">		console.log(&quot;第二组第二条:欢迎你加入&quot;);</span><br><span class="line">	console.groupEnd();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</li>
-<li><p>作用域</p>
-</li>
-<li><p>必输参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function throwMiss()&#123;</span><br><span class="line">  throw new Error(&apos;arguments error&apos;)</span><br><span class="line">&#125;</span><br><span class="line">function gg(x=throwMiss())&#123; console.log(x)&#125;</span><br><span class="line">gg(2) // 2</span><br><span class="line">gg() // arguments error</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>rest参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function add(...values)&#123;</span><br><span class="line">	//...values == [2,3,4,5] 从参数末尾索引开始计算，截止到最后一个有效参数索引为止</span><br><span class="line">	let sum = 0;</span><br><span class="line">	for (var val of values)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br><span class="line">add(2,3,4,5);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>扩展运算符…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	console.log(...[1,5,6]) // 1 5 6</span><br><span class="line">	console.log(...[1,[5,6]]) // 1 [5,6]</span><br><span class="line">	console.log(...[1,...[5,6]]) // 1 5 6</span><br><span class="line">	console.log(...&#123;&apos;0&apos;:&apos;12&apos;,&apos;1&apos;:&apos;34&apos;,length:2&#125;) // 12 34</span><br><span class="line">* 凡是涉及到操作32位Unicode字符的函数</span><br></pre></td></tr></table></figure>
-<p>  ‘x\uD83D\uDE80y’.length // 4 wrong<br>  […’x\uD83D\uDE80y’].length // 3 right<br>  function length(str){ return […str].length}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* map, generator function可以使用...</span><br><span class="line">* 如果对没有iterator接口的对象，使用扩展运算符，将会报错</span><br><span class="line">* 箭头函数</span><br><span class="line">	*函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</span><br><span class="line">	*不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</span><br><span class="line">	*不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</span><br><span class="line">	*不可以使用yield命令，因此箭头函数不能用作Generator函数。</span><br></pre></td></tr></table></figure>
-<p>  function Timer () {</p>
-<pre><code>this.s1 = 14;
-this.s2 = 4;
-// 箭头函数
-// this指向定义时所在作用域，即Timer
-setInterval(() =&gt; this.s1++, 1000);
-// 普通函数
-// this指向执行时作用域，即window
-setInterval(function () {
-  this.s2++;
-}, 1000);
-</code></pre><p>  }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 箭头函数可以让this指向固定化</span><br></pre></td></tr></table></figure>
-<p>  var handler = {</p>
-<pre><code>id: &apos;123456&apos;,
-
-init: function() {
-    //this指向handler，因为=&gt;没有自己的this(this == undefined)，所以指向最近的外部this
-  document.addEventListener(&apos;click&apos;,
-    event =&gt; this.doSomething(event.type), false);
-  // var self = this;
-  // document.addEventListener(&apos;click&apos;,function(){
-  //   self.doSomething(event.type)
-  // },false)
-},
-
-doSomething: function(type) {
-  console.log(&apos;Handling &apos; + type  + &apos; for &apos; + this.id);
-}
-</code></pre><p>  };</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* call\apply\bind无效，会忽略</span><br></pre></td></tr></table></figure>
-<p>  (function() {</p>
-<pre><code>return [
-  (() =&gt; this.x).bind({ x: &apos;inner&apos; })()
-]
-</code></pre><p>  }).call({ x: ‘outer’ });<br>  // function () {<br>  //   var _this = this;<br>  //   return [function () {<br>  //     return _this.x;<br>  //   }.bind({ x: ‘inner’ })()];<br>  // }.call({ x: ‘outer’ })</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* :: 返回的是原对象</span><br></pre></td></tr></table></figure>
-<p>  //上下文::执行方法<br>  foo::bar;<br>  // 等同于<br>  bar.bind(foo);</p>
-<p>  foo::bar(…arguments);<br>  // 等同于<br>  bar.apply(foo, arguments);</p>
-<p>  const hasOwnProperty = Object.prototype.hasOwnProperty;<br>  function hasOwn(obj, key) {</p>
-<pre><code>return obj::hasOwnProperty(key);
-</code></pre><p>  }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 尾调=&gt;调用栈</span><br><span class="line">* stack overflow 栈溢出</span><br><span class="line">* 尾递归</span><br></pre></td></tr></table></figure>
-<p>  //复杂度O(n)<br>  function factorial(n) {</p>
-<pre><code>if (n === 1) return 1;
-return n * factorial(n - 1);
-</code></pre><p>  }<br>  factorial(5) // 120<br>  //5 <em> factorial(4)<br>  //5 </em> (4 <em> factorial(3))<br>  //5 </em> (4 <em> (3 </em> factorial(2)))<br>  //5 <em> (4 </em> (3 <em> (2 </em> factorial(1))))<br>  //5 <em> 4 </em> 3 <em> 2 </em> 1<br>  //复杂度O(1)<br>  function factorial(n, total){</p>
-<pre><code>if(n === 1) return total;
-return factorial(n-1, n * total);
-</code></pre><p>  }<br>  factorial(5,1) // 120<br>  // 只保留一个调用帧<br>  // factorial(5,1)<br>  // factorial(4,5)<br>  // factorial(3,20)<br>  // factorial(2,60)<br>  // factorial(1,120)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`</span><br><span class="line">尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。比如上面的例子，阶乘函数 factorial 需要用到一个中间变量 total ，那就把这个中间变量改写成函数的参数。</span><br><span class="line">`</span><br><span class="line">* 闭包记忆 [简书资料](http://www.jianshu.com/p/a2dfa59e70d7)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>//cache为function内局部变量，cache被匿名函数引用，匿名函数上下文为全局变量window<br>//memorize执行完后，cache理应被回收，但是在被匿名函数引用的情况下无法回收<br>function memorize(sets, f) {<br>    var cache = {};<br>    return function (x) {<br>        console.log(‘cache: %j’, cache);<br>        return x in cache<br>               ? cache[x]<br>               : cache[x] = f(sets[x]);<br>    }<br>}<br>var g = memorize([1000, 2000, 3000], function (x) { return x * x; });<br>````</p>
-<ul>
-<li>console.log(‘%c Hello~how are you’,’font-size:28px; font-family:Microsoft YAHEI;color: blue; font-weight: bold;’)</li>
-</ul>
-<p>/<em>Object</em>/</p>
-<ul>
-<li>Object.assign </li>
-<li>//除了字符串会以数组形式拷贝入目标对象，数值、布尔、undefined、null都不起效果（这是因为只有字符串的包装对象，会产生可枚举属性）</li>
-<li>//首参数不能是Null、Undefined ：Cannot convert undefined or null to object</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/Array-ES6/" itemprop="url">
-                  Array-ES6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T11:37:00+08:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/Array-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Array-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>Array.from(obj, func, this)//类似Array和可Iterator的对象转为Array, func类似于map对每个元素进行处理，将处理后的值放入返回的数组</li>
-<li>[].slice.call({‘0’:’1’,length:1})// [1]</li>
-<li>… 扩展运算符 Symbol.iterator</li>
-<li><p>能正确处理Unicode，可以避免JavaScript将大于\uFFFF的Unicode字符，算作两个字符的bug</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function countSymbols(string) &#123;</span><br><span class="line">  return Array.from(string).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.of(‘3’) ,构造数组 new Array(‘3’)</p>
-</li>
-<li><p>Array.prototype.copyWithin(target, start = 0, end = this.length) //在数组内部进行替换元素, 在index为target的起始位置上，从index为start的元素开始复制，截到第end元素为止，数组总长度不变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let popo = Array.of(3,3,4,5,12);</span><br><span class="line">console.log(popo.copyWithin(0,2,4)); // [4,5,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,4)); // [3,4,5,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,1)); // [3,3,4,5,12]返回元素组</span><br><span class="line">console.log(popo.copyWithin(1,2,3)); // [3,4,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,-1));// [3,4,5,5,12] 负数从末尾算起</span><br><span class="line">console.log([1, 2, 3, 4, 5].copyWithin(0, -3, -2)); // [3,2,3,4,5] -3代表从末尾索引为-1开始算，-2代表末尾索引为0开始算</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.find</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//当前值，当前索引，当前数组</span><br><span class="line">[1, 5, 10, 15].find(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;,this) // 10</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.findIndex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NaN].findIndex(y =&gt; Object.is(NaN, y))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.fill填充一个数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.fill(string,start,end) //从start开始到end之前结束</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.entries(),Array.keys(),Array.values()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let letter = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">let entries = letter.entries();</span><br><span class="line">console.log(entries.next().value); // [0, &apos;a&apos;]</span><br><span class="line">console.log(entries.next().value); // [1, &apos;b&apos;]</span><br><span class="line">console.log(entries.next().value); // [2, &apos;c&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.prototype.includes()<br><code>Map结构的has方法，是用来查找键名的，比如Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。
-  Set结构的has方法，是用来查找值的，比如Set.prototype.has(value)、WeakSet.prototype.has(value)。</code></p>
-</li>
-<li><p>ES5数组对空位的处理</p>
-<ul>
-<li>forEach(), filter(), every() 和some()都会跳过空位。</li>
-<li>map()会跳过空位，但会保留这个值</li>
-<li>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// forEach方法</span><br><span class="line">[,&apos;a&apos;].forEach((x,i) =&gt; log(i)); // 1</span><br><span class="line"></span><br><span class="line">// filter方法</span><br><span class="line">[&apos;a&apos;,,&apos;b&apos;].filter(x =&gt; true) // [&apos;a&apos;,&apos;b&apos;]</span><br><span class="line"></span><br><span class="line">// every方法</span><br><span class="line">[,&apos;a&apos;].every(x =&gt; x===&apos;a&apos;) // true</span><br><span class="line"></span><br><span class="line">// some方法</span><br><span class="line">[,&apos;a&apos;].some(x =&gt; x !== &apos;a&apos;) // false</span><br><span class="line"></span><br><span class="line">// map方法</span><br><span class="line">[,&apos;a&apos;].map(x =&gt; 1) // [,1]</span><br><span class="line"></span><br><span class="line">// join方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].join(&apos;#&apos;) // &quot;#a##&quot;</span><br><span class="line"></span><br><span class="line">// toString方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].toString() // &quot;,a,,&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>ES6则是明确将空位转为undefined<br><code>Invalid attempt to destructure non-iterable instance</code></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/Number-ES6/" itemprop="url">
-                  Number-ES6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T10:02:20+08:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/Number-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Number-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>二进制和八进制表示法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 分别用前缀0b、0B和0o、0O表示</span><br><span class="line">0b111110111 === 503</span><br><span class="line">0o767 === 503 //八进制</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Number转为十进制,Number(‘0o10’) == 8</p>
-</li>
-<li><p>极小误差</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function withinErrorMargin (left, right) &#123;</span><br><span class="line"> 		return Math.abs(left - right) &lt; Number.EPSILON</span><br><span class="line">&#125;</span><br><span class="line">console.log(withinErrorMargin(0.1 + 0.2, 0.3))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JavaScript能够准确表示的整数范围在-2^53到2^53之间</p>
-</li>
-<li>Math对象扩展<ul>
-<li>Math.trunc()//去除小数部分</li>
-<li>Math.sign()//判断正数、负数、零</li>
-<li>Math.cbrt()//返回立方根</li>
-<li>Math.clz32()//补零</li>
-<li>Math.imul()//返回两个数以32位带符号整数形式相乘结果</li>
-<li>Math.fround()// new Float32Array()</li>
-<li>Math.hypot()//返回所有参数平方和的平方根</li>
-<li>对数方法</li>
-<li>三角函数<ul>
-<li>Math.sinh()//双曲正弦</li>
-<li>Math.cosh()//双曲余弦</li>
-<li>Math.tanh(x) 返回x的双曲正切（hyperbolic tangent）</li>
-<li>Math.asinh(x) 返回x的反双曲正弦（inverse hyperbolic sine）</li>
-<li>Math.acosh(x) 返回x的反双曲余弦（inverse hyperbolic cosine）</li>
-<li>Math.atanh(x) 返回x的反双曲正切（inverse hyperbolic tangent）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/10/RegExp-ES6/" itemprop="url">
-                  RegExp-ES6 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T14:48:31+08:00" content="2016-05-10">
-              2016-05-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/10/RegExp-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/RegExp-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>新增u修饰符</li>
-<li>new RegExp(/x/i, ‘gi’) // 会覆盖前面定义的修饰符</li>
-<li>/^.$/.test(‘吉’) //false</li>
-<li>/^.$/u.test(‘吉’) //true</li>
-<li>/\u{3}/.test(‘uuu’) //{}被解读为量词</li>
-<li>/\u{61}/u.test(‘a’) //解读为Unicode</li>
-<li>有些Unicode字符的编码不同，但是字型很相近，比如，\u004B与\u212A都是大写的K。</li>
-<li>y修饰符的作用与g修饰符类似，也是全局匹配，后一次匹配都从上一次匹配成功的下一个位置开始</li>
-<li><p>可以重置lastIndex来改变匹配起始位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var sd = &apos;aaa_aa_a&apos;;</span><br><span class="line">var r1 = /a+/g;</span><br><span class="line">var r2 = /a+/y;</span><br><span class="line"></span><br><span class="line">console.log(r1.exec(&apos;aaa_a1a_a&apos;))</span><br><span class="line">console.log(r1.exec(&apos;aaaaaa_&apos;)) //即使是匹配不同字符串，相同的正则仍然会保留上一次匹配后的起始位置</span><br><span class="line">r1.lastIndex=0;</span><br><span class="line">console.log(r1.exec(&apos;a_aaaa_aaaa&apos;))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>split：aaa_aaa<em>aa 如果以a为分隔符，结果是[‘’,’’,’’,’</em>‘,’’,’’,’<em>‘,’’,’’] //(‘’)a(‘’)a(‘’)a(‘</em>‘)a(‘’)a(‘’)a(‘_’)a(‘’)a(‘’)</p>
-</li>
-<li><p>y修饰符确保匹配必须从剩余的第一个位置开始</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const REGEX = /a/gy; //最后一个a因为不是出现下一次匹配的头部，所以不会被替换</span><br><span class="line">console.log(&apos;aaxa&apos;.replace(REGEX, &apos;-&apos;)) // &apos;--xa&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sticky // RegExp.sticky判断是否使用粘性修饰符</p>
-</li>
-<li>source 返回正则匹配正文</li>
-<li>flags 返回正则修饰符</li>
-<li><p>字符串必须转义，才能作为正则模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//可用于fiddler 匹配*请求中http:\/\/xxx.xxx.cn\/\?v=.*</span><br><span class="line">function escapeRegExp(str) &#123;</span><br><span class="line">  return str.replace(/[\-\[\]\/\&#123;\&#125;\(\)\*\+\?\.\\\^\$\|]/g, &apos;\\$&amp;&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let str = &apos;/path/to/resource.html?search=query&apos;;</span><br><span class="line">escapeRegExp(str)</span><br><span class="line">// &quot;\/path\/to\/resource\.html\?search=query&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>后行断言，从右往左执行表达式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(?&lt;=(\d+)(\d+))$/.exec(&apos;1053&apos;) // [&quot;&quot;, &quot;1&quot;, &quot;053&quot;]</span><br><span class="line">/^(\d+)(\d+)$/.exec(&apos;1053&apos;) // [&quot;1053&quot;, &quot;105&quot;, &quot;3&quot;]</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/06/String-ES6/" itemprop="url">
-                  String-ES6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-06T14:54:03+08:00" content="2016-05-06">
-              2016-05-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/06/String-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/06/String-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>string.codePointAt()能处理4个字节</li>
-<li><p>string.charCodeAt()处理2个字节</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 是否由四个字节组成</span><br><span class="line">function is32Bit(c)&#123;</span><br><span class="line">	return c.codePointAt(0) &gt; 0xFFFF;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>string.fromCharCode(0xFFFF)</p>
-</li>
-<li>string.fromCodePoint(0x20BB7)</li>
-<li>如果String.fromCharCode方法有多个参数，则它们会被合并成一个字符串返回。String.fromCodePoint(0x78, 0x1f680, 0x79) === “x\uD83D\uDE80y” // true</li>
-<li>fromCodePoint 方法定义在String对象上，codePointAt方法定义在字符串实例对象上</li>
-<li>for(let xx of string) 可以识别大于0xFFFF的码点</li>
-<li>string.at()和string.charAt()</li>
-<li>string.includes()</li>
-<li>string.endsWith(sting1,index)</li>
-<li>string.startsWith()</li>
-<li>string.padStart(length,string1) //length是拼接string1后总长度，超出部分截出</li>
-<li>string.padEnd(length,string1)<h3 id="templete"><a href="#templete" class="headerlink" title="templete"></a>templete</h3></li>
-<li>``反引号成行成段转义输出</li>
-<li>let man = 6</li>
-<li>$(‘#J_main’).append(<code>&lt;b&gt;${man}&lt;/b&gt;</code>) // <b>6</b></li>
-<li>${内部执行的是JavaScript代码}</li>
-<li>${‘hello’ + ‘ world’}</li>
-<li>console.log(<code>${man}</code>+<code>${man}</code>);</li>
-<li>console.log(<code>${man + man}</code>);</li>
-<li>let xx = (x)=&gt;{return x;}</li>
-<li>console.log(<code>${xx(21)}</code>)</li>
-<li>let lo = <code>(function fk(x){ return x})</code> // 要用括号把函数体包裹起来</li>
-<li>let fuc = eval(lo)</li>
-<li>console.log(fuc(223))</li>
-<li>string.raw //转义\</li>
-<li><p>简单模板</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var template = `</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;% for(var i=0; i &lt; data.supplies.length; i++) &#123;%&gt;</span><br><span class="line">    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">`;</span><br><span class="line">function compile(template)&#123;</span><br><span class="line">  var evalExpr = /&lt;%=(.+?)%&gt;/g;</span><br><span class="line">  var expr = /&lt;%([\s\S]+?)%&gt;/g;</span><br><span class="line"></span><br><span class="line">  template = template</span><br><span class="line">    .replace(evalExpr, &apos;`); \n  echo( $1 ); \n  echo(`&apos;)</span><br><span class="line">    .replace(expr, &apos;`); \n $1 \n  echo(`&apos;);</span><br><span class="line"></span><br><span class="line">  template = &apos;echo(`&apos; + template + &apos;`);&apos;;</span><br><span class="line"></span><br><span class="line">  // console.log(template);</span><br><span class="line">  var script =</span><br><span class="line">  `(function partse(data)&#123;</span><br><span class="line">    var output = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    function echo(html)&#123;</span><br><span class="line">      output += html;</span><br><span class="line">    &#125;</span><br><span class="line">    $&#123; template &#125;</span><br><span class="line"></span><br><span class="line">    return output;</span><br><span class="line">  &#125;)`;</span><br><span class="line"></span><br><span class="line">  return script;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parse = eval(compile(template));</span><br><span class="line">console.log(parse(&#123; supplies: [ &quot;broom&quot;, &quot;mop&quot;, &quot;cleaner&quot; ] &#125;));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>标签模板</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tag`Hello $&#123;main&#125;`</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/03/regex-base2/" itemprop="url">
-                  正则表达式基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-03T17:00:06+08:00" content="2016-05-03">
-              2016-05-03
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/03/regex-base2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/regex-base2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>主要参考<a href="http://www.cppblog.com/vczh/">陈梓瀚</a></p>
-<h3 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h3><ul>
-<li>神经元<h3 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h3></li>
-<li>如何分析正则表达式</li>
-<li>如何扩展NFA以便表达正则表达式的高级功能（预查、捕获等）
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/03/regex-base2/#more" rel="contents">
+            <a class="btn" href="/2016/08/11/console/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1026,8 +440,8 @@ return factorial(n-1, n * total);
             
               
                 
-                <a class="post-title-link" href="/2016/04/29/解构赋值-ES6/" itemprop="url">
-                  解构赋值-ES6
+                <a class="post-title-link" href="/2016/07/26/closure/" itemprop="url">
+                  closure
                 </a>
               
             
@@ -1040,8 +454,8 @@ return factorial(n-1, n * total);
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-29T15:22:24+08:00" content="2016-04-29">
-              2016-04-29
+            <time itemprop="dateCreated" datetime="2016-07-26T16:39:14+08:00" content="2016-07-26">
+              2016-07-26
             </time>
           </span>
 
@@ -1051,8 +465,8 @@ return factorial(n-1, n * total);
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/29/解构赋值-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/解构赋值-ES6/" itemprop="commentsCount"></span>
+                <a href="/2016/07/26/closure/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/26/closure/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1075,13 +489,14 @@ return factorial(n-1, n * total);
 
       
         
-          <p>主要参考来源<a href="http://es6.ruanyifeng.com/#docs/destructuring">阮一峰</a></p>
-<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><h3 id="默认解构赋值"><a href="#默认解构赋值" class="headerlink" title="默认解构赋值"></a>默认解构赋值</h3><pre><code>let [x] = [1];
-//x =&gt; 1
-</code></pre><h3 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h3><pre><code>var {bar , foo} = {foo:&apos;hello&apos;, bar:&apos;world&apos;};
-</code></pre>
+          <p>内容主要来源于网络文章<a href="http://www.4byte.cn/learning/119650/ni-bu-yi-ding-neng-zuo-dui-de-javascript-bi-bao-mian-shi-ti.html">4byte</a></p>
+<ul>
+<li>文章主旨是为了进一步理解闭包如果运作，最好是先自己动脑想一下答案再看解题思路</li>
+<li>直接抛题<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function func(closure, more)&#123;</span><br><span class="line">    log(more);</span><br><span class="line">    return &#123;</span><br><span class="line">        func: function(innerClosure)&#123;</span><br><span class="line">            return func(innerClosure, closure);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">function log(s)&#123;</span><br><span class="line">    var _d = document.createElement(&apos;div&apos;);</span><br><span class="line">    _d.innerHTML = s;</span><br><span class="line">    document.body.appendChild(_d);</span><br><span class="line">&#125;</span><br><span class="line">var temp = func(0);</span><br><span class="line">temp.func(1);</span><br><span class="line">temp.func(2);</span><br><span class="line">temp.func(3);</span><br><span class="line">var temp2 = func(0).func(1).func(2).func(3);</span><br><span class="line">var temp3 = func(0).func(1);</span><br><span class="line">temp3.func(2);</span><br><span class="line">temp3.func(3);</span><br><span class="line">//Question: 以上函数执行后出现在body上的结果是什么？</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/29/解构赋值-ES6/#more" rel="contents">
+            <a class="btn" href="/2016/07/26/closure/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1128,8 +543,8 @@ return factorial(n-1, n * total);
             
               
                 
-                <a class="post-title-link" href="/2016/04/26/selenium-webdriver/" itemprop="url">
-                  selenium-webdriver
+                <a class="post-title-link" href="/2016/07/20/Iterator/" itemprop="url">
+                  Iterator
                 </a>
               
             
@@ -1142,8 +557,8 @@ return factorial(n-1, n * total);
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T08:51:57+08:00" content="2016-04-26">
-              2016-04-26
+            <time itemprop="dateCreated" datetime="2016-07-20T16:39:38+08:00" content="2016-07-20">
+              2016-07-20
             </time>
           </span>
 
@@ -1153,8 +568,8 @@ return factorial(n-1, n * total);
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/26/selenium-webdriver/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/selenium-webdriver/" itemprop="commentsCount"></span>
+                <a href="/2016/07/20/Iterator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/20/Iterator/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1179,11 +594,26 @@ return factorial(n-1, n * total);
         
           
             <ul>
-<li>延迟至某条件达成后执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">driver.wait(function () &#123;</span><br><span class="line">    return driver.isElementPresent(webdriver.By.name(&quot;username&quot;));</span><br><span class="line">&#125;, timeout);</span><br><span class="line">/*==========*/</span><br><span class="line">driver.wait(until.elementLocated(By.name(&apos;username&apos;)), 5 * 1000).then(function(elm) &#123;</span><br><span class="line">    elm.sendKeys(username);</span><br><span class="line">&#125;);</span><br><span class="line">/*==========*/</span><br><span class="line">driver.findElement(webdriver.By.id(element)).then(function(webElement) &#123;</span><br><span class="line">        console.log(element + &apos; exists&apos;);</span><br><span class="line">    &#125;, function(err) &#123;</span><br><span class="line">        if (err.state &amp;&amp; err.state === &apos;no such element&apos;) &#123;</span><br><span class="line">            console.log(element + &apos; not found&apos;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            webdriver.promise.rejected(err);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>javscript集合对象：Array,Object,Set,Map</li>
+<li>遍历器是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）</li>
+<li>Iterator的作用有三个：<ul>
+<li>为各种数据结构提供一个统一的、简便的访问接口</li>
+<li>数据结构的成员能够按某种次序排列</li>
+<li>ES6创造了一种新的遍历命令for…of循环，Iterator接口主要供for…of消费。</li>
+</ul>
+</li>
+<li>Iterator的遍历过程：<ul>
+<li>创建一个指针对象，指向当前数据结构的起始位置。本质是一个指针对象。</li>
+<li>第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员。</li>
+<li>第二次调用指针对象的next方法，指针就指向数据结构的第二个成员。</li>
+<li>不断调用指针对象的Next方法，直到它指向数据结构的结束位置。</li>
+<li>每次调用next方法，都会返回数据结构的当前成员的信息。具体来说，就是返回一个包含value和done两个属性的对象。其中，value属性是当前成员的值，done属性是一个布尔值，表示遍历是否结束。</li>
+</ul>
+</li>
+<li>自定义实现一个拥有Iterator接口的对象，必须要在Symbol.iterator的属性上部署遍历器生成方法(原型链上也可以)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">class RangeIterator&#123;</span><br><span class="line">	constructor(start, stop)&#123;</span><br><span class="line">		this.value = start;</span><br><span class="line">		this.stop = stop;</span><br><span class="line">	&#125;</span><br><span class="line">	[Symbol.iterator]()&#123; return this;&#125;</span><br><span class="line">	next()&#123;</span><br><span class="line">		var value = this.value;</span><br><span class="line">		if(value &lt; this.stop)&#123;</span><br><span class="line">			this.value++;</span><br><span class="line">			return &#123;done:false,value: value&#125;;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return &#123;done: true&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//原型链</span><br><span class="line">function Obj(value)&#123;</span><br><span class="line">	this.value = value;</span><br><span class="line">	this.next = null;</span><br><span class="line">&#125;</span><br><span class="line">Obj.prototype[Symbol.iterator] = function()&#123;</span><br><span class="line">	var iterator = &#123;</span><br><span class="line">		next : next</span><br><span class="line">	&#125;</span><br><span class="line">	var current = this;</span><br><span class="line">	function next()&#123;</span><br><span class="line">		if(current)&#123;</span><br><span class="line">			var value = current.value;</span><br><span class="line">			current = current.next;</span><br><span class="line">			return &#123;</span><br><span class="line">				done: false,</span><br><span class="line">				value: value</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return &#123;done: true&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return iterator;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var one = new Obj(1);</span><br><span class="line">var two = new Obj(2);</span><br><span class="line">var three = new Obj(3);</span><br><span class="line"></span><br><span class="line">one.next = two;</span><br><span class="line">two.next = three;</span><br><span class="line">for(var i of one)&#123;console.log(i)&#125;//1 2 3</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// Import Selenium Dependency</span><br><span class="line">var Webdriver = require(&apos;selenium-webdriver&apos;);</span><br><span class="line"> </span><br><span class="line">// Few Settings</span><br><span class="line">var PAGE_LOAD_TIMEOUT_MS = 10000;</span><br><span class="line">var SCRIPT_LOAD_TIMEOUT_MS = 1000;</span><br><span class="line">var WINDOW_WIDTH_PX = 1024;</span><br><span class="line">var WINDOW_HEIGHT_PX = 768;</span><br><span class="line"> </span><br><span class="line">// Initialize a webdriver with desired capabilites</span><br><span class="line">var driver = new Webdriver.Builder().withCapabilities(Webdriver.Capabilities.firefox()).build();</span><br><span class="line">// Manage timeouts of the webdriver instance</span><br><span class="line">driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT_MS);</span><br><span class="line">driver.manage().timeouts().setScriptTimeout(SCRIPT_LOAD_TIMEOUT_MS);</span><br><span class="line">// Manage window settings of the webdriver instance</span><br><span class="line">driver.manage().window().setSize(WINDOW_WIDTH_PX, WINDOW_HEIGHT_PX);</span><br><span class="line"> </span><br><span class="line">// Request to render google.com</span><br><span class="line">driver.get(&quot;http://google.com&quot;).then(function () &#123;</span><br><span class="line">        // On Success get the title of the rendered page</span><br><span class="line">    driver.getTitle().then(function (title) &#123;</span><br><span class="line">            // On Success log it out</span><br><span class="line">        console.log(title);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">- See more at: http://itsallabtamil.blogspot.com/2014/10/selenium-webdriver-in-nodejs-javascript.html#sthash.QYKh3mjf.dpuf</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Wednesday, October 8, 2014</span><br><span class="line">Selenium Webdriver in Nodejs + Javascript</span><br><span class="line">Phewww getting back to blog after almost an year.</span><br><span class="line">So, am back to discuss an interesting node module selenium-webdriver [Ref: Project Doc and npm registry]</span><br><span class="line">Am assuming the reader has prior knowledge on what nodejs, npm and node modules are. And a little bit of selenium fun ;)</span><br><span class="line">What is selenium?</span><br><span class="line">As wiki says, Selenium is a portable software testing framework for web applications.</span><br><span class="line">It is a prominently used tool for browser automation. For further details checkout SeleniumHQ.</span><br><span class="line"></span><br><span class="line">What are we doing here?</span><br><span class="line">Basically Selenium provides bindings in many languages like java, python, php and now even nodejs. </span><br><span class="line">Here am planning to run through few code samples of using selenium webdriver in nodejs.</span><br><span class="line"></span><br><span class="line">Where to start?</span><br><span class="line"></span><br><span class="line">im@mylaptop$ npm install --save selenium-webdriver</span><br><span class="line"></span><br><span class="line">A Simple Webdriver Example</span><br><span class="line"></span><br><span class="line">// Import Selenium Dependency</span><br><span class="line">var Webdriver = require(&apos;selenium-webdriver&apos;);</span><br><span class="line"> </span><br><span class="line">// Few Settings</span><br><span class="line">var PAGE_LOAD_TIMEOUT_MS = 10000;</span><br><span class="line">var SCRIPT_LOAD_TIMEOUT_MS = 1000;</span><br><span class="line">var WINDOW_WIDTH_PX = 1024;</span><br><span class="line">var WINDOW_HEIGHT_PX = 768;</span><br><span class="line"> </span><br><span class="line">// Initialize a webdriver with desired capabilites</span><br><span class="line">var driver = new Webdriver.Builder().withCapabilities(Webdriver.Capabilities.firefox()).build();</span><br><span class="line">// Manage timeouts of the webdriver instance</span><br><span class="line">driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT_MS);</span><br><span class="line">driver.manage().timeouts().setScriptTimeout(SCRIPT_LOAD_TIMEOUT_MS);</span><br><span class="line">// Manage window settings of the webdriver instance</span><br><span class="line">driver.manage().window().setSize(WINDOW_WIDTH_PX, WINDOW_HEIGHT_PX);</span><br><span class="line"> </span><br><span class="line">// Request to render google.com</span><br><span class="line">driver.get(&quot;http://google.com&quot;).then(function () &#123;</span><br><span class="line">        // On Success get the title of the rendered page</span><br><span class="line">    driver.getTitle().then(function (title) &#123;</span><br><span class="line">            // On Success log it out</span><br><span class="line">        console.log(title);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Initialize a webdriver with desired capabilites</span><br><span class="line">What are the default capabilities?</span><br><span class="line">Checkout capabilities.js</span><br><span class="line">It includes</span><br><span class="line">1. BROWSER_NAME</span><br><span class="line">2. SUPPORTS_JAVASCRIPT</span><br><span class="line">3. SUPPORTS_CSS_SELECTORS</span><br><span class="line">4. TAKES_SCREENSHOT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Webdriver.Capabilities.firefox()</span><br><span class="line">Creates a new capabilities object by overriding the default BROWSER_NAME from &apos;browserName&apos; to &apos;firefox&apos;.</span><br><span class="line"></span><br><span class="line">So, What are all other browser options?</span><br><span class="line">Checkout Browsers Section </span><br><span class="line"></span><br><span class="line">Do all the browsers work by default?</span><br><span class="line">Not really. To initialize a webdriver, we need to make sure that executable of desired browser is present in the system PATH.</span><br><span class="line">For Ex: To use firefox, the following should be checked. If this fails, then appropriate binaries should be installed.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iam@mylaptop$ which firefox</span><br><span class="line">/usr/bin/firefox</span><br><span class="line"></span><br><span class="line">Apart from this, few browsers use separate driver executables to abstract the communication via webdriver to actual browser. For Ex: Chrome needs chromedriver. Download and make sure it is available in the system PATH.</span><br><span class="line">Internally chromedriver expects google-chrome to be available in the system PATH.</span><br><span class="line"></span><br><span class="line">What if I wish to start chrome or firefox from webdriver with specific options?</span><br><span class="line"></span><br><span class="line">var driver = new Webdriver.Builder().withCapabilities(Webdriver.Capabilities.firefox()).setFirefoxOptions(&#123;</span><br><span class="line">    firefox_profile: &quot;Name&quot;</span><br><span class="line">&#125;).build();</span><br><span class="line"></span><br><span class="line">How do I manage exceptions while loading [like pageload timesout]?</span><br><span class="line">Selenium webdriver is full of promises. Almost every interaction with the webdriver [irrespective of whether it is sync or async] returns a promise.</span><br><span class="line">As we can see in our code,</span><br><span class="line"></span><br><span class="line">driver.get(&quot;http://google.com&quot;).then(function success() &#123;</span><br><span class="line">    console.log(&apos;Successful&apos;);</span><br><span class="line">    i++;</span><br><span class="line">&#125;, function error(err) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;).thenCatch(function (e) &#123; </span><br><span class="line">    console.log(&quot;Any exceptions in success or err callbacks gets thrown here&quot;, e);</span><br><span class="line">    // You need to decide the resolution value here</span><br><span class="line">&#125;).thenFinally(function () &#123;</span><br><span class="line">    console.log(&quot;We can tear down stuffs here&quot;);</span><br><span class="line">    // You need to decide the resolution value here. If nothing specified undefined will be returned.</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">How do I handle actions that are dependent on some conditions [like may be after some ajax calls you need click some button]?</span><br><span class="line">We can ask driver to wait implicitly on a timeout basis or explicitly on a condition basis.</span><br><span class="line"></span><br><span class="line">driver.sleep(MY_SLEEPTIMER_MS).then(function () &#123;</span><br><span class="line">    console.log(&quot;I&apos;ll do my action&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">driver.wait(function () &#123;</span><br><span class="line">    if (document.readyState === &quot;complete&quot;) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, TIMEOUT_TO_WAIT).then(function () &#123;</span><br><span class="line">    console.log(&quot;I&apos;ll do my action here&quot;);</span><br><span class="line">&#125;, function () &#123;</span><br><span class="line">    console.log(&quot;Either the condn satisfied or the TIMEOUT_TO_WAIT happened; luck is yours&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">- See more at: http://itsallabtamil.blogspot.com/2014/10/selenium-webdriver-in-nodejs-javascript.html#sthash.QYKh3mjf.dpuf</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -1228,8 +658,8 @@ return factorial(n-1, n * total);
             
               
                 
-                <a class="post-title-link" href="/2016/04/26/analyse-requirejs/" itemprop="url">
-                  analyse-requirejs
+                <a class="post-title-link" href="/2016/07/06/naturalHeight/" itemprop="url">
+                  HTML5 naturalHeight naturalWidth
                 </a>
               
             
@@ -1242,8 +672,8 @@ return factorial(n-1, n * total);
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T08:51:03+08:00" content="2016-04-26">
-              2016-04-26
+            <time itemprop="dateCreated" datetime="2016-07-06T09:41:12+08:00" content="2016-07-06">
+              2016-07-06
             </time>
           </span>
 
@@ -1253,8 +683,8 @@ return factorial(n-1, n * total);
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/26/analyse-requirejs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/analyse-requirejs/" itemprop="commentsCount"></span>
+                <a href="/2016/07/06/naturalHeight/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/naturalHeight/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1277,9 +707,22 @@ return factorial(n-1, n * total);
 
       
         
-          <h3 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h3><p>req<br>s<br>head<br>baseElement<br>dataMain<br>src<br>interactiveScript<br>currentlyAddingScript<br>mainScript<br>subPath<br>version<br>commentRegExp<br>jsSuffixRegExp<br>op<br>ostring<br>hasOwn<br>isBrowser<br>isWebWorker<br>readyRegExp<br>defContextName<br>isOpera<br>contexts<br>cfg<br>globalDefQueue<br>useInteractive<br>handlers<br>
+          <p>部分内容参考<a href="http://www.w3ctech.com/topic/112">w3ctech</a></p>
+<h3 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a>预加载</h3><ul>
+<li>设定图片自定义属性放置图片真实的URL，src放置默认打底图片</li>
+<li><p>获取图片元素相对顶部的高度<code>imageClientTop</code>，如果滚动高度接近<code>imageClientTop</code> ，则设置图片的src属性为自定义属性的值，在图片onload时去除打底，展示真正的图片</p>
+</li>
+<li><p>在未知预加图片宽高时，要想办法获取图片的真实宽高，有两种方案：支持H5 naturalHeight的和不支持的</p>
+</li>
+<li><p>支持的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 注意,这里也要在img onload状态后才能获取naturalWidth，动态插入直接读该属性可能返回0</span><br><span class="line">var </span><br><span class="line">  nWidth = document.getElementById(&apos;example&apos;).naturalWidth,</span><br><span class="line">  nHeight = document.getElementById(&apos;example&apos;).naturalHeight;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不支持的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getNatural (el) &#123;</span><br><span class="line">  var img = new Image();</span><br><span class="line">  img.src = el.src;</span><br><span class="line">  return &#123;width: img.width, height: img.height&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var </span><br><span class="line">natural = getNatural(document.getElementById(&apos;example&apos;)),</span><br><span class="line">nWidth = natural.width,</span><br><span class="line">nHeight = natural.height;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/26/analyse-requirejs/#more" rel="contents">
+            <a class="btn" href="/2016/07/06/naturalHeight/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1326,8 +769,8 @@ return factorial(n-1, n * total);
             
               
                 
-                <a class="post-title-link" href="/2016/04/26/regex-base1/" itemprop="url">
-                  词法分析基础
+                <a class="post-title-link" href="/2016/07/01/a-pixel-is-not-a-pixel/" itemprop="url">
+                  a pixel is not a pixel is not a pixel
                 </a>
               
             
@@ -1340,8 +783,8 @@ return factorial(n-1, n * total);
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T08:48:20+08:00" content="2016-04-26">
-              2016-04-26
+            <time itemprop="dateCreated" datetime="2016-07-01T20:18:16+08:00" content="2016-07-01">
+              2016-07-01
             </time>
           </span>
 
@@ -1351,8 +794,8 @@ return factorial(n-1, n * total);
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/26/regex-base1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/regex-base1/" itemprop="commentsCount"></span>
+                <a href="/2016/07/01/a-pixel-is-not-a-pixel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/01/a-pixel-is-not-a-pixel/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1375,29 +818,495 @@ return factorial(n-1, n * total);
 
       
         
-          <p>主要参考<a href="http://www.cppblog.com/vczh/">陈梓瀚</a></p>
-<h4 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h4><ul>
-<li>词法分析的重要性<ul>
-<li>运行命令</li>
-<li>(1+2)*(3+4)<ul>
-<li>(左括号,”(“) (数字,”1”) (一级操作符,”+”) (数字,”2”) (右括号,”)”) (二级操作符,”*”) (左括号,”(“) (数字,”3”) (一级操作符,”+”) (数字,”4”) (右括号,”)”)</li>
-<li>操作符、括号、数字</li>
-<li>但是，都是等价的对象，没有层次<h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4></li>
+          
+            <p>原文<a href="http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html" target="_blank" rel="external">A pixel is not a pixel is not a pixel</a></p>
+<ul>
+<li>现在我正在深入研究移动端中跨浏览器手机的宽和高，得出的结论是在99%的情况下，这些因素不会影响到正常的web开发</li>
+<li>剩余的1%变得非常诡异，我期望苹果公司通过假如一个像素层来解决这个1%引起的问题</li>
+<li>开始之前，我先提示下：因为这些因素对那些我忽视的正规屏幕尺寸并不重要，并且我没有认真的去研究过展示、像素密度等其他复杂概念。所以，接下的内容我可能用错了很多专业术语，多多包涵。</li>
 </ul>
+<h4 id="Web开发者需要什么"><a href="#Web开发者需要什么" class="headerlink" title="Web开发者需要什么"></a>Web开发者需要什么</h4><ul>
+<li>我并不知道web开发者真正感兴趣的是什么，但是我知道他们需要CSS像素单位。就是在CSS表达式中声明的：width: 300px 或者是 font-size: 14px;</li>
+<li>CSS像素和设备像素密度没有任何关系，也跟即将产生的中间层没有任何关系。他们本质上是专门为我们web开发者创造的抽象构造。</li>
+<li>我们可以用zoom操作来做简单说明。当用户放大的时候，一个<code>width:300px</code>的元素占据了更大的屏幕，这使得被放大的元素在设备（物理）像素上就变得越来越宽。zoom的效果完全是通过尽可能的扩展CSS像素产生的，然而此时该元素的CSS像素值仍是300px。</li>
+<li>当zoom效果达到100%时，一个CSS像素等于一个设备像素（尽管中间层会替代设备像素层）我得说明下<code>zoom 100%</code>对于web开发者来说没有任何意义，Zoom层级对我们不重要，我们要关心的是适配当前屏幕需要多少CSS像素。</li>
+<li>我们想想当用户zoom操作时到底发生了什么？当用户缩小时，CSS像素变小，此时一个设备像素重叠了更多的CSS像素。当用户放大时，CSS像素变大，此时一个设备像素重叠更少的CSS像素。</li>
+<li>这样我们的<code>width:300px</code>元素的实际CSS像素总是300，另外由zoom因素决定多少设备像素呈现一个CSS像素。</li>
+<li>这种机制不会改变，如果改变了，所有iPhone网站会严重失控，苹果公司肯定不会让这一切发生的。</li>
+<li>因此，完全适配的网站扔展示980px，此时我们并不关心多少设备像素来呈现980px。</li>
+</ul>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
+<li>&lt;meta name=\”viewport\” width=\”device-width\”&gt;</li>
+<li>media query <code>device-width</code></li>
+<li>以上两种方案都作用于设备像素，而不是CSS像素，因为他们的上下文是网页，不是CSS内部运行环境。</li>
+</ul>
+<h4 id="media-query"><a href="#media-query" class="headerlink" title="media query"></a>media query</h4><ul>
+<li><code>device-width</code>代表设备的宽度。</li>
+<li><code>width</code>代表页面的宽度。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/*正常范围宽300*/</span><br><span class="line">div.sidebar &#123; width: 300px;&#125;</span><br><span class="line">/*小于320px设定宽100*/</span><br><span class="line">@media all and (max-device-width: 320px)&#123;</span><br><span class="line">	div.sidebar&#123; width: 100px&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="meta-tag"><a href="#meta-tag" class="headerlink" title="meta tag"></a>meta tag</h4><ul>
+<li>一般来说meta标签更有用。这起先是由苹果发布的属性，后来被许多移动浏览器实现，让layout viewport适配设备屏幕更容易。</li>
+<li>什么是Layout Viewport? 浏览器用它来计算元素的展示比例（CSS像素）,比如<code>div.sidebar{width: 20%}</code>,Layout Viewport总是比设备像素大一些。</li>
+<li>如果你添加了meta标签，layout viewport的宽度会限制在设备像素内：iPhone 是320</li>
+<li>即使你的页面小到足以适配屏幕，那也会有影响。应该加上<meta>标签，让文字适配当前屏幕。</li>
+</ul>
+<h4 id="other"><a href="#other" class="headerlink" title="other"></a>other</h4><ul>
+<li>dips: 谷歌提出一个概念，device-independent pixels，CSS像素作用于这一层 </li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/30/Proxy-ES6/" itemprop="url">
+                  Proxy-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T14:10:26+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/30/Proxy-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/Proxy-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。<br>Proxy可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//ES6生成Proxy实例</span><br><span class="line">var proxy = new Proxy(target, handler);</span><br><span class="line"></span><br><span class="line">var obj = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function (target, key, receiver) &#123;</span><br><span class="line">    console.log(`getting $&#123;key&#125;!`);</span><br><span class="line">    return Reflect.get(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  set: function (target, key, value, receiver) &#123;</span><br><span class="line">    console.log(`setting $&#123;key&#125;!`);</span><br><span class="line">    return Reflect.set(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作;如果handler没有设置任何拦截，那就等同于直接通向原对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var target = &#123;&#125;;</span><br><span class="line">var handler = &#123;&#125;;</span><br><span class="line">var proxy = new Proxy(target, handler);</span><br><span class="line">proxy.a = &apos;b&apos;;</span><br><span class="line">target.a // &quot;b&quot;</span><br><span class="line">//技巧：将Proxy对象，设置到object.proxy属性，从而可以在object对象上调用</span><br><span class="line">var object = &#123; proxy: new Proxy(target, handler) &#125;;</span><br><span class="line">//Proxy实例也可以作为其他对象的原型对象</span><br><span class="line">var proxy = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function(target, property) &#123;</span><br><span class="line">    return 35;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let obj = Object.create(proxy);</span><br><span class="line">obj.time // 35</span><br><span class="line"></span><br><span class="line">//可以进行多操作拦截</span><br><span class="line">var handler = &#123;</span><br><span class="line">  get: function(target, name) &#123;</span><br><span class="line">    if (name === &apos;prototype&apos;) &#123;</span><br><span class="line">      return Object.prototype;</span><br><span class="line">    &#125;</span><br><span class="line">    return &apos;Hello, &apos; + name;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  apply: function(target, thisBinding, args) &#123;</span><br><span class="line">    return args[0];</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  construct: function(target, args) &#123;</span><br><span class="line">    return &#123;value: args[1]&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fproxy = new Proxy(function(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;, handler);</span><br><span class="line">fproxy(2,20);//apply ==&gt; 2</span><br><span class="line">new fproxy(1,11);//construct ==&gt; &#123;value: 11&#125;</span><br><span class="line">fproxy.hello;//get ==&gt; Hello, hello</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Proxy支持的拦截操作如下</p>
+<ul>
+<li>get(target, propKey, receiver)拦截对象属性的读取，比如proxy.foo和proxy[‘foo’]，返回类型不限。最后一个参数receiver可选，当target对象设置了propKey属性的get函数时，receiver对象会绑定get函数的this对象。</li>
+<li>set(target, propKey, value, receiver)拦截对象属性的设置，比如proxy.foo = v或proxy[‘foo’] = v，返回一个布尔值。</li>
+<li>has(target, propKey)拦截propKey in proxy的操作，以及对象的hasOwnProperty方法，返回一个布尔值。</li>
+<li>deleteProperty(target, propKey)拦截delete proxy[propKey]的操作，返回一个布尔值。</li>
+<li>ownKeys(target)拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)，返回一个数组。该方法返回对象所有自身的属性，而Object.keys()仅返回对象可遍历的属性。</li>
+<li>getOwnPropertyDescriptor(target, propKey)拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</li>
+<li>defineProperty(target, propKey, propDesc)拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</li>
+<li>preventExtensions(target)拦截Object.preventExtensions(proxy)，返回一个布尔值。</li>
+<li>isExtensible(target)拦截Object.isExtensible(proxy)，返回一个布尔值。</li>
+<li>setPrototypeOf(target, proto)拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。</li>
+<li>apply(target, object, args)拦截Proxy实例作为函数调用的操作，比如proxy(…args)、proxy.call(object, …args)、proxy.apply(…)。</li>
+<li>construct(target, args)拦截Proxy实例作为构造函数调用的操作，比如new proxy(…args)。</li>
+</ul>
+</li>
+<li><p>各拦截操作实战用途如下</p>
+<ul>
+<li>get 可以在读取不存在的属性时抛出一个错误，而不是仅仅返回无意义的undefined；可以在返回之前做逻辑处理，比如实现数组负数索引取值；可以创建链式调用。</li>
+<li>set 可以用来实施更新DOM</li>
+<li>has 可以对in运算符做特殊处理，如不让带大写A的属性被in发现；has方法拦截的是HasProperty操作，而不是HasOwnProperty操作，即has方法不判断一个属性是对象自身的属性，还是继承的属性。for…in操作内部也是用到HasProperty操作，所以has方法在for…in循环时也会生效。</li>
+<li><p>construct方法返回的必须是一个对象，否则会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//在返回真正的对象前可以加以处理，但返回值必须是对象</span><br><span class="line">var p = new Proxy(function() &#123;&#125;, &#123;</span><br><span class="line"> 	construct: function(target, args) &#123;</span><br><span class="line">    console.log(&apos;called: &apos; + args.join(&apos;, &apos;));</span><br><span class="line">    return &#123; value: args[0] * 30 &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">new p(10).value</span><br><span class="line">// &quot;called: 10&quot;</span><br><span class="line">// 300</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>getPrototypeOf用来拦截object.getPrototypeOf()运算符，以及Reflect.getPrototypeOf,instanceof运算符，Object.prototype.isPrototypeOf</p>
 </li>
 </ul>
 </li>
-<li>代表字符串集合的规则<ul>
-<li>规则可以把一个特定的字符或者是空字符串认为是一种类型的记号的全部，如”(“是”左括号”，”[“不会是”左括号”</li>
-<li>规则可以进行串联，”hello”是”h”,”e”,”l”,”l”,”o”的记号串联</li>
-<li>规则可以进行并联, “if”,”else”,”while”等字符串，称之为关键字</li>
-<li>规则是可选的， “abc”,”abcde”可以看做是”abd”的前缀字符串，”de”是可选的</li>
-<li>规则可以重复
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/26/regex-base1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+<li>Proxy.revocable(),Proxy.revocable方法返回一个对象，该对象的proxy属性是Proxy实例，revoke属性是一个函数，可以取消Proxy实例。上面代码中，当执行revoke函数之后，再访问Proxy实例，就会抛出一个错误。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let target = &#123;&#125;;</span><br><span class="line">let handler = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">let &#123;proxy, revoke&#125; = Proxy.revocable(target, handler);</span><br><span class="line">proxy.foo = 123;</span><br><span class="line">proxy.foo //123</span><br><span class="line">revoke();</span><br><span class="line">proxy.foo // TypeError : Revoke</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/22/Pixel-puzzle/" itemprop="url">
+                  Pixel puzzle
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-22T15:22:15+08:00" content="2016-06-22">
+              2016-06-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/22/Pixel-puzzle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/22/Pixel-puzzle/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>pt &amp;&amp; px<br>  <code>PPI=(√(X²+Y²))/ Z (X:长度像素数;Y:宽度像素数;Z:屏幕尺寸)</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/22/Reflect-ES6/" itemprop="url">
+                  Reflect-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-22T11:06:11+08:00" content="2016-06-22">
+              2016-06-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/22/Reflect-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/22/Reflect-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>Reflect 对象与Proxy对象一样，也是ES6为了操作对象而提供的新API。</li>
+<li>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。</li>
+<li>修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。</li>
+<li>让Object操作都变成函数行为。某些Object操作是命令式，比如name in obj和delete obj[name]，而Reflect.has(obj, name)和Reflect.deleteProperty(obj, name)让它们变成了函数行为。</li>
+<li>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。也就是说，不管Proxy怎么修改默认行为，你总可以在Reflect上获取默认行为。</li>
+<li>Reflect方法清单<ul>
+<li>Reflect.apply(target,thisArg,args)</li>
+<li>Reflect.construct(target,args)</li>
+<li>Reflect.get(target,name,receiver)</li>
+<li>Reflect.set(target,name,value,receiver)</li>
+<li>Reflect.defineProperty(target,name,desc)</li>
+<li>Reflect.deleteProperty(target,name)</li>
+<li>Reflect.has(target,name)</li>
+<li>Reflect.ownKeys(target)</li>
+<li>Reflect.isExtensible(target)</li>
+<li>Reflect.preventExtensions(target)</li>
+<li>Reflect.getOwnPropertyDescriptor(target, name)</li>
+<li>Reflect.getPrototypeOf(target)</li>
+<li>Reflect.setPrototypeOf(target, prototype)</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/20/callee-caller/" itemprop="url">
+                  callee-caller
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-20T09:38:44+08:00" content="2016-06-20">
+              2016-06-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/20/callee-caller/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/callee-caller/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h3><ul>
+<li>callee是arguments的属性成员，返回正被执行的 Function 对象，也就是所指定的 Function 对象的正文<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function calleeLengthDemo(arg1, arg2) &#123; </span><br><span class="line">	alert(arguments.callee.toString()); </span><br><span class="line">	if (arguments.length == arguments.callee.length) &#123; </span><br><span class="line">		window.alert(&quot;验证形参和实参长度正确！&quot;); </span><br><span class="line">		return; </span><br><span class="line">	&#125; else &#123; </span><br><span class="line">		alert(&quot;实参长度：&quot; + arguments.length); </span><br><span class="line">		alert(&quot;形参长度： &quot; + arguments.callee.length); </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">calleeLengthDemo(1); //实参长度：1，形参长度：2</span><br><span class="line">//=============================================//</span><br><span class="line">//应用于匿名函数调用自身场景</span><br><span class="line">var fn=(function(n)&#123; </span><br><span class="line">if(n&gt;0) return n+arguments.callee(n-1); </span><br><span class="line">	return 0; </span><br><span class="line">&#125;)(10); </span><br><span class="line">alert(fn)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h3><ul>
+<li>functionName.caller 返回调用者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function caller() &#123; </span><br><span class="line">	if (caller.caller) &#123; </span><br><span class="line">		alert(caller.caller.toString()); </span><br><span class="line">	&#125; else &#123; </span><br><span class="line">		alert(&quot;函数直接执行&quot;); </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">function handleCaller() &#123; </span><br><span class="line">	caller(); </span><br><span class="line">&#125; </span><br><span class="line">handleCaller(); //handleCaller</span><br><span class="line">caller(); // 函数直接执行</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
         
       
     </div>
@@ -1424,7 +1333,7 @@ return factorial(n-1, n * total);
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1465,7 +1374,7 @@ return factorial(n-1, n * total);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1482,7 +1391,7 @@ return factorial(n-1, n * total);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1521,7 +1430,7 @@ return factorial(n-1, n * total);
         <div class="copyright" >
   
   &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

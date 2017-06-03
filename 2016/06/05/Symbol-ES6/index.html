@@ -57,31 +57,28 @@
 
 
 
-<meta name="description" content="symbol.for(‘string’)
-symbol.keyfor()
-内置symbol
+<meta name="description" content="symbol 可以转换成字符串类型、布尔类型，不能转换成数值。
+1234var s = Symbol(&amp;apos;a&amp;apos;)s.toString()// Symbol(a)!s // falseNumber(s) // TypeError
 
-Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
-1234567class MyClass &amp;#123;  [Symbol.hasInstance](foo) &amp;#123;    return foo instanceo">
+symbol定义时不能用.运算符
+123456var mysymbol = Symbol()var a = &amp;#123;&amp;#125;a.mysymbo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Symbol-ES6">
 <meta property="og:url" content="http://superfighter.github.io/2016/06/05/Symbol-ES6/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="symbol.for(‘string’)
-symbol.keyfor()
-内置symbol
+<meta property="og:description" content="symbol 可以转换成字符串类型、布尔类型，不能转换成数值。
+1234var s = Symbol(&amp;apos;a&amp;apos;)s.toString()// Symbol(a)!s // falseNumber(s) // TypeError
 
-Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
-1234567class MyClass &amp;#123;  [Symbol.hasInstance](foo) &amp;#123;    return foo instanceo">
-<meta property="og:updated_time" content="2016-06-05T07:31:01.000Z">
+symbol定义时不能用.运算符
+123456var mysymbol = Symbol()var a = &amp;#123;&amp;#125;a.mysymbo">
+<meta property="og:updated_time" content="2017-06-03T08:55:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Symbol-ES6">
-<meta name="twitter:description" content="symbol.for(‘string’)
-symbol.keyfor()
-内置symbol
+<meta name="twitter:description" content="symbol 可以转换成字符串类型、布尔类型，不能转换成数值。
+1234var s = Symbol(&amp;apos;a&amp;apos;)s.toString()// Symbol(a)!s // falseNumber(s) // TypeError
 
-Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
-1234567class MyClass &amp;#123;  [Symbol.hasInstance](foo) &amp;#123;    return foo instanceo">
+symbol定义时不能用.运算符
+123456var mysymbol = Symbol()var a = &amp;#123;&amp;#125;a.mysymbo">
 
 
 
@@ -292,8 +289,18 @@ Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
 
       
         <ul>
-<li>symbol.for(‘string’)</li>
-<li>symbol.keyfor()</li>
+<li><p>symbol 可以转换成字符串类型、布尔类型，不能转换成数值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var s = Symbol(&apos;a&apos;)</span><br><span class="line">s.toString()// Symbol(a)</span><br><span class="line">!s // false</span><br><span class="line">Number(s) // TypeError</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>symbol定义时不能用.运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var mysymbol = Symbol()</span><br><span class="line">var a = &#123;&#125;</span><br><span class="line">a.mysymbol = &apos;hello&apos;</span><br><span class="line">//因为点运算符后面总是字符串，所以不会读取mysymbol作为标识名所指代的那个值，导致a的属性名实际上是一个字符串，而不是一个Symbol值</span><br><span class="line">a[mysymbol] //undefined</span><br><span class="line">a[&apos;mysymbol&apos;] // hello</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>symbol.for(‘string’) 和 symbol(‘string’) 的区别是会在全局环境中搜索 string 是否已经存在，如果没有存在则新建一个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol.for(&apos;a&apos;)</span><br><span class="line">var s2 = Symbol.for(&apos;a&apos;)</span><br><span class="line"></span><br><span class="line">s1 == s2 //true</span><br><span class="line"></span><br><span class="line">var s3 = Symbol(&apos;c&apos;)</span><br><span class="line">var s4 = Symbol(&apos;d&apos;)</span><br><span class="line"></span><br><span class="line">s3 == s4 //false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>symbol.keyfor(‘string’) 返回一个已登记的Symbol值，在全局环境中起作用，可以在不同iframe和service worker中起作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol.for(&apos;cc&apos;)</span><br><span class="line">symbol.keyfor(s1) // cc</span><br><span class="line">symbol.keyfor(s2) // undefined</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>内置symbol</p>
 <ul>
 <li><p>Symbol.hasInstance,<code>foo instance Foo</code>内部是<code>Foo[Symbol.hasInstance](foo)</code></p>
@@ -313,7 +320,7 @@ Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
 <li>Symbol.split 指向一个方法，当该对象被String.prototye.split调用时，会返回该方法的返回值</li>
 <li>Symbol.iterator 指向该对象默认遍历器方法.对象进行for…of循环时，会调用Symbol.iterator方法，返回该对象的默认遍历器</li>
 <li><p>Symbol.toPrimitive</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  	[Symbol.toPrimitive](hint) &#123;</span><br><span class="line">	    switch (hint) &#123;</span><br><span class="line">	      case &apos;number&apos;:</span><br><span class="line">	        return 123;</span><br><span class="line">	      case &apos;string&apos;:</span><br><span class="line">	        return &apos;str&apos;;</span><br><span class="line">	      case &apos;default&apos;:</span><br><span class="line">	        return &apos;default&apos;;</span><br><span class="line">	      default:</span><br><span class="line">	        throw new Error();</span><br><span class="line">     	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">2 * obj // 246</span><br><span class="line">3 + obj // &apos;3default&apos;</span><br><span class="line">obj === &apos;default&apos; // true</span><br><span class="line">String(obj) // &apos;str&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  	[Symbol.toPrimitive](hint) &#123;</span><br><span class="line">	    switch (hint) &#123;</span><br><span class="line">	      case &apos;number&apos;:</span><br><span class="line">	        return 123;</span><br><span class="line">	      case &apos;string&apos;:</span><br><span class="line">	        return &apos;str&apos;;</span><br><span class="line">	      case &apos;default&apos;:</span><br><span class="line">	      	// 既可以转成字符串也可以转成数字时为default状态</span><br><span class="line">	        return &apos;default&apos;;</span><br><span class="line">	      default:</span><br><span class="line">	        throw new Error();</span><br><span class="line">     	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">2 * obj // 246</span><br><span class="line">3 + obj // &apos;3default&apos;</span><br><span class="line">obj === &apos;default&apos; // true</span><br><span class="line">String(obj) // &apos;str&apos;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Symbol.toStringTag 被Object.prototype.toString调用时触发</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Collection &#123;</span><br><span class="line">  get [Symbol.toStringTag]() &#123;</span><br><span class="line">    return &apos;x2x3x&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var x = new Collection();</span><br><span class="line">console.log(Object.prototype.toString.call(x)) // &quot;[object x2x3x]&quot;</span><br></pre></td></tr></table></figure>
@@ -432,7 +439,7 @@ Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -449,7 +456,7 @@ Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -499,7 +506,7 @@ Symbol.hasInstance,foo instance Foo内部是Foo[Symbol.hasInstance](foo)
         <div class="copyright" >
   
   &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

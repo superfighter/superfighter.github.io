@@ -1,0 +1,629 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="javascript运行在宿主环境中，浏览器、node都是宿主。
+javascript中常用debugger断点查看脚本运行状态，在浏览器环境下(这里以Chrome为例，其他高级浏览器雷同)按F12键可以看到调试工具栏，选择Sources标签栏，左侧是页面引入的资源列表，中间是对应源码，右侧就是调试界面，右侧最顶部的按钮依次是：脚本暂停，跳过下一个执行阶段，进入下一个执行阶段，跳出当前方法，阻止">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node-debugger">
+<meta property="og:url" content="http://superfighter.github.io/2016/10/18/node-debugger/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="javascript运行在宿主环境中，浏览器、node都是宿主。
+javascript中常用debugger断点查看脚本运行状态，在浏览器环境下(这里以Chrome为例，其他高级浏览器雷同)按F12键可以看到调试工具栏，选择Sources标签栏，左侧是页面引入的资源列表，中间是对应源码，右侧就是调试界面，右侧最顶部的按钮依次是：脚本暂停，跳过下一个执行阶段，进入下一个执行阶段，跳出当前方法，阻止">
+<meta property="og:updated_time" content="2017-06-03T08:55:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node-debugger">
+<meta name="twitter:description" content="javascript运行在宿主环境中，浏览器、node都是宿主。
+javascript中常用debugger断点查看脚本运行状态，在浏览器环境下(这里以Chrome为例，其他高级浏览器雷同)按F12键可以看到调试工具栏，选择Sources标签栏，左侧是页面引入的资源列表，中间是对应源码，右侧就是调试界面，右侧最顶部的按钮依次是：脚本暂停，跳过下一个执行阶段，进入下一个执行阶段，跳出当前方法，阻止">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> node-debugger | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                node-debugger
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T21:06:17+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/node-debugger/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/node-debugger/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>javascript运行在宿主环境中，浏览器、node都是宿主。</li>
+<li>javascript中常用debugger断点查看脚本运行状态，在浏览器环境下(这里以Chrome为例，其他高级浏览器雷同)按F12键可以看到调试工具栏，选择<code>Sources</code>标签栏，左侧是页面引入的资源列表，中间是对应源码，右侧就是调试界面，右侧最顶部的按钮依次是：脚本暂停，跳过下一个执行阶段，进入下一个执行阶段，跳出当前方法，阻止断点，异常暂停。</li>
+<li>按钮下面提供Watch(监听)、Call Stack(调用栈)、Scope(作用域)、Breakpoints(断点记录)、DOM Breakpoints、XHR Breakpoints(XHR断点)、EventListener Breakpoints(事件断点)等信息。关于按钮之下的信息在这里不扩开讲，自己可以尝试一下，对于查错很有帮助。这里主要讲下在node环境中，怎么像浏览器环境调试javascript一样调试nodejs代码。<a id="more"></a></li>
+<li><p>node.js的debugger功能相对浏览器环境来说简单了点，但是能满足基本需要。一步步来：</p>
+<ul>
+<li><p>在对应的js文件中写入debugger，这里以demo.js为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*demo.js*/</span><br><span class="line">const fs = require(&apos;fs&apos;)</span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">var CONF = &#123;</span><br><span class="line">	&apos;searchType&apos;:&apos;&apos;</span><br><span class="line">&#125;</span><br><span class="line">var searchCode = process.argv.splice(2)</span><br><span class="line">debugger</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>终端中敲入node debug demo.js, 进入debug模式，有几个命令辅助</p>
+<ul>
+<li>cont, 简写c, 断点区域</li>
+<li>next, 简写n, 执行下一块代码，跳过执行过程</li>
+<li>step, 简写s, 执行并进入下一块代码</li>
+<li>out, 简写o, 跳出当前方法</li>
+<li>pause, 暂停断点</li>
+<li>quit, 离开，离开后不会执行当前行数之后的代码</li>
+</ul>
+</li>
+<li>除了可以在脚本中直接声明debugger, 还可以在debug模式下，敲入命令动态加入断点<ul>
+<li>setBreakpoint(), sb(), 在当前行执行断点</li>
+<li>setBreakpoint(line), sb(line), 在指定行断点</li>
+<li>setBreakpoint(‘fn()’), sb(…)</li>
+<li>setBreakpoint(‘other.js’, line), sb(…), 在指定js文件指定行断点</li>
+<li>clearBreakpoint(‘other.js’,1), cb(…)，去除指定文件指定行断点</li>
+</ul>
+</li>
+<li>如果想看一些断点信息，也有命令支持<ul>
+<li>backtrace, bt, 打印当前断点片段信息，如文件名，行数，所处第几字符等</li>
+<li>list(line), 列出当前断点行数前后line行的代码片段</li>
+<li>watch(expr), 增加表达式到监听队列, 如watch(‘CONF’)</li>
+<li>unwatch(expr), 从监听队列移除对应表达式</li>
+<li>watchers, 罗列监听队列中的所有表达式和值，列出对应表达式和值，此例中0：CONF = {“searchType”:””}</li>
+<li>repl, 打开debugger repl查看代码状态，可以在这一步尝试跟踪变量状态</li>
+<li>exec expr, 执行表达式</li>
+</ul>
+</li>
+<li>可控制运行状态，通过一下命令<ul>
+<li>run</li>
+<li>restart</li>
+<li>kill, 终止, 可以通过run或restart重启</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>scripts, 列出所有加载的scripts</li>
+<li>version, 列出v8引擎的版本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/07/nbsp/" rel="next" title="nbsp">
+                <i class="fa fa-chevron-left"></i> nbsp
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/19/node-commandLineOptions/" rel="prev" title="node-commandLineOptions">
+                node-commandLineOptions <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/18/node-debugger/"
+           data-title="node-debugger" data-url="http://superfighter.github.io/2016/10/18/node-debugger/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
