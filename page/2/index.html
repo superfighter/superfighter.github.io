@@ -232,6 +232,717 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/22/DOM-Text/" itemprop="url">
+                  DOM Text
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T17:08:44+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/22/DOM-Text/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/DOM-Text/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>简述下innerText, textContent以及innerHTML的关系</li>
+<li>共性很明了，三者都可以读写操作，获取/改变对应DOM节点的内容</li>
+<li>差异体现以下几点：<ul>
+<li>是否触发浏览器重绘</li>
+<li>是否安全</li>
+<li>是否对特殊元素屏蔽</li>
+<li>在页面生命周期里是否起破坏作用</li>
+</ul>
+</li>
+<li>大致可以从下表看出三者特性[<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/textContent" target="_blank" rel="external">来源</a>]：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">innerHTML</th>
+<th style="text-align:center">innerText</th>
+<th style="text-align:center">textContent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发重绘</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td>包含script,style标签</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√(IE7↑)</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>hidden元素</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>永久影响</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>避免XSS</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>总结<ul>
+<li>innerText是IE引入的方法，所以会有兼容性问题，在IE9及以上版本同步了textContent的表现</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/22/WTDSwiper/" itemprop="url">
+                  WTDSwiper
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-22T13:59:59+08:00" content="2016-12-22">
+              2016-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/22/WTDSwiper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/WTDSwiper/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>隐藏内部实现</li>
+<li><p>依靠你能控制的对象，好过依靠你不能控制的对象，以免日后受他控制</p>
+</li>
+<li><p>类</p>
+</li>
+</ul>
+<ul>
+<li>单一权责原则：只有一条修改理由</li>
+<li>开放-闭合原则：只许扩展，不许修改</li>
+<li>低耦合高内聚原则</li>
+<li>依赖倒置原则：依赖于抽象，而不是具体实现细节</li>
+</ul>
+<ul>
+<li>并发基础定义</li>
+</ul>
+<ul>
+<li>限定资源， 并发环境中有着固定尺寸或数量的资源</li>
+<li>互斥，每一时刻仅有一个县城能访问共享数据或共享资源</li>
+<li>线程饥饿，一个或一组线程在很长时间内或永久被禁止</li>
+<li>死锁 两个或多个线程互相等待执行结束</li>
+<li>活锁 执行次序一致的线程，每个都想要起步，但发现其他线程已经“在路上”</li>
+</ul>
+<ul>
+<li>并发模型</li>
+</ul>
+<ul>
+<li>生产者-消费者模型</li>
+<li>读者-作者模型</li>
+<li>宴席哲学家</li>
+</ul>
+<ul>
+<li>[<a href="https://zhuanlan.zhihu.com/p/21927991" target="_blank" rel="external">知乎</a>]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//两点触控旋转角度和方向求解代码</span><br><span class="line">//这两个方法属于向量计算，具体原理请阅读本文最后的参考文献</span><br><span class="line"></span><br><span class="line">_getRotateDirection(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	return vector1.x * vector2.y - vector2.x * vector1.y;</span><br><span class="line"></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">_getRotateAngle(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	let direction = this._getRotateDirection(vector1,vector2);</span><br><span class="line"></span><br><span class="line">	direction = direction &gt; 0 ? -1 : 1;</span><br><span class="line"></span><br><span class="line">	let len1 = this._getDistance(vector1.x,vector1.y);</span><br><span class="line"></span><br><span class="line">	let len2 = this._getDistance(vector2.x,vector2.y);</span><br><span class="line"></span><br><span class="line">	let mr = len1 * len2;</span><br><span class="line"></span><br><span class="line">	if(mr === 0) return 0;</span><br><span class="line"></span><br><span class="line">	let dot = vector1.x * vector2.x + vector1.y * vector2.y;</span><br><span class="line"></span><br><span class="line">	let r = dot / mr;</span><br><span class="line"></span><br><span class="line">	if(r &gt; 1) r = 1;</span><br><span class="line"></span><br><span class="line">	if(r &lt; -1) r = -1;</span><br><span class="line"></span><br><span class="line">	return Math.acos(r) * direction * 180 / Math.PI;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/22/UMD/" itemprop="url">
+                  UMD
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-22T10:08:35+08:00" content="2016-12-22">
+              2016-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/22/UMD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/UMD/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://github.com/umdjs/umd">参考自github/umdjs</a></p>
+<ul>
+<li>UMD (Universal Module Define) ，即通用模块定义。目前已有的模块定义规范有commonJS,Node,AMD,CMD,全局挂载等方式，如何同时适配两种或多种，做到一劳永逸是有套路的，具体尝试如下：</li>
+<li><p>A:基于AMD和全局挂载的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(function(root, factory)&#123;</span><br><span class="line">	if(typeof define === &apos;functon&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">		define([&apos;b&apos;], factory);</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		root.amdWeb = factory(root.b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(this, function(b)&#123;</span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在A的基础上挂载全局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*当你使用AMD模式的时候，有些脚本还是</span><br><span class="line">要去加载全局变量，这时需要在AMD模式尾巴上挂载全局变量*/</span><br><span class="line">(function(root, factory)&#123;</span><br><span class="line">	if(typeof define === &apos;function&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">		define([&apos;b&apos;], function(b)&#123;</span><br><span class="line">			//do something</span><br><span class="line">			return (root.amdWebGlobal = factory(b))</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		root.amdWebGlobal = factory(root, b)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(this, function(b)&#123;</span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/22/UMD/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/19/node-commandLineOptions/" itemprop="url">
+                  node-commandLineOptions
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-19T00:56:49+08:00" content="2016-10-19">
+              2016-10-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/19/node-commandLineOptions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/node-commandLineOptions/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>介绍node环境下可执行的command</code></p>
+<ul>
+<li>–version, -v, 当前Node版本</li>
+<li>–help, -h, 罗列可执行命令</li>
+<li>–eval, -e, 执行</li>
+<li>–print, -p, 执行并返回</li>
+<li>–check, -c, 不执行脚本，语法检测</li>
+<li>–interactive, -i</li>
+<li>–require module, -r, 预加载模块，module模块名或者路径</li>
+<li>–no-deprecation, 不提示弃用提示</li>
+<li>–trace-deprecation, 跟踪弃用信息</li>
+<li>–throw-deprecation, 抛出弃用信息</li>
+<li>–no-warning, 打印警告提示(v6)</li>
+<li>–trace-warning, 跟踪警告(v6)</li>
+<li>–throw-warning, 抛出警告(v6)</li>
+<li>–trace-sync-io, 异步执行出错时打印栈</li>
+<li>–zero-fill-buffers</li>
+<li>–preserve-symlinks</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/node-debugger/" itemprop="url">
+                  node-debugger
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T21:06:17+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/node-debugger/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/node-debugger/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li>javascript运行在宿主环境中，浏览器、node都是宿主。</li>
+<li>javascript中常用debugger断点查看脚本运行状态，在浏览器环境下(这里以Chrome为例，其他高级浏览器雷同)按F12键可以看到调试工具栏，选择<code>Sources</code>标签栏，左侧是页面引入的资源列表，中间是对应源码，右侧就是调试界面，右侧最顶部的按钮依次是：脚本暂停，跳过下一个执行阶段，进入下一个执行阶段，跳出当前方法，阻止断点，异常暂停。</li>
+<li>按钮下面提供Watch(监听)、Call Stack(调用栈)、Scope(作用域)、Breakpoints(断点记录)、DOM Breakpoints、XHR Breakpoints(XHR断点)、EventListener Breakpoints(事件断点)等信息。关于按钮之下的信息在这里不扩开讲，自己可以尝试一下，对于查错很有帮助。这里主要讲下在node环境中，怎么像浏览器环境调试javascript一样调试nodejs代码。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/18/node-debugger/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/07/nbsp/" itemprop="url">
+                  nbsp
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T14:26:12+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/07/nbsp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/07/nbsp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>编写静态HTML页面的时候时不时会遇到空格对其的情况，比如Form表单的title对其，因为中文字体不同宽度不同，完美处理要搞事。</li>
+<li>在HTML中有5种空格实体。他们拥有不同的宽度，经常使用的是”&amp;nbsp;”，这个大家都熟悉，是由空格键输入的结果。除了这个，其他还有（&amp;ensp;&amp;emsp;&amp;thinsp;&amp;zwnj;&amp;zwj;）<h3 id="amp-nbsp"><a href="#amp-nbsp" class="headerlink" title="&amp;nbsp;"></a>&amp;nbsp;</h3></li>
+<li>全称No-Break Space，占据宽度受字体影响明显。<h3 id="amp-ensp"><a href="#amp-ensp" class="headerlink" title="&amp;ensp;"></a>&amp;ensp;</h3></li>
+<li>半角空格，全称En Space，占据宽度1/2中文宽度，基本上不受字体影响。<h3 id="amp-emsp"><a href="#amp-emsp" class="headerlink" title="&amp;emsp;"></a>&amp;emsp;</h3></li>
+<li>全角空格，全称Em Space，占据宽度1/1中文宽度，基本上不受字体影响。<h3 id="amp-thinsp"><a href="#amp-thinsp" class="headerlink" title="&amp;thinsp;"></a>&amp;thinsp;</h3></li>
+<li>窄空格，全称Thin Space，占据1/6 em宽度。<h3 id="amp-zwnj-amp-zwj"><a href="#amp-zwnj-amp-zwj" class="headerlink" title="&amp;zwnj; &amp;zwj;"></a>&amp;zwnj; &amp;zwj;</h3></li>
+<li>零宽不连字和零宽连字，多用于打印排版<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3></li>
+<li>空格(&amp;#x0020;)、制表位(&amp;#x0009;)、换行(&amp;#x000A;)和回车(&amp;#x000D;)(&amp;#12288;)等；</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/24/Promise-ES6/" itemprop="url">
                   Promise-ES6
                 </a>
@@ -637,703 +1348,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/06/naturalHeight/" itemprop="url">
-                  HTML5 naturalHeight naturalWidth
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T09:41:12+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/06/naturalHeight/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/naturalHeight/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>部分内容参考<a href="http://www.w3ctech.com/topic/112">w3ctech</a></p>
-<h3 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a>预加载</h3><ul>
-<li>设定图片自定义属性放置图片真实的URL，src放置默认打底图片</li>
-<li><p>获取图片元素相对顶部的高度<code>imageClientTop</code>，如果滚动高度接近<code>imageClientTop</code> ，则设置图片的src属性为自定义属性的值，在图片onload时去除打底，展示真正的图片</p>
-</li>
-<li><p>在未知预加图片宽高时，要想办法获取图片的真实宽高，有两种方案：支持H5 naturalHeight的和不支持的</p>
-</li>
-<li><p>支持的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 注意,这里也要在img onload状态后才能获取naturalWidth，动态插入直接读该属性可能返回0</span><br><span class="line">var </span><br><span class="line">  nWidth = document.getElementById(&apos;example&apos;).naturalWidth,</span><br><span class="line">  nHeight = document.getElementById(&apos;example&apos;).naturalHeight;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不支持的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getNatural (el) &#123;</span><br><span class="line">  var img = new Image();</span><br><span class="line">  img.src = el.src;</span><br><span class="line">  return &#123;width: img.width, height: img.height&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var </span><br><span class="line">natural = getNatural(document.getElementById(&apos;example&apos;)),</span><br><span class="line">nWidth = natural.width,</span><br><span class="line">nHeight = natural.height;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/naturalHeight/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/01/a-pixel-is-not-a-pixel/" itemprop="url">
-                  a pixel is not a pixel is not a pixel
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-01T20:18:16+08:00" content="2016-07-01">
-              2016-07-01
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/01/a-pixel-is-not-a-pixel/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/01/a-pixel-is-not-a-pixel/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原文<a href="http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html" target="_blank" rel="external">A pixel is not a pixel is not a pixel</a></p>
-<ul>
-<li>现在我正在深入研究移动端中跨浏览器手机的宽和高，得出的结论是在99%的情况下，这些因素不会影响到正常的web开发</li>
-<li>剩余的1%变得非常诡异，我期望苹果公司通过假如一个像素层来解决这个1%引起的问题</li>
-<li>开始之前，我先提示下：因为这些因素对那些我忽视的正规屏幕尺寸并不重要，并且我没有认真的去研究过展示、像素密度等其他复杂概念。所以，接下的内容我可能用错了很多专业术语，多多包涵。</li>
-</ul>
-<h4 id="Web开发者需要什么"><a href="#Web开发者需要什么" class="headerlink" title="Web开发者需要什么"></a>Web开发者需要什么</h4><ul>
-<li>我并不知道web开发者真正感兴趣的是什么，但是我知道他们需要CSS像素单位。就是在CSS表达式中声明的：width: 300px 或者是 font-size: 14px;</li>
-<li>CSS像素和设备像素密度没有任何关系，也跟即将产生的中间层没有任何关系。他们本质上是专门为我们web开发者创造的抽象构造。</li>
-<li>我们可以用zoom操作来做简单说明。当用户放大的时候，一个<code>width:300px</code>的元素占据了更大的屏幕，这使得被放大的元素在设备（物理）像素上就变得越来越宽。zoom的效果完全是通过尽可能的扩展CSS像素产生的，然而此时该元素的CSS像素值仍是300px。</li>
-<li>当zoom效果达到100%时，一个CSS像素等于一个设备像素（尽管中间层会替代设备像素层）我得说明下<code>zoom 100%</code>对于web开发者来说没有任何意义，Zoom层级对我们不重要，我们要关心的是适配当前屏幕需要多少CSS像素。</li>
-<li>我们想想当用户zoom操作时到底发生了什么？当用户缩小时，CSS像素变小，此时一个设备像素重叠了更多的CSS像素。当用户放大时，CSS像素变大，此时一个设备像素重叠更少的CSS像素。</li>
-<li>这样我们的<code>width:300px</code>元素的实际CSS像素总是300，另外由zoom因素决定多少设备像素呈现一个CSS像素。</li>
-<li>这种机制不会改变，如果改变了，所有iPhone网站会严重失控，苹果公司肯定不会让这一切发生的。</li>
-<li>因此，完全适配的网站扔展示980px，此时我们并不关心多少设备像素来呈现980px。</li>
-</ul>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
-<li>&lt;meta name=\”viewport\” width=\”device-width\”&gt;</li>
-<li>media query <code>device-width</code></li>
-<li>以上两种方案都作用于设备像素，而不是CSS像素，因为他们的上下文是网页，不是CSS内部运行环境。</li>
-</ul>
-<h4 id="media-query"><a href="#media-query" class="headerlink" title="media query"></a>media query</h4><ul>
-<li><code>device-width</code>代表设备的宽度。</li>
-<li><code>width</code>代表页面的宽度。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/*正常范围宽300*/</span><br><span class="line">div.sidebar &#123; width: 300px;&#125;</span><br><span class="line">/*小于320px设定宽100*/</span><br><span class="line">@media all and (max-device-width: 320px)&#123;</span><br><span class="line">	div.sidebar&#123; width: 100px&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="meta-tag"><a href="#meta-tag" class="headerlink" title="meta tag"></a>meta tag</h4><ul>
-<li>一般来说meta标签更有用。这起先是由苹果发布的属性，后来被许多移动浏览器实现，让layout viewport适配设备屏幕更容易。</li>
-<li>什么是Layout Viewport? 浏览器用它来计算元素的展示比例（CSS像素）,比如<code>div.sidebar{width: 20%}</code>,Layout Viewport总是比设备像素大一些。</li>
-<li>如果你添加了meta标签，layout viewport的宽度会限制在设备像素内：iPhone 是320</li>
-<li>即使你的页面小到足以适配屏幕，那也会有影响。应该加上<meta>标签，让文字适配当前屏幕。</li>
-</ul>
-<h4 id="other"><a href="#other" class="headerlink" title="other"></a>other</h4><ul>
-<li>dips: 谷歌提出一个概念，device-independent pixels，CSS像素作用于这一层 </li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/30/Proxy-ES6/" itemprop="url">
-                  Proxy-ES6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-30T14:10:26+08:00" content="2016-06-30">
-              2016-06-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/30/Proxy-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/Proxy-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。<br>Proxy可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//ES6生成Proxy实例</span><br><span class="line">var proxy = new Proxy(target, handler);</span><br><span class="line"></span><br><span class="line">var obj = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function (target, key, receiver) &#123;</span><br><span class="line">    console.log(`getting $&#123;key&#125;!`);</span><br><span class="line">    return Reflect.get(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  set: function (target, key, value, receiver) &#123;</span><br><span class="line">    console.log(`setting $&#123;key&#125;!`);</span><br><span class="line">    return Reflect.set(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作;如果handler没有设置任何拦截，那就等同于直接通向原对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var target = &#123;&#125;;</span><br><span class="line">var handler = &#123;&#125;;</span><br><span class="line">var proxy = new Proxy(target, handler);</span><br><span class="line">proxy.a = &apos;b&apos;;</span><br><span class="line">target.a // &quot;b&quot;</span><br><span class="line">//技巧：将Proxy对象，设置到object.proxy属性，从而可以在object对象上调用</span><br><span class="line">var object = &#123; proxy: new Proxy(target, handler) &#125;;</span><br><span class="line">//Proxy实例也可以作为其他对象的原型对象</span><br><span class="line">var proxy = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function(target, property) &#123;</span><br><span class="line">    return 35;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let obj = Object.create(proxy);</span><br><span class="line">obj.time // 35</span><br><span class="line"></span><br><span class="line">//可以进行多操作拦截</span><br><span class="line">var handler = &#123;</span><br><span class="line">  get: function(target, name) &#123;</span><br><span class="line">    if (name === &apos;prototype&apos;) &#123;</span><br><span class="line">      return Object.prototype;</span><br><span class="line">    &#125;</span><br><span class="line">    return &apos;Hello, &apos; + name;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  apply: function(target, thisBinding, args) &#123;</span><br><span class="line">    return args[0];</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  construct: function(target, args) &#123;</span><br><span class="line">    return &#123;value: args[1]&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fproxy = new Proxy(function(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;, handler);</span><br><span class="line">fproxy(2,20);//apply ==&gt; 2</span><br><span class="line">new fproxy(1,11);//construct ==&gt; &#123;value: 11&#125;</span><br><span class="line">fproxy.hello;//get ==&gt; Hello, hello</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Proxy支持的拦截操作如下</p>
-<ul>
-<li>get(target, propKey, receiver)拦截对象属性的读取，比如proxy.foo和proxy[‘foo’]，返回类型不限。最后一个参数receiver可选，当target对象设置了propKey属性的get函数时，receiver对象会绑定get函数的this对象。</li>
-<li>set(target, propKey, value, receiver)拦截对象属性的设置，比如proxy.foo = v或proxy[‘foo’] = v，返回一个布尔值。</li>
-<li>has(target, propKey)拦截propKey in proxy的操作，以及对象的hasOwnProperty方法，返回一个布尔值。</li>
-<li>deleteProperty(target, propKey)拦截delete proxy[propKey]的操作，返回一个布尔值。</li>
-<li>ownKeys(target)拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)，返回一个数组。该方法返回对象所有自身的属性，而Object.keys()仅返回对象可遍历的属性。</li>
-<li>getOwnPropertyDescriptor(target, propKey)拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</li>
-<li>defineProperty(target, propKey, propDesc)拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</li>
-<li>preventExtensions(target)拦截Object.preventExtensions(proxy)，返回一个布尔值。</li>
-<li>isExtensible(target)拦截Object.isExtensible(proxy)，返回一个布尔值。</li>
-<li>setPrototypeOf(target, proto)拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。</li>
-<li>apply(target, object, args)拦截Proxy实例作为函数调用的操作，比如proxy(…args)、proxy.call(object, …args)、proxy.apply(…)。</li>
-<li>construct(target, args)拦截Proxy实例作为构造函数调用的操作，比如new proxy(…args)。</li>
-</ul>
-</li>
-<li><p>各拦截操作实战用途如下</p>
-<ul>
-<li>get 可以在读取不存在的属性时抛出一个错误，而不是仅仅返回无意义的undefined；可以在返回之前做逻辑处理，比如实现数组负数索引取值；可以创建链式调用。</li>
-<li>set 可以用来实施更新DOM</li>
-<li>has 可以对in运算符做特殊处理，如不让带大写A的属性被in发现；has方法拦截的是HasProperty操作，而不是HasOwnProperty操作，即has方法不判断一个属性是对象自身的属性，还是继承的属性。for…in操作内部也是用到HasProperty操作，所以has方法在for…in循环时也会生效。</li>
-<li><p>construct方法返回的必须是一个对象，否则会报错。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//在返回真正的对象前可以加以处理，但返回值必须是对象</span><br><span class="line">var p = new Proxy(function() &#123;&#125;, &#123;</span><br><span class="line"> 	construct: function(target, args) &#123;</span><br><span class="line">    console.log(&apos;called: &apos; + args.join(&apos;, &apos;));</span><br><span class="line">    return &#123; value: args[0] * 30 &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">new p(10).value</span><br><span class="line">// &quot;called: 10&quot;</span><br><span class="line">// 300</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>getPrototypeOf用来拦截object.getPrototypeOf()运算符，以及Reflect.getPrototypeOf,instanceof运算符，Object.prototype.isPrototypeOf</p>
-</li>
-</ul>
-</li>
-<li>Proxy.revocable(),Proxy.revocable方法返回一个对象，该对象的proxy属性是Proxy实例，revoke属性是一个函数，可以取消Proxy实例。上面代码中，当执行revoke函数之后，再访问Proxy实例，就会抛出一个错误。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let target = &#123;&#125;;</span><br><span class="line">let handler = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">let &#123;proxy, revoke&#125; = Proxy.revocable(target, handler);</span><br><span class="line">proxy.foo = 123;</span><br><span class="line">proxy.foo //123</span><br><span class="line">revoke();</span><br><span class="line">proxy.foo // TypeError : Revoke</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/Pixel-puzzle/" itemprop="url">
-                  Pixel puzzle
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-22T15:22:15+08:00" content="2016-06-22">
-              2016-06-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/22/Pixel-puzzle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/22/Pixel-puzzle/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>pt &amp;&amp; px<br>  <code>PPI=(√(X²+Y²))/ Z (X:长度像素数;Y:宽度像素数;Z:屏幕尺寸)</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/Reflect-ES6/" itemprop="url">
-                  Reflect-ES6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-22T11:06:11+08:00" content="2016-06-22">
-              2016-06-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/22/Reflect-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/22/Reflect-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>Reflect 对象与Proxy对象一样，也是ES6为了操作对象而提供的新API。</li>
-<li>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。</li>
-<li>修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。</li>
-<li>让Object操作都变成函数行为。某些Object操作是命令式，比如name in obj和delete obj[name]，而Reflect.has(obj, name)和Reflect.deleteProperty(obj, name)让它们变成了函数行为。</li>
-<li>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。也就是说，不管Proxy怎么修改默认行为，你总可以在Reflect上获取默认行为。</li>
-<li>Reflect方法清单<ul>
-<li>Reflect.apply(target,thisArg,args)</li>
-<li>Reflect.construct(target,args)</li>
-<li>Reflect.get(target,name,receiver)</li>
-<li>Reflect.set(target,name,value,receiver)</li>
-<li>Reflect.defineProperty(target,name,desc)</li>
-<li>Reflect.deleteProperty(target,name)</li>
-<li>Reflect.has(target,name)</li>
-<li>Reflect.ownKeys(target)</li>
-<li>Reflect.isExtensible(target)</li>
-<li>Reflect.preventExtensions(target)</li>
-<li>Reflect.getOwnPropertyDescriptor(target, name)</li>
-<li>Reflect.getPrototypeOf(target)</li>
-<li>Reflect.setPrototypeOf(target, prototype)</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/20/callee-caller/" itemprop="url">
-                  callee-caller
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-20T09:38:44+08:00" content="2016-06-20">
-              2016-06-20
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/20/callee-caller/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/callee-caller/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h3><ul>
-<li>callee是arguments的属性成员，返回正被执行的 Function 对象，也就是所指定的 Function 对象的正文<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function calleeLengthDemo(arg1, arg2) &#123; </span><br><span class="line">	alert(arguments.callee.toString()); </span><br><span class="line">	if (arguments.length == arguments.callee.length) &#123; </span><br><span class="line">		window.alert(&quot;验证形参和实参长度正确！&quot;); </span><br><span class="line">		return; </span><br><span class="line">	&#125; else &#123; </span><br><span class="line">		alert(&quot;实参长度：&quot; + arguments.length); </span><br><span class="line">		alert(&quot;形参长度： &quot; + arguments.callee.length); </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">calleeLengthDemo(1); //实参长度：1，形参长度：2</span><br><span class="line">//=============================================//</span><br><span class="line">//应用于匿名函数调用自身场景</span><br><span class="line">var fn=(function(n)&#123; </span><br><span class="line">if(n&gt;0) return n+arguments.callee(n-1); </span><br><span class="line">	return 0; </span><br><span class="line">&#125;)(10); </span><br><span class="line">alert(fn)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h3><ul>
-<li>functionName.caller 返回调用者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function caller() &#123; </span><br><span class="line">	if (caller.caller) &#123; </span><br><span class="line">		alert(caller.caller.toString()); </span><br><span class="line">	&#125; else &#123; </span><br><span class="line">		alert(&quot;函数直接执行&quot;); </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">function handleCaller() &#123; </span><br><span class="line">	caller(); </span><br><span class="line">&#125; </span><br><span class="line">handleCaller(); //handleCaller</span><br><span class="line">caller(); // 函数直接执行</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1374,7 +1393,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1391,7 +1410,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1,0 +1,594 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jest," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="前言
+Jest-1、Jest-2分别讲了断言基础和Mock基础，满足了大部分同步测试的需求。这节主要描述异步测试的情况，主要场景是回调、Promise以及async/await：
+测试代码
+1234567891011121314151617/** __mocks__/requestfks.js **/const users = &amp;#123;    4: &amp;#123;name: &apos;Mark&apos;&amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jest-3">
+<meta property="og:url" content="http://superfighter.github.io/2017/08/06/Jest-3/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="前言
+Jest-1、Jest-2分别讲了断言基础和Mock基础，满足了大部分同步测试的需求。这节主要描述异步测试的情况，主要场景是回调、Promise以及async/await：
+测试代码
+1234567891011121314151617/** __mocks__/requestfks.js **/const users = &amp;#123;    4: &amp;#123;name: &apos;Mark&apos;&amp;#12">
+<meta property="og:updated_time" content="2017-08-06T13:25:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jest-3">
+<meta name="twitter:description" content="前言
+Jest-1、Jest-2分别讲了断言基础和Mock基础，满足了大部分同步测试的需求。这节主要描述异步测试的情况，主要场景是回调、Promise以及async/await：
+测试代码
+1234567891011121314151617/** __mocks__/requestfks.js **/const users = &amp;#123;    4: &amp;#123;name: &apos;Mark&apos;&amp;#12">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Jest-3 | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Jest-3
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-06T19:59:33+08:00" content="2017-08-06">
+              2017-08-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/08/06/Jest-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/06/Jest-3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<p><a href="">Jest-1</a>、<a href="">Jest-2</a>分别讲了断言基础和Mock基础，满足了大部分同步测试的需求。这节主要描述异步测试的情况，主要场景是回调、Promise以及async/await：</p>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** __mocks__/requestfks.js **/</span></span><br><span class="line"><span class="keyword">const</span> users = &#123;</span><br><span class="line">    <span class="number">4</span>: &#123;name: <span class="string">'Mark'</span>&#125;,</span><br><span class="line">    <span class="number">5</span>: &#123;name: <span class="string">'Paul'</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> userId = <span class="built_in">parseInt</span>(url.substr(<span class="string">'/users/'</span>.length), <span class="number">10</span>)</span><br><span class="line">        process.nextTick(</span><br><span class="line">            () =&gt; users[userId]</span><br><span class="line">                ? resolve(users[userId])</span><br><span class="line">                : reject(&#123;</span><br><span class="line">                    error: <span class="string">'User with '</span>+ userId +<span class="string">' not found.'</span> </span><br><span class="line">                &#125;)</span><br><span class="line">        )</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** requestfks.js **/</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(resolve =&gt; &#123;</span><br><span class="line">        http.get(&#123;path: url&#125;, response =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> data = <span class="string">''</span></span><br><span class="line">            response.on(<span class="string">'data'</span>, _data =&gt; (data += _data))</span><br><span class="line">            response.on(<span class="string">'end'</span>, () =&gt; resolve(data))</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** user.js **/</span></span><br><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">'./requestfks'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserName</span> (<span class="params">userId</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> request(<span class="string">'/users/'</span> + userId).then(user =&gt; user.name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><hr>
+<p>这里引用官网的例子，重点是要引入内置参数done：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'the data is peanut butter'</span>, done =&gt; &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    expect(data).toBe(<span class="string">'peanut butter'</span>);</span><br><span class="line">    <span class="comment">// 在回掉执行完成时调用done方法通知Jest异步过程结束</span></span><br><span class="line">    done();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fetchData(callback);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> resolveFunc = jest.fn((d) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        resolve(d)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> rejectFunc = jest.fn((d) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        reject(d)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> catchFunc = jest.fn((d) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        resolve(d+o)</span><br><span class="line">    &#125;).catch((d) =&gt; &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(d.message)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'callback'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'done time'</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        expect(<span class="number">1</span>).toBeTruthy()</span><br><span class="line">        expect(<span class="number">2</span>).toBe(<span class="number">2</span>)</span><br><span class="line">        expect(<span class="number">1</span>).toBeFalsy()</span><br><span class="line">        <span class="built_in">console</span>.timeEnd(<span class="string">'done time'</span>)</span><br><span class="line">    &#125;, <span class="number">2000</span>)</span><br><span class="line">    jest.runOnlyPendingTimers()</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'promise resolve'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> expect(resolveFunc(<span class="number">1</span>)).resolves.toBe(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'promise reject'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> expect(rejectFunc(<span class="number">1</span>)).rejects.toBe(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'promise catch'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> expect(catchFunc(<span class="number">2</span>)).rejects.toEqual(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'o is not defined'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> states = &#123;</span><br><span class="line">    top: <span class="literal">false</span>,</span><br><span class="line">    bottom: <span class="literal">false</span>,</span><br><span class="line">    right: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepareState</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 异步处理多个state</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        states = &#123;</span><br><span class="line">            top: <span class="literal">true</span>,</span><br><span class="line">            right: <span class="literal">true</span>,</span><br><span class="line">            bottom: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        cb()</span><br><span class="line">    &#125;,<span class="number">3000</span>)</span><br><span class="line">    jest.runAllTimers()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateState</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> states.top &amp;&amp; states.bottom &amp;&amp; states.right</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitOnState</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(states).toHaveProperty(<span class="string">'top'</span>, <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        setInterval(() =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'...waiting'</span>)</span><br><span class="line">            <span class="keyword">if</span> (states.top &amp;&amp; states.bottom &amp;&amp; states.right) &#123;</span><br><span class="line">                resolve()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">        jest.runAllTimers()</span><br><span class="line">    &#125;).then(() =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(states)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">it(<span class="string">'hasAssertions'</span>, () =&gt; &#123;</span><br><span class="line">    expect.hasAssertions()</span><br><span class="line">    prepareState(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        expect(validateState(states)).toBeTruthy()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> waitOnState()</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'assertions 2'</span>, () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">2</span>)</span><br><span class="line">    prepareState(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        expect(validateState(states)).toBeTruthy()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> waitOnState()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">jest.mock(<span class="string">'../requestfks'</span>)</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> user <span class="keyword">from</span> <span class="string">'../user'</span></span><br><span class="line">it(<span class="string">'async/await'</span>, () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> user.getUserName(<span class="number">15</span>).catch((data) =&gt; &#123;</span><br><span class="line">        expect(data).toEqual(&#123;<span class="string">"error"</span>: <span class="string">"User with 15 not found."</span>&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'async/await'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> expect(user.getUserName(<span class="number">5</span>)).resolves.toEqual(<span class="string">'Paul'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'async/await rejects'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> expect(user.getUserName(<span class="number">3</span>)).rejects.toHaveProperty(<span class="string">'error'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'async/await resolves'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">const</span> data = user.getUserName(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">await</span> expect(data).resolves.toEqual(<span class="string">'Mark'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'Promise.catch'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> user.getUserName(<span class="number">2</span>).catch(e =&gt; &#123;</span><br><span class="line">        expect(e).toHaveProperty(<span class="string">'error'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'try/catch'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> user.getUserName(<span class="number">12</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        expect(e).toHaveProperty(<span class="string">'error'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
+<p>本节介绍了异步测试的代码，是不是可以开始实际业务情景测试了？当然可以，但是Jest并不止这些内容。下节先介绍Jquery业务场景的登录测试。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jest/" rel="tag">#jest</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/06/Jest-1/" rel="next" title="Jest-1">
+                <i class="fa fa-chevron-left"></i> Jest-1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/08/06/Jest-3/"
+           data-title="Jest-3" data-url="http://superfighter.github.io/2017/08/06/Jest-3/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">1.1.</span> <span class="nav-text">测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步回调"><span class="nav-number">1.2.</span> <span class="nav-text">异步回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise"><span class="nav-number">1.3.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-await"><span class="nav-number">1.4.</span> <span class="nav-text">async/await</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

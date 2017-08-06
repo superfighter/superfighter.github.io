@@ -232,6 +232,830 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/22/Object-ES6/" itemprop="url">
+                  Object-ES6 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-22T09:55:02+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/22/Object-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/Object-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>属性简写：允许只写对象属性名，不写属性值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let foo = &apos;hello&apos;</span><br><span class="line">let bar = &#123;foo&#125; // bar.foo = &apos;hello&apos;</span><br><span class="line">function x(my,other)&#123; return &#123;my,other&#125;&#125;</span><br><span class="line">let o = x(1,2)// o.my = 1 , o.other = 2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法简写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">	method()&#123;</span><br><span class="line">		return &quot;hello~&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.method()) // hello~</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方括号定义对象变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//ES5</span><br><span class="line">var bar = &#123;&quot;foo&quot;:&quot;hello&quot;&#125;</span><br><span class="line">//ES6</span><br><span class="line">let f = &quot;foo&quot;</span><br><span class="line">let bar = &#123;[f]:&apos;hello&apos;&#125; // bar.foo = hello</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Object.is</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Object.defineProperty(Object, &apos;is&apos;, &#123;</span><br><span class="line">  value: function(x, y) &#123;</span><br><span class="line">    if (x === y) &#123;</span><br><span class="line">      // 针对+0 不等于 -0的情况</span><br><span class="line">      return x !== 0 || 1 / x === 1 / y;</span><br><span class="line">    &#125;</span><br><span class="line">    // 针对NaN的情况</span><br><span class="line">    return x !== x &amp;&amp; y !== y;</span><br><span class="line">  &#125;,</span><br><span class="line">  configurable: true,</span><br><span class="line">  enumerable: false,</span><br><span class="line">  writable: true</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Object.assin 合并可枚举对象</p>
+<ul>
+<li>为对象添加属性</li>
+<li>为对象添加方法</li>
+<li>克隆对象</li>
+<li>合并多个对象</li>
+<li>为属性指定默认值</li>
+</ul>
+</li>
+<li>Object.getOwnPropertyDescriptor 属性的可枚举性<ul>
+<li>ES5会有三个操作忽略enumerable为false的属性<ul>
+<li>for…in循环：只遍历对象自身的和继承的可枚举的属性</li>
+<li>Object.keys():返回对象自身的所有可枚举的属性键名</li>
+<li>JSON.stringify:只串行化对象自身的可枚举的属性</li>
+</ul>
+</li>
+<li>ES6新增会忽略enumerable为false的属性<ul>
+<li>Object.assign():只拷贝对象自身可枚举的属性</li>
+<li>Reflect.enumerate():返回所有for…in循环会遍历的属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/Function-ES6/" itemprop="url">
+                  Function-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T11:16:55+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/Function-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/Function-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>参数默认值</li>
+<li><p>arguments</p>
+<ul>
+<li>length不包括rese参数(…values)</li>
+<li>length不包括赋默认值参数(values=1)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log((function A(a,dm,s,...v)&#123;&#125;).length) // 3</span><br><span class="line">console.log((function A(a,dm,s,v=1)&#123;&#125;).length) // 3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>作用域</p>
+</li>
+<li><p>必输参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function throwMiss()&#123;</span><br><span class="line">  throw new Error(&apos;arguments error&apos;)</span><br><span class="line">&#125;</span><br><span class="line">function gg(x=throwMiss())&#123; console.log(x)&#125;</span><br><span class="line">gg(2) // 2</span><br><span class="line">gg() // arguments error</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rest参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function add(...values)&#123;</span><br><span class="line">	//...values == [2,3,4,5] 从参数末尾索引开始计算，截止到最后一个有效参数索引为止</span><br><span class="line">	let sum = 0;</span><br><span class="line">	for (var val of values)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br><span class="line">add(2,3,4,5);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>扩展运算符…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	console.log(...[1,5,6]) // 1 5 6</span><br><span class="line">	console.log(...[1,[5,6]]) // 1 [5,6]</span><br><span class="line">	console.log(...[1,...[5,6]]) // 1 5 6</span><br><span class="line">	console.log(...&#123;&apos;0&apos;:&apos;12&apos;,&apos;1&apos;:&apos;34&apos;,length:2&#125;) // 12 34</span><br><span class="line">* 凡是涉及到操作32位Unicode字符的函数</span><br></pre></td></tr></table></figure>
+<p>  ‘x\uD83D\uDE80y’.length // 4 wrong<br>  […’x\uD83D\uDE80y’].length // 3 right<br>  function length(str){ return […str].length}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* map, generator function可以使用...</span><br><span class="line">* 如果对没有iterator接口的对象，使用扩展运算符，将会报错</span><br><span class="line">* 箭头函数</span><br><span class="line">	*函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</span><br><span class="line">	*不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</span><br><span class="line">	*不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</span><br><span class="line">	*不可以使用yield命令，因此箭头函数不能用作Generator函数。</span><br></pre></td></tr></table></figure>
+<p>  function Timer () {</p>
+<pre><code>this.s1 = 14;
+this.s2 = 4;
+// 箭头函数
+// this指向定义时所在作用域，即Timer
+setInterval(() =&gt; this.s1++, 1000);
+// 普通函数
+// this指向执行时作用域，即window
+setInterval(function () {
+  this.s2++;
+}, 1000);
+</code></pre><p>  }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 箭头函数可以让this指向固定化</span><br></pre></td></tr></table></figure>
+<p>  var handler = {</p>
+<pre><code>id: &apos;123456&apos;,
+
+init: function() {
+    //this指向handler，因为=&gt;没有自己的this(this == undefined)，所以指向最近的外部this
+  document.addEventListener(&apos;click&apos;,
+    event =&gt; this.doSomething(event.type), false);
+  // var self = this;
+  // document.addEventListener(&apos;click&apos;,function(){
+  //   self.doSomething(event.type)
+  // },false)
+},
+
+doSomething: function(type) {
+  console.log(&apos;Handling &apos; + type  + &apos; for &apos; + this.id);
+}
+</code></pre><p>  };</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* call\apply\bind无效，会忽略</span><br></pre></td></tr></table></figure>
+<p>  (function() {</p>
+<pre><code>return [
+  (() =&gt; this.x).bind({ x: &apos;inner&apos; })()
+]
+</code></pre><p>  }).call({ x: ‘outer’ });<br>  // function () {<br>  //   var _this = this;<br>  //   return [function () {<br>  //     return _this.x;<br>  //   }.bind({ x: ‘inner’ })()];<br>  // }.call({ x: ‘outer’ })</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* :: 返回的是原对象</span><br></pre></td></tr></table></figure>
+<p>  //上下文::执行方法<br>  foo::bar;<br>  // 等同于<br>  bar.bind(foo);</p>
+<p>  foo::bar(…arguments);<br>  // 等同于<br>  bar.apply(foo, arguments);</p>
+<p>  const hasOwnProperty = Object.prototype.hasOwnProperty;<br>  function hasOwn(obj, key) {</p>
+<pre><code>return obj::hasOwnProperty(key);
+</code></pre><p>  }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 尾调=&gt;调用栈</span><br><span class="line">* stack overflow 栈溢出</span><br><span class="line">* 尾递归</span><br></pre></td></tr></table></figure>
+<p>  //复杂度O(n)<br>  function factorial(n) {</p>
+<pre><code>if (n === 1) return 1;
+return n * factorial(n - 1);
+</code></pre><p>  }<br>  factorial(5) // 120<br>  //5 <em> factorial(4)<br>  //5 </em> (4 <em> factorial(3))<br>  //5 </em> (4 <em> (3 </em> factorial(2)))<br>  //5 <em> (4 </em> (3 <em> (2 </em> factorial(1))))<br>  //5 <em> 4 </em> 3 <em> 2 </em> 1<br>  //复杂度O(1)<br>  function factorial(n, total){</p>
+<pre><code>if(n === 1) return total;
+return factorial(n-1, n * total);
+</code></pre><p>  }<br>  factorial(5,1) // 120<br>  // 只保留一个调用帧<br>  // factorial(5,1)<br>  // factorial(4,5)<br>  // factorial(3,20)<br>  // factorial(2,60)<br>  // factorial(1,120)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`</span><br><span class="line">尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。比如上面的例子，阶乘函数 factorial 需要用到一个中间变量 total ，那就把这个中间变量改写成函数的参数。</span><br><span class="line">`</span><br><span class="line">* 闭包记忆 [简书资料](http://www.jianshu.com/p/a2dfa59e70d7)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//cache为function内局部变量，cache被匿名函数引用，匿名函数上下文为全局变量window<br>//memorize执行完后，cache理应被回收，但是在被匿名函数引用的情况下无法回收<br>function memorize(sets, f) {<br>    var cache = {};<br>    return function (x) {<br>        console.log(‘cache: %j’, cache);<br>        return x in cache<br>               ? cache[x]<br>               : cache[x] = f(sets[x]);<br>    }<br>}<br>var g = memorize([1000, 2000, 3000], function (x) { return x * x; });<br>````</p>
+<ul>
+<li>console.log(‘%c Hello~how are you’,’font-size:28px; font-family:Microsoft YAHEI;color: blue; font-weight: bold;’)</li>
+</ul>
+<p>/<em>Object</em>/</p>
+<ul>
+<li>Object.assign </li>
+<li>//除了字符串会以数组形式拷贝入目标对象，数值、布尔、undefined、null都不起效果（这是因为只有字符串的包装对象，会产生可枚举属性）</li>
+<li>//首参数不能是Null、Undefined ：Cannot convert undefined or null to object</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/12/Array-ES6/" itemprop="url">
+                  Array-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T11:37:00+08:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/Array-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Array-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>Array.from(obj, func, this)//类似Array和可Iterator的对象转为Array, func类似于map对每个元素进行处理，将处理后的值放入返回的数组</li>
+<li>[].slice.call({‘0’:’1’,length:1})// [1]</li>
+<li>… 扩展运算符 Symbol.iterator</li>
+<li><p>能正确处理Unicode，可以避免JavaScript将大于\uFFFF的Unicode字符，算作两个字符的bug</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function countSymbols(string) &#123;</span><br><span class="line">  return Array.from(string).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.of(‘3’) ,构造数组 new Array(‘3’)</p>
+</li>
+<li><p>Array.prototype.copyWithin(target, start = 0, end = this.length) //在数组内部进行替换元素, 在index为target的起始位置上，从index为start的元素开始复制，截到第end元素为止，数组总长度不变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let popo = Array.of(3,3,4,5,12);</span><br><span class="line">console.log(popo.copyWithin(0,2,4)); // [4,5,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,4)); // [3,4,5,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,1)); // [3,3,4,5,12]返回元素组</span><br><span class="line">console.log(popo.copyWithin(1,2,3)); // [3,4,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,-1));// [3,4,5,5,12] 负数从末尾算起</span><br><span class="line">console.log([1, 2, 3, 4, 5].copyWithin(0, -3, -2)); // [3,2,3,4,5] -3代表从末尾索引为-1开始算，-2代表末尾索引为0开始算</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.find</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//当前值，当前索引，当前数组</span><br><span class="line">[1, 5, 10, 15].find(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;,this) // 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.findIndex</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NaN].findIndex(y =&gt; Object.is(NaN, y))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.fill填充一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.fill(string,start,end) //从start开始到end之前结束</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.entries(),Array.keys(),Array.values()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let letter = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">let entries = letter.entries();</span><br><span class="line">console.log(entries.next().value); // [0, &apos;a&apos;]</span><br><span class="line">console.log(entries.next().value); // [1, &apos;b&apos;]</span><br><span class="line">console.log(entries.next().value); // [2, &apos;c&apos;]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.prototype.includes()<br><code>Map结构的has方法，是用来查找键名的，比如Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。
+  Set结构的has方法，是用来查找值的，比如Set.prototype.has(value)、WeakSet.prototype.has(value)。</code></p>
+</li>
+<li><p>ES5数组对空位的处理</p>
+<ul>
+<li>forEach(), filter(), every() 和some()都会跳过空位。</li>
+<li>map()会跳过空位，但会保留这个值</li>
+<li>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// forEach方法</span><br><span class="line">[,&apos;a&apos;].forEach((x,i) =&gt; log(i)); // 1</span><br><span class="line"></span><br><span class="line">// filter方法</span><br><span class="line">[&apos;a&apos;,,&apos;b&apos;].filter(x =&gt; true) // [&apos;a&apos;,&apos;b&apos;]</span><br><span class="line"></span><br><span class="line">// every方法</span><br><span class="line">[,&apos;a&apos;].every(x =&gt; x===&apos;a&apos;) // true</span><br><span class="line"></span><br><span class="line">// some方法</span><br><span class="line">[,&apos;a&apos;].some(x =&gt; x !== &apos;a&apos;) // false</span><br><span class="line"></span><br><span class="line">// map方法</span><br><span class="line">[,&apos;a&apos;].map(x =&gt; 1) // [,1]</span><br><span class="line"></span><br><span class="line">// join方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].join(&apos;#&apos;) // &quot;#a##&quot;</span><br><span class="line"></span><br><span class="line">// toString方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].toString() // &quot;,a,,&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ES6则是明确将空位转为undefined<br><code>Invalid attempt to destructure non-iterable instance</code></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/12/Number-ES6/" itemprop="url">
+                  Number-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T10:02:20+08:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/Number-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Number-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>二进制和八进制表示法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 分别用前缀0b、0B和0o、0O表示</span><br><span class="line">0b111110111 === 503</span><br><span class="line">0o767 === 503 //八进制</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Number转为十进制,Number(‘0o10’) == 8</p>
+</li>
+<li><p>极小误差</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function withinErrorMargin (left, right) &#123;</span><br><span class="line"> 		return Math.abs(left - right) &lt; Number.EPSILON</span><br><span class="line">&#125;</span><br><span class="line">console.log(withinErrorMargin(0.1 + 0.2, 0.3))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JavaScript能够准确表示的整数范围在-2^53到2^53之间</p>
+</li>
+<li>Math对象扩展<ul>
+<li>Math.trunc()//去除小数部分</li>
+<li>Math.sign()//判断正数、负数、零</li>
+<li>Math.cbrt()//返回立方根</li>
+<li>Math.clz32()//补零</li>
+<li>Math.imul()//返回两个数以32位带符号整数形式相乘结果</li>
+<li>Math.fround()// new Float32Array()</li>
+<li>Math.hypot()//返回所有参数平方和的平方根</li>
+<li>对数方法</li>
+<li>三角函数<ul>
+<li>Math.sinh()//双曲正弦</li>
+<li>Math.cosh()//双曲余弦</li>
+<li>Math.tanh(x) 返回x的双曲正切（hyperbolic tangent）</li>
+<li>Math.asinh(x) 返回x的反双曲正弦（inverse hyperbolic sine）</li>
+<li>Math.acosh(x) 返回x的反双曲余弦（inverse hyperbolic cosine）</li>
+<li>Math.atanh(x) 返回x的反双曲正切（inverse hyperbolic tangent）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/10/RegExp-ES6/" itemprop="url">
+                  RegExp-ES6 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T14:48:31+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/RegExp-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/RegExp-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>新增u修饰符</li>
+<li>new RegExp(/x/i, ‘gi’) // 会覆盖前面定义的修饰符</li>
+<li>/^.$/.test(‘吉’) //false</li>
+<li>/^.$/u.test(‘吉’) //true</li>
+<li>/\u{3}/.test(‘uuu’) //{}被解读为量词</li>
+<li>/\u{61}/u.test(‘a’) //解读为Unicode</li>
+<li>有些Unicode字符的编码不同，但是字型很相近，比如，\u004B与\u212A都是大写的K。</li>
+<li>y修饰符的作用与g修饰符类似，也是全局匹配，后一次匹配都从上一次匹配成功的下一个位置开始</li>
+<li><p>可以重置lastIndex来改变匹配起始位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var sd = &apos;aaa_aa_a&apos;;</span><br><span class="line">var r1 = /a+/g;</span><br><span class="line">var r2 = /a+/y;</span><br><span class="line"></span><br><span class="line">console.log(r1.exec(&apos;aaa_a1a_a&apos;))</span><br><span class="line">console.log(r1.exec(&apos;aaaaaa_&apos;)) //即使是匹配不同字符串，相同的正则仍然会保留上一次匹配后的起始位置</span><br><span class="line">r1.lastIndex=0;</span><br><span class="line">console.log(r1.exec(&apos;a_aaaa_aaaa&apos;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>split：aaa_aaa<em>aa 如果以a为分隔符，结果是[‘’,’’,’’,’</em>‘,’’,’’,’<em>‘,’’,’’] //(‘’)a(‘’)a(‘’)a(‘</em>‘)a(‘’)a(‘’)a(‘_’)a(‘’)a(‘’)</p>
+</li>
+<li><p>y修饰符确保匹配必须从剩余的第一个位置开始</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const REGEX = /a/gy; //最后一个a因为不是出现下一次匹配的头部，所以不会被替换</span><br><span class="line">console.log(&apos;aaxa&apos;.replace(REGEX, &apos;-&apos;)) // &apos;--xa&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sticky // RegExp.sticky判断是否使用粘性修饰符</p>
+</li>
+<li>source 返回正则匹配正文</li>
+<li>flags 返回正则修饰符</li>
+<li><p>字符串必须转义，才能作为正则模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//可用于fiddler 匹配*请求中http:\/\/xxx.xxx.cn\/\?v=.*</span><br><span class="line">function escapeRegExp(str) &#123;</span><br><span class="line">  return str.replace(/[\-\[\]\/\&#123;\&#125;\(\)\*\+\?\.\\\^\$\|]/g, &apos;\\$&amp;&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let str = &apos;/path/to/resource.html?search=query&apos;;</span><br><span class="line">escapeRegExp(str)</span><br><span class="line">// &quot;\/path\/to\/resource\.html\?search=query&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后行断言，从右往左执行表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(?&lt;=(\d+)(\d+))$/.exec(&apos;1053&apos;) // [&quot;&quot;, &quot;1&quot;, &quot;053&quot;]</span><br><span class="line">/^(\d+)(\d+)$/.exec(&apos;1053&apos;) // [&quot;1053&quot;, &quot;105&quot;, &quot;3&quot;]</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/06/String-ES6/" itemprop="url">
+                  String-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T14:54:03+08:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/06/String-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/06/String-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>string.codePointAt()能处理4个字节</li>
+<li><p>string.charCodeAt()处理2个字节</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 是否由四个字节组成</span><br><span class="line">function is32Bit(c)&#123;</span><br><span class="line">	return c.codePointAt(0) &gt; 0xFFFF;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>string.fromCharCode(0xFFFF)</p>
+</li>
+<li>string.fromCodePoint(0x20BB7)</li>
+<li>如果String.fromCharCode方法有多个参数，则它们会被合并成一个字符串返回。String.fromCodePoint(0x78, 0x1f680, 0x79) === “x\uD83D\uDE80y” // true</li>
+<li>fromCodePoint 方法定义在String对象上，codePointAt方法定义在字符串实例对象上</li>
+<li>for(let xx of string) 可以识别大于0xFFFF的码点</li>
+<li>string.at()和string.charAt()</li>
+<li>string.includes()</li>
+<li>string.endsWith(sting1,index)</li>
+<li>string.startsWith()</li>
+<li>string.padStart(length,string1) //length是拼接string1后总长度，超出部分截出</li>
+<li>string.padEnd(length,string1)<h3 id="templete"><a href="#templete" class="headerlink" title="templete"></a>templete</h3></li>
+<li>``反引号成行成段转义输出</li>
+<li>let man = 6</li>
+<li>$(‘#J_main’).append(<code>&lt;b&gt;${man}&lt;/b&gt;</code>) // <b>6</b></li>
+<li>${内部执行的是JavaScript代码}</li>
+<li>${‘hello’ + ‘ world’}</li>
+<li>console.log(<code>${man}</code>+<code>${man}</code>);</li>
+<li>console.log(<code>${man + man}</code>);</li>
+<li>let xx = (x)=&gt;{return x;}</li>
+<li>console.log(<code>${xx(21)}</code>)</li>
+<li>let lo = <code>(function fk(x){ return x})</code> // 要用括号把函数体包裹起来</li>
+<li>let fuc = eval(lo)</li>
+<li>console.log(fuc(223))</li>
+<li>string.raw //转义\</li>
+<li><p>简单模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var template = `</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;% for(var i=0; i &lt; data.supplies.length; i++) &#123;%&gt;</span><br><span class="line">    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">`;</span><br><span class="line">function compile(template)&#123;</span><br><span class="line">  var evalExpr = /&lt;%=(.+?)%&gt;/g;</span><br><span class="line">  var expr = /&lt;%([\s\S]+?)%&gt;/g;</span><br><span class="line"></span><br><span class="line">  template = template</span><br><span class="line">    .replace(evalExpr, &apos;`); \n  echo( $1 ); \n  echo(`&apos;)</span><br><span class="line">    .replace(expr, &apos;`); \n $1 \n  echo(`&apos;);</span><br><span class="line"></span><br><span class="line">  template = &apos;echo(`&apos; + template + &apos;`);&apos;;</span><br><span class="line"></span><br><span class="line">  // console.log(template);</span><br><span class="line">  var script =</span><br><span class="line">  `(function partse(data)&#123;</span><br><span class="line">    var output = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    function echo(html)&#123;</span><br><span class="line">      output += html;</span><br><span class="line">    &#125;</span><br><span class="line">    $&#123; template &#125;</span><br><span class="line"></span><br><span class="line">    return output;</span><br><span class="line">  &#125;)`;</span><br><span class="line"></span><br><span class="line">  return script;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parse = eval(compile(template));</span><br><span class="line">console.log(parse(&#123; supplies: [ &quot;broom&quot;, &quot;mop&quot;, &quot;cleaner&quot; ] &#125;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>标签模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tag`Hello $&#123;main&#125;`</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/03/regex-base2/" itemprop="url">
                   正则表达式基础
                 </a>
@@ -613,655 +1437,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/26/regex-base1/" itemprop="url">
-                  词法分析基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T08:48:20+08:00" content="2016-04-26">
-              2016-04-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/26/regex-base1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/regex-base1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>主要参考<a href="http://www.cppblog.com/vczh/">陈梓瀚</a></p>
-<h4 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h4><ul>
-<li>词法分析的重要性<ul>
-<li>运行命令</li>
-<li>(1+2)*(3+4)<ul>
-<li>(左括号,”(“) (数字,”1”) (一级操作符,”+”) (数字,”2”) (右括号,”)”) (二级操作符,”*”) (左括号,”(“) (数字,”3”) (一级操作符,”+”) (数字,”4”) (右括号,”)”)</li>
-<li>操作符、括号、数字</li>
-<li>但是，都是等价的对象，没有层次<h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>代表字符串集合的规则<ul>
-<li>规则可以把一个特定的字符或者是空字符串认为是一种类型的记号的全部，如”(“是”左括号”，”[“不会是”左括号”</li>
-<li>规则可以进行串联，”hello”是”h”,”e”,”l”,”l”,”o”的记号串联</li>
-<li>规则可以进行并联, “if”,”else”,”while”等字符串，称之为关键字</li>
-<li>规则是可选的， “abc”,”abcde”可以看做是”abd”的前缀字符串，”de”是可选的</li>
-<li>规则可以重复
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/26/regex-base1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/18/iphone-click/" itemprop="url">
-                  iphone-click
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T22:32:29+08:00" content="2016-04-18">
-              2016-04-18
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/18/iphone-click/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/18/iphone-click/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><hr>
-<ul>
-<li>通过Ajax异步获取城市信息，在回调方法中处理完字符串后append到指定容器里，绑定click事件</li>
-<li>在chrome模拟移动端中按正确期望执行</li>
-<li>在真机iphone6中确没有达到预期效果，原因在哪里呢？见下面分析。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/18/iphone-click/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/15/Simple-Step/" itemprop="url">
-                  Simple-Step
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-15T00:22:40+08:00" content="2016-04-15">
-              2016-04-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/15/Simple-Step/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/Simple-Step/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>简单的分步例子，运用css3处理步骤切换~<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/15/Simple-Step/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/14/Media-query/" itemprop="url">
-                  Media query
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-14T08:37:30+08:00" content="2016-04-14">
-              2016-04-14
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/14/Media-query/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/Media-query/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Media-Query"><a href="#Media-Query" class="headerlink" title="Media Query"></a>Media Query</h2><blockquote>
-<p><code>内容部分参照于</code><a href="http://www.w3cplus.com/content/css3-media-queries">W3C Plus</a></p>
-</blockquote>
-<h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><ul>
-<li>Media Query 直译就是”媒体查询”，常见于检测展示页面所属终端，针对不同终端赋予不同样式。</li>
-</ul>
-<h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/14/Media-query/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/11/model-factory/" itemprop="url">
-                  model-factory
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-11T21:28:52+08:00" content="2016-04-11">
-              2016-04-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/11/model-factory/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/model-factory/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="设计模式之工厂模式"><a href="#设计模式之工厂模式" class="headerlink" title="设计模式之工厂模式"></a>设计模式之工厂模式</h1><h3 id="角色定义"><a href="#角色定义" class="headerlink" title="角色定义"></a>角色定义</h3><p>从武侠游戏角色角度设计，可以是武林至尊、绝世高手、高手、小虾米等，我们可以把它实例化成任和一个角色，并且任意转换。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/11/model-factory/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/09/analyse-Seajs-3-0/" itemprop="url">
-                  analyse Seajs-3.0
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T17:56:46+08:00" content="2016-04-09">
-              2016-04-09
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/09/analyse-Seajs-3-0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/analyse-Seajs-3-0/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <pre><code>1、检测seajs对象
-2、初始化seajs对象
-    * data
-3、lang 辅助方法
-    * isObject
-    * isString
-    * isArray
-    * isFunction
-    * isUndefined
-4、_cid变量自增
-5、data.events对象
-6、定义事件绑定、解绑方法
-7、emit方法定义触发事件
-8、path 辅助方法
-    * 目录正则
-    * 同级正则
-    * 上级正则
-    * 多斜杠正则
-    * 序列化绝对地址
-    * 正常化模块js地址
-    * 路径正则
-    * config中配置的vars正则/*{}*/
-    * 解析配置中alias属性值
-    * 解析配置中paths属性值
-    * 解析配置中vars的属性值
-    * 解析配置中map的属性值
-    * 定义追加base路径方法
-    * 定义id2uri方法
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/09/analyse-Seajs-3-0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1302,7 +1482,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1319,7 +1499,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

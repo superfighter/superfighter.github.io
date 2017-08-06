@@ -1,0 +1,600 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jest," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="前言
+Jest-1主要讲述了Jest冢对Expect的用法，这篇Jest-2将讲述重要的mock部分
+Mock
+单元测试的主要做的事情给予我们想给的，得到我们期望的。现在的业务代码中都是由各个模块串联而成，你包我，我包他，一个包可能很大很长，但最终会抛出公共接口。我们在测试引入包时，不需关心内部具体实现，这时可以使用Mock功能，直接给出期望的结果。除主测之外的代码，都可以Mock。
+Functi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jest-2">
+<meta property="og:url" content="http://superfighter.github.io/2017/08/06/Jest-2/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="前言
+Jest-1主要讲述了Jest冢对Expect的用法，这篇Jest-2将讲述重要的mock部分
+Mock
+单元测试的主要做的事情给予我们想给的，得到我们期望的。现在的业务代码中都是由各个模块串联而成，你包我，我包他，一个包可能很大很长，但最终会抛出公共接口。我们在测试引入包时，不需关心内部具体实现，这时可以使用Mock功能，直接给出期望的结果。除主测之外的代码，都可以Mock。
+Functi">
+<meta property="og:updated_time" content="2017-08-06T11:58:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jest-2">
+<meta name="twitter:description" content="前言
+Jest-1主要讲述了Jest冢对Expect的用法，这篇Jest-2将讲述重要的mock部分
+Mock
+单元测试的主要做的事情给予我们想给的，得到我们期望的。现在的业务代码中都是由各个模块串联而成，你包我，我包他，一个包可能很大很长，但最终会抛出公共接口。我们在测试引入包时，不需关心内部具体实现，这时可以使用Mock功能，直接给出期望的结果。除主测之外的代码，都可以Mock。
+Functi">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Jest-2 | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Jest-2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-06T15:02:01+08:00" content="2017-08-06">
+              2017-08-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/08/06/Jest-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/06/Jest-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><hr>
+<p><a href="">Jest-1</a>主要讲述了Jest冢对Expect的用法，这篇<a href="">Jest-2</a>将讲述重要的mock部分</p>
+<h3 id="Mock"><a href="#Mock" class="headerlink" title="Mock"></a>Mock</h3><hr>
+<p>单元测试的主要做的事情给予我们想给的，得到我们期望的。现在的业务代码中都是由各个模块串联而成，你包我，我包他，一个包可能很大很长，但最终会抛出公共接口。我们在测试引入包时，不需关心内部具体实现，这时可以使用Mock功能，直接给出期望的结果。<br>除主测之外的代码，都可以Mock。</p>
+<h3 id="Function-Mock"><a href="#Function-Mock" class="headerlink" title="Function Mock"></a>Function Mock</h3><hr>
+<p>在上一篇中的Function里也提到jest.fn，这里细说：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'mockFn.mock.calls'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> f = jest.fn()</span><br><span class="line">    f(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    f(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="comment">// 调用过程存入集合</span></span><br><span class="line">    expect(f.mock.calls).toEqual(expect.arrayContaining([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>]]))</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'mockFn.mock.instances'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> f = jest.fn()</span><br><span class="line">    <span class="keyword">const</span> a = <span class="keyword">new</span> f()</span><br><span class="line">    <span class="keyword">const</span> b = <span class="keyword">new</span> f()</span><br><span class="line">    <span class="comment">// 引用计数</span></span><br><span class="line">    expect(f.mock.instances[<span class="number">0</span>]).toBe(a)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'mockFn.mockClear'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">    f = jest.fn(()=&gt;<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">const</span> a = <span class="keyword">new</span> f()</span><br><span class="line">    <span class="keyword">const</span> b = <span class="keyword">new</span> f()</span><br><span class="line">    f(<span class="number">2</span>)</span><br><span class="line">    expect(f.mock.calls[<span class="number">2</span>]).toEqual([<span class="number">2</span>])</span><br><span class="line">    <span class="comment">// 清空执行轨迹</span></span><br><span class="line">    f.mockClear()</span><br><span class="line">    expect(f.mock.instances).toEqual([])</span><br><span class="line">    expect(f.mock.calls).toEqual([])</span><br><span class="line">    <span class="comment">// f.mockRestore()</span></span><br><span class="line">    <span class="comment">// 重置mock.fn</span></span><br><span class="line">    f.mockReset()</span><br><span class="line">    expect(f()).toBeUndefined()</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'mockFn.mockImplementationOnce'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> myMockFn = jest.fn()</span><br><span class="line">        .mockImplementationOnce(cb =&gt; cb(<span class="literal">null</span>, <span class="literal">true</span>))</span><br><span class="line">        .mockImplementationOnce(cb =&gt; cb(<span class="literal">null</span>, <span class="literal">false</span>))</span><br><span class="line">    <span class="comment">// 可逐一调用</span></span><br><span class="line">    expect(myMockFn((err, val) =&gt; val)).toBeTruthy()</span><br><span class="line">    expect(myMockFn((err, val) =&gt; val)).toBeFalsy()</span><br><span class="line">    expect(myMockFn()).toBeUndefined()</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'mockFn.mockReturnValueOnce'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> myMockFn = jest.fn()</span><br><span class="line">    <span class="comment">// 只执行一次，后重置</span></span><br><span class="line">    myMockFn.mockReturnValueOnce(<span class="number">90</span>)</span><br><span class="line">    expect(myMockFn()).toBe(<span class="number">90</span>)</span><br><span class="line">    expect(myMockFn()).toBeUndefined()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Class-Mock"><a href="#Class-Mock" class="headerlink" title="Class Mock"></a>Class Mock</h3><hr>
+<p>jest.fn是单个函数的模拟，一个具体的Module可能会抛出多个接口，同样可以模拟：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">jest.mock(<span class="string">'../request'</span>, (url) =&gt; &#123;</span><br><span class="line">     <span class="keyword">let</span> users = &#123;</span><br><span class="line">         <span class="number">4</span>: &#123;name: <span class="string">'Mark'</span>&#125;,</span><br><span class="line">         <span class="number">5</span>: &#123;name: <span class="string">'Paul'</span>&#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">         <span class="keyword">if</span> (url) &#123;</span><br><span class="line">             <span class="keyword">const</span> userId = url.substr(<span class="string">'/users/'</span>.length)</span><br><span class="line">             process.nextTick(</span><br><span class="line">                 () =&gt; users[userId]</span><br><span class="line">                     ? resolve(users[userId])</span><br><span class="line">                     : reject(&#123;</span><br><span class="line">                         error: <span class="string">'User with '</span>+ userId +<span class="string">' not found.'</span> </span><br><span class="line">                     &#125;)</span><br><span class="line">             )</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>还有一种形式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jest.mock(<span class="string">'../request'</span>)</span><br><span class="line"><span class="comment">// 接下来针对需要自定义的方法单独jest.fn</span></span><br><span class="line">jest.default = jest.fn()</span><br></pre></td></tr></table></figure></p>
+<h3 id="计时器Mock"><a href="#计时器Mock" class="headerlink" title="计时器Mock"></a>计时器Mock</h3><hr>
+<p>计时器经常在业务中用到，<code>setTimeout</code>,<code>setInterval</code>,<code>clearTimeout</code>,<code>clearInterval</code>;要是在测试中按真实的设置等下去那就疯啦，所以facebook的天才们提供了模拟方案，即做了延迟处理又不用等多时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用timer mock</span></span><br><span class="line">jest.useFakeTimers()</span><br><span class="line"><span class="comment">// 调用全部timer mock</span></span><br><span class="line">jest.runAllTimers()</span><br><span class="line"><span class="comment">// 运行pending中的timers，如一个定时器（1000）的回调触发了另一个定时器，这个后触发的定时器（10000ms）处于pending</span></span><br><span class="line">jest.runOnlyPendingTimers()</span><br><span class="line"><span class="comment">// 快进</span></span><br><span class="line">jest.runTimersToTime(<span class="number">1000</span>)</span><br><span class="line"><span class="comment">// 清空pending的timers</span></span><br><span class="line">jest.clearTimers()</span><br></pre></td></tr></table></figure></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
+<p>以上讲了function mock、class mock以及timers mock的种种api，在实际测试环境中出场率还是挺高的。接下一节将介绍异步检测，非常重要哟。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jest/" rel="tag">#jest</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/10/node-PATH-NODE-PATH/" rel="next" title="node $PATH NODE_PATH">
+                <i class="fa fa-chevron-left"></i> node $PATH NODE_PATH
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/06/Jest-1/" rel="prev" title="Jest-1">
+                Jest-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/08/06/Jest-2/"
+           data-title="Jest-2" data-url="http://superfighter.github.io/2017/08/06/Jest-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock"><span class="nav-number">2.</span> <span class="nav-text">Mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Mock"><span class="nav-number">3.</span> <span class="nav-text">Function Mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-Mock"><span class="nav-number">4.</span> <span class="nav-text">Class Mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计时器Mock"><span class="nav-number">5.</span> <span class="nav-text">计时器Mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
