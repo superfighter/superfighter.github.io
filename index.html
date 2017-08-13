@@ -232,13 +232,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/08/06/Jest-3/" itemprop="url">
                   Jest-3
-=======
-                <a class="post-title-link" href="/2017/07/05/contentEditable/" itemprop="url">
-                  contentEditable
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -251,13 +246,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-08-06T19:59:33+08:00" content="2017-08-06">
               2017-08-06
-=======
-            <time itemprop="dateCreated" datetime="2017-07-05T18:53:34+08:00" content="2017-07-05">
-              2017-07-05
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -267,13 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/08/06/Jest-3/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/06/Jest-3/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/07/05/contentEditable/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/05/contentEditable/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -297,7 +282,6 @@
       
         
           
-<<<<<<< HEAD
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
 <p><a href="">Jest-1</a>、<a href="">Jest-2</a>分别讲了断言基础和Mock基础，满足了大部分同步测试的需求。这节主要描述异步测试的情况，主要场景是回调、Promise以及async/await：</p>
 <h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><hr>
@@ -312,15 +296,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">jest.mock(<span class="string">'../requestfks'</span>)</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> user <span class="keyword">from</span> <span class="string">'../user'</span></span><br><span class="line">it(<span class="string">'async/await'</span>, () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> user.getUserName(<span class="number">15</span>).catch((data) =&gt; &#123;</span><br><span class="line">        expect(data).toEqual(&#123;<span class="string">"error"</span>: <span class="string">"User with 15 not found."</span>&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'async/await'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> expect(user.getUserName(<span class="number">5</span>)).resolves.toEqual(<span class="string">'Paul'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'async/await rejects'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> expect(user.getUserName(<span class="number">3</span>)).rejects.toHaveProperty(<span class="string">'error'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'async/await resolves'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">const</span> data = user.getUserName(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">await</span> expect(data).resolves.toEqual(<span class="string">'Mark'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'Promise.catch'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> user.getUserName(<span class="number">2</span>).catch(e =&gt; &#123;</span><br><span class="line">        expect(e).toHaveProperty(<span class="string">'error'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">'try/catch'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    expect.assertions(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> user.getUserName(<span class="number">12</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        expect(e).toHaveProperty(<span class="string">'error'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
 <p>本节介绍了异步测试的代码，是不是可以开始实际业务情景测试了？当然可以，但是Jest并不止这些内容。下节先介绍Jquery业务场景的登录测试。</p>
-=======
-            <ul>
-<li><p>HTML</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div contentEditable=true data-ph=&quot;My Placeholder String&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>CSS</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[contentEditable=true]&#123;</span><br><span class="line">border:1px solid grey;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[contentEditable=true]:empty:not(:focus):before&#123;</span><br><span class="line">content:attr(data-ph);</span><br><span class="line">color:grey;</span><br><span class="line">font-style:italic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
 
           
         
@@ -366,13 +341,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/08/06/Jest-1/" itemprop="url">
                   Jest-1
-=======
-                <a class="post-title-link" href="/2017/06/14/console-1/" itemprop="url">
-                  console%
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -385,13 +355,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-08-06T15:02:01+08:00" content="2017-08-06">
               2017-08-06
-=======
-            <time itemprop="dateCreated" datetime="2017-06-14T15:25:28+08:00" content="2017-06-14">
-              2017-06-14
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -401,13 +366,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/08/06/Jest-1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/06/Jest-1/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/06/14/console-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/14/console-1/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -431,7 +391,6 @@
       
         
           
-<<<<<<< HEAD
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
 <p>本系列内容基本上按照官网的示例来讲解如何入门。</p>
 <h2 id="匹配器"><a href="#匹配器" class="headerlink" title="匹配器"></a>匹配器</h2><hr>
@@ -452,30 +411,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'undefined toBeUndefined'</span>, () =&gt; &#123;</span><br><span class="line">    expect(<span class="literal">undefined</span>).toBeUndefined()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">it(<span class="string">'null toBeUndefined'</span>, () =&gt; &#123;</span><br><span class="line">    expect(<span class="literal">null</span>).toBeNull()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
 <p>以上总的讲述了Expect基本的使用API，接下来讲一讲另一个重要的方法mock。</p>
-=======
-            <ul>
-<li>大约一年前介绍过一篇<code>console</code>API的文章<a href="/2016/08/11/console/">这里</a></li>
-<li>今天看到相关占位符的API，也记录下，供以后参考，内容直白不转弯，上代码；</li>
-<li><p><code>%c</code> 样式</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%cblue&apos;,&apos;color: blue&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>%d</code> 类型转换成整型，不四舍五入</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%dblue&apos;,&apos;3&apos;) // NaNblue</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%dblue&apos;, 3) // 3blue</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>%f</code> 类型转成浮点型</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;,&apos;3.12&apos;) // NaNblue</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;, 3.33) // 3.33blue</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>%o</code> 类型转成对象</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;,&apos;3.12&apos;) // &quot;3.12&quot;blue</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;, [3.33]) // Arrayblue</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>%s</code> 类型转成字符串</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;,&apos;3.12&apos;) // 3.12blue</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;, [3.33]) // Array(1)blue</span><br></pre></td></tr></table></figure></li>
-</ul>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
 
           
         
@@ -521,13 +456,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/08/06/Jest-2/" itemprop="url">
                   Jest-2
-=======
-                <a class="post-title-link" href="/2017/05/30/d3-rect/" itemprop="url">
-                  D3-Rect
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -540,13 +470,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-08-06T15:02:01+08:00" content="2017-08-06">
               2017-08-06
-=======
-            <time itemprop="dateCreated" datetime="2017-05-30T21:14:23+08:00" content="2017-05-30">
-              2017-05-30
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -556,13 +481,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/08/06/Jest-2/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/06/Jest-2/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/05/30/d3-rect/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/d3-rect/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -586,7 +506,6 @@
       
         
           
-<<<<<<< HEAD
             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><hr>
 <p><a href="">Jest-1</a>主要讲述了Jest冢对Expect的用法，这篇<a href="">Jest-2</a>将讲述重要的mock部分</p>
 <h3 id="Mock"><a href="#Mock" class="headerlink" title="Mock"></a>Mock</h3><hr>
@@ -600,38 +519,6 @@
 <p>计时器经常在业务中用到，<code>setTimeout</code>,<code>setInterval</code>,<code>clearTimeout</code>,<code>clearInterval</code>;要是在测试中按真实的设置等下去那就疯啦，所以facebook的天才们提供了模拟方案，即做了延迟处理又不用等多时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用timer mock</span></span><br><span class="line">jest.useFakeTimers()</span><br><span class="line"><span class="comment">// 调用全部timer mock</span></span><br><span class="line">jest.runAllTimers()</span><br><span class="line"><span class="comment">// 运行pending中的timers，如一个定时器（1000）的回调触发了另一个定时器，这个后触发的定时器（10000ms）处于pending</span></span><br><span class="line">jest.runOnlyPendingTimers()</span><br><span class="line"><span class="comment">// 快进</span></span><br><span class="line">jest.runTimersToTime(<span class="number">1000</span>)</span><br><span class="line"><span class="comment">// 清空pending的timers</span></span><br><span class="line">jest.clearTimers()</span><br></pre></td></tr></table></figure></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
 <p>以上讲了function mock、class mock以及timers mock的种种api，在实际测试环境中出场率还是挺高的。接下一节将介绍异步检测，非常重要哟。</p>
-=======
-            <ul>
-<li>一段时间没有记录博客了，四月份和五月份都很忙，四月份主要忙weex，五月份主要忙wexx+d3.v3.js，这里先稳下如何用d3实现负柱形图，供以后参考。<h3 id="基础元素"><a href="#基础元素" class="headerlink" title="基础元素"></a>基础元素</h3></li>
-<li><p>创建底盘svg</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var width = window.innerWidth;</span><br><span class="line">var height = width/2;</span><br><span class="line">var svg = d3.selectAll(&apos;body&apos;)</span><br><span class="line">	.append(&apos;svg&apos;)</span><br><span class="line">	.attr(&#123;</span><br><span class="line">		width: width,</span><br><span class="line">		height: height</span><br><span class="line">	&#125;)</span><br><span class="line">	.style(&#123;</span><br><span class="line">		background: &quot;black&quot;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>声明元数据，比例尺，坐标轴</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var dataSet = [10,20,30,40,60]</span><br><span class="line">var xScale = d3.scale.ordinal()</span><br><span class="line">	.domain(dataSet)</span><br><span class="line">	.rangeRoundBands([0,width-margin.right-margin.left])</span><br><span class="line">var yScale = d3.scale.ordinal()</span><br><span class="line">	.domain(dataSet)</span><br><span class="line">	.rangeRoundBands([height-margin.bottom-margin.top,0])</span><br><span class="line">var xAxis = d3.svg.axis()</span><br><span class="line">	.scale(xScale)</span><br><span class="line">	.orient(&apos;bottom&apos;)</span><br><span class="line">var yAxis = d3.svg.axis()</span><br><span class="line">	.scale(yScale)</span><br><span class="line">	.orient(&apos;left&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成坐标轴</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">svg.append(&apos;g&apos;)</span><br><span class="line">	.call(xAxis)</span><br><span class="line">svg.append(&apos;g&apos;)</span><br><span class="line">	.call(yAxis)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>因为没有设置合理的位置，Y轴在可见区域之外了，X轴在最顶上了，这都是不是我们期望的，下面做一些改动。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">// 这里额外定义了偏值</span><br><span class="line">var margin = &#123;</span><br><span class="line">	&apos;top&apos;:20,</span><br><span class="line">	&apos;right&apos;: 50,</span><br><span class="line">	&apos;bottom&apos;: 50,</span><br><span class="line">	&apos;left&apos;: 50</span><br><span class="line">&#125;;</span><br><span class="line">var width = window.innerWidth;</span><br><span class="line">var height = width/2;</span><br><span class="line">var svg = d3.selectAll(&apos;body&apos;)</span><br><span class="line">   .append(&apos;svg&apos;)</span><br><span class="line">   .attr(&#123;</span><br><span class="line">       width: width,</span><br><span class="line">       height: height</span><br><span class="line">   &#125;)</span><br><span class="line">   .style(&#123;</span><br><span class="line">       background: &quot;#FFF&quot;</span><br><span class="line">   &#125;)</span><br><span class="line">var dataSet = [1,2,3,4,5]</span><br><span class="line">var xScale = d3.scale.ordinal()</span><br><span class="line">	.domain(dataSet)</span><br><span class="line">	.rangeRoundBands([0,width-margin.right-margin.left])</span><br><span class="line">var yScale = d3.scale.ordinal()</span><br><span class="line">	.domain(dataSet)</span><br><span class="line">	.rangeRoundBands([height-margin.bottom-margin.top,0])</span><br><span class="line">var xAxis = d3.svg.axis()</span><br><span class="line">	.scale(xScale)</span><br><span class="line">	.orient(&apos;bottom&apos;)</span><br><span class="line">	.tickSize(-100,0)</span><br><span class="line">var yAxis = d3.svg.axis()</span><br><span class="line">	.scale(yScale)</span><br><span class="line">	.orient(&apos;left&apos;)</span><br><span class="line">	.tickSize(-100,-(width-margin.right-margin.left))</span><br><span class="line"></span><br><span class="line">svg.append(&apos;g&apos;)</span><br><span class="line">	.attr(&apos;transform&apos;, &apos;translate(&apos;+(margin.left)+&apos;,&apos;+(height-margin.bottom)+&apos;)&apos;)</span><br><span class="line">	.call(xAxis)</span><br><span class="line">svg.append(&apos;g&apos;)</span><br><span class="line">	.attr(&apos;transform&apos;, &apos;translate(&apos;+margin.left+&apos;,&apos;+margin.top+&apos;)&apos;)</span><br><span class="line">	.call(yAxis)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>以上，我们最简单的打底内容就搞定了，下面尝试添加柱形元素。</p>
-<h3 id="正向柱形"><a href="#正向柱形" class="headerlink" title="正向柱形"></a>正向柱形</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">svg.selectAll(&apos;rect&apos;).data(dataSet).enter()</span><br><span class="line">	.append(&apos;rect&apos;)</span><br><span class="line">	.attr(&#123;</span><br><span class="line">		&apos;class&apos;: &apos;rect&apos;,</span><br><span class="line">		&apos;x&apos;: function(d, i)&#123;</span><br><span class="line">			return xScale(d)+margin.left</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;y&apos;: function(d, i)&#123;</span><br><span class="line">			return yScale(d) + margin.top</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;width&apos;: function(d, i)&#123;</span><br><span class="line">			return  xScale.rangeBand()</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;height&apos;: function(d, i)&#123;</span><br><span class="line">			return height - margin.top - margin.bottom - yScale(d)</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;fill&apos;: function(d)&#123;</span><br><span class="line">			return &apos;red&apos;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这样我们就能渲染正常的柱形图</p>
-<h3 id="负向柱形"><a href="#负向柱形" class="headerlink" title="负向柱形"></a>负向柱形</h3></li>
-<li>负向的要点主要有两点<ul>
-<li>负刻度以0为基准线</li>
-<li>负刻度的高度也要以0对应的值为基准值，最后求绝对值</li>
-</ul>
-</li>
-<li><p>代码稍做改动就能达到如期效果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var dataSet = [1,2,-3,4,5]</span><br><span class="line">var xScale = d3.scale.ordinal()</span><br><span class="line">	.domain(dataSet)</span><br><span class="line">	.rangeRoundBands([0,width-margin.right-margin.left])</span><br><span class="line">var yScale = d3.scale.linear()</span><br><span class="line">	.domain([d3.min(dataSet,d3.max(dataSet)])</span><br><span class="line">	.range([height-margin.bottom-margin.top,0])</span><br><span class="line">svg.selectAll(&apos;rect&apos;).data(dataSet).enter()</span><br><span class="line">	.append(&apos;rect&apos;)</span><br><span class="line">	.attr(&#123;</span><br><span class="line">		&apos;class&apos;: &apos;rect&apos;,</span><br><span class="line">		&apos;x&apos;: function(d, i)&#123;</span><br><span class="line">			return xScale(d)+margin.left</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;y&apos;: function(d, i)&#123;</span><br><span class="line">			// 要点一，注意这里</span><br><span class="line">			var basePoint = d &gt; -1 ? yScale(d) : yScale(0)</span><br><span class="line">			return basePoint + margin.top</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;width&apos;: function(d, i)&#123;</span><br><span class="line">			return  xScale.rangeBand()</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;height&apos;: function(d, i)&#123;</span><br><span class="line">			// 要点二，注意这里</span><br><span class="line">			var baseHeight = yScale(0) - yScale(d)</span><br><span class="line">			return d &gt; -1 ? baseHeight : Math.abs(baseHeight)</span><br><span class="line">		&#125;,</span><br><span class="line">		&apos;fill&apos;: function(d)&#123;</span><br><span class="line">			return &apos;red&apos;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>暂时写到这里，后续补充：分组柱形图</p>
-</li>
-</ul>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
 
           
         
@@ -677,13 +564,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/06/10/node-PATH-NODE-PATH/" itemprop="url">
                   node $PATH NODE_PATH
-=======
-                <a class="post-title-link" href="/2017/03/02/bezier/" itemprop="url">
-                  bezier
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -696,13 +578,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-06-10T08:23:23+08:00" content="2017-06-10">
               2017-06-10
-=======
-            <time itemprop="dateCreated" datetime="2017-03-02T10:23:10+08:00" content="2017-03-02">
-              2017-03-02
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -712,13 +589,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/06/10/node-PATH-NODE-PATH/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/10/node-PATH-NODE-PATH/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/03/02/bezier/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/02/bezier/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -742,7 +614,6 @@
       
         
           
-<<<<<<< HEAD
             <ul>
 <li><p>设置全局变量文件夹</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: vue command not found</span><br><span class="line">export PATH=/user/local/bin:$PATH`</span><br><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
@@ -750,15 +621,6 @@
 <li><p>设置指定$NODE_PATH</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: Cannot find module &apos;inherits&apos;</span><br><span class="line">echo $NODE_PATH</span><br><span class="line">export $NODE_PATH=/user/local/lib/node_modules</span><br></pre></td></tr></table></figure>
 </li>
-=======
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>是用一系列点来控制曲线状态</p>
-<ul>
-<li>数据点，控制曲线的起始位置和结束位置</li>
-<li>控制点，确定曲线的弯曲程度<h2 id="一阶曲线"><a href="#一阶曲线" class="headerlink" title="一阶曲线"></a>一阶曲线</h2>没有控制点，仅有两个数据点，最终效果一个线段<h2 id="二阶曲线"><a href="#二阶曲线" class="headerlink" title="二阶曲线"></a>二阶曲线</h2>两个数据点A和C，一个控制点B来描述曲线状态</li>
-<li>链接AB，BC</li>
-<li>在AB上取点D，BC上取点E，使AD/AB = BE/BC</li>
-<li>链接DE，取点F，使AD/AB = BE/BC = DF/DE<h2 id="三阶曲线"><a href="#三阶曲线" class="headerlink" title="三阶曲线"></a>三阶曲线</h2>两个数据点A和D，两个控制点来描述曲线状态</li>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
 </ul>
 
           
@@ -805,13 +667,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/06/03/Promise-ES5/" itemprop="url">
                   Promise Pollyfill
-=======
-                <a class="post-title-link" href="/2017/03/01/canvasSave/" itemprop="url">
-                  canvasSave
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -824,13 +681,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-06-03T19:20:44+08:00" content="2017-06-03">
               2017-06-03
-=======
-            <time itemprop="dateCreated" datetime="2017-03-01T10:21:15+08:00" content="2017-03-01">
-              2017-03-01
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -840,13 +692,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/06/03/Promise-ES5/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/03/Promise-ES5/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/03/01/canvasSave/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/canvasSave/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -869,32 +716,12 @@
 
       
         
-<<<<<<< HEAD
           
             <ul>
 <li>这篇博客我要记录的是如何自定义Promise对象，拥有:then,catch,final,all,some这四个API</li>
 </ul>
 
           
-=======
-          <h1 id="本文主要阐述作者对Canvas中save和restore两个属性的理解。"><a href="#本文主要阐述作者对Canvas中save和restore两个属性的理解。" class="headerlink" title="本文主要阐述作者对Canvas中save和restore两个属性的理解。"></a>本文主要阐述作者对Canvas中save和restore两个属性的理解。</h1><h2 id="save"><a href="#save" class="headerlink" title="save"></a>save</h2><ul>
-<li>根据文档说明是把绘制状态保存到栈中，相关状态如下：<ul>
-<li>strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit</li>
-<li>lineDashOffset, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor, globalCompositeOperation</li>
-<li>font, textAlign, textBaseline, direction, imageSmoothingEnabled.</li>
-</ul>
-</li>
-</ul>
-<h2 id="restore"><a href="#restore" class="headerlink" title="restore"></a>restore</h2><ul>
-<li>根据文档说明是恢复到最近的保存状态，如果没有保存状态，此方法不做任何改变</li>
-</ul>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/01/canvasSave/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
         
       
     </div>
@@ -938,13 +765,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/06/03/weex-step-first/" itemprop="url">
                   weex-step-first
-=======
-                <a class="post-title-link" href="/2017/02/28/mouseEvent/" itemprop="url">
-                  mouseEvent
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -957,13 +779,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-06-03T17:05:09+08:00" content="2017-06-03">
               2017-06-03
-=======
-            <time itemprop="dateCreated" datetime="2017-02-28T10:00:59+08:00" content="2017-02-28">
-              2017-02-28
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -973,13 +790,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/06/03/weex-step-first/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/03/weex-step-first/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/02/28/mouseEvent/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/mouseEvent/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -1002,34 +814,9 @@
 
       
         
-<<<<<<< HEAD
           
             
           
-=======
-          <h1 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h1><p>DOM3 级事件中定义了9个鼠标事件，分别是：</p>
-<ul>
-<li>click</li>
-<li>dbclick</li>
-<li>mousedown</li>
-<li>mouseenter</li>
-<li>mouseleave</li>
-<li>mousemove</li>
-<li>mouseout</li>
-<li>mouseover</li>
-<li>mouseup</li>
-</ul>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li>mouseenter和mouseleave不冒泡，意味着鼠标移到目标元素的后代上不会触发事件响应</li>
-</ul>
-<h1 id="click过程"><a href="#click过程" class="headerlink" title="click过程"></a>click过程</h1><ul>
-<li>mousedown -&gt; mouseup -&gt; click
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/28/mouseEvent/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
         
       
     </div>
@@ -1073,13 +860,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/05/30/d3-rect/" itemprop="url">
                   D3-Rect
-=======
-                <a class="post-title-link" href="/2017/02/07/iframe-cross-domain/" itemprop="url">
-                  iframe cross-domain
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -1092,13 +874,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-05-30T21:14:23+08:00" content="2017-05-30">
               2017-05-30
-=======
-            <time itemprop="dateCreated" datetime="2017-02-07T15:32:04+08:00" content="2017-02-07">
-              2017-02-07
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -1108,13 +885,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/05/30/d3-rect/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/d3-rect/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/02/07/iframe-cross-domain/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/iframe-cross-domain/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -1137,7 +909,6 @@
 
       
         
-<<<<<<< HEAD
           
             <ul>
 <li>一段时间没有记录博客了，四月份和五月份都很忙，四月份主要忙weex，五月份主要忙wexx+d3.v3.js，这里先稳下如何用d3实现负柱形图，供以后参考。<h3 id="基础元素"><a href="#基础元素" class="headerlink" title="基础元素"></a>基础元素</h3></li>
@@ -1171,18 +942,6 @@
 </ul>
 
           
-=======
-          <ul>
-<li>这篇文章其实不是为解决跨域请求而写的，主要是为了处理相同顶级域名下，不同子域间如何沟通，以及iframe自适应自身内容高度的问题。</li>
-<li>主要思路是借用<code>document.domain</code>来统一域名，达到浏览器的<code>同源策略</code>要求。</li>
-<li>本例需求还涉及到对clientHeight、offsetHeight、scrollHeight的理解。</li>
-<li>这里不展开介绍contentWindow、contentDocument以及ie兼容(attachEvent)的情况，可以自行查阅资料。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/07/iframe-cross-domain/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
         
       
     </div>
@@ -1226,13 +985,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/03/01/canvasSave/" itemprop="url">
                   canvasSave
-=======
-                <a class="post-title-link" href="/2017/01/22/DOM-Text/" itemprop="url">
-                  DOM Text
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -1245,13 +999,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-03-01T10:21:15+08:00" content="2017-03-01">
               2017-03-01
-=======
-            <time itemprop="dateCreated" datetime="2017-01-22T17:08:44+08:00" content="2017-01-22">
-              2017-01-22
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -1261,13 +1010,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/03/01/canvasSave/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/canvasSave/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/01/22/DOM-Text/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/DOM-Text/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -1290,7 +1034,6 @@
 
       
         
-<<<<<<< HEAD
           <h1 id="本文主要阐述作者对Canvas中save和restore两个属性的理解。"><a href="#本文主要阐述作者对Canvas中save和restore两个属性的理解。" class="headerlink" title="本文主要阐述作者对Canvas中save和restore两个属性的理解。"></a>本文主要阐述作者对Canvas中save和restore两个属性的理解。</h1><h2 id="save"><a href="#save" class="headerlink" title="save"></a>save</h2><ul>
 <li>根据文档说明是把绘制状态保存到栈中，相关状态如下：<ul>
 <li>strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit</li>
@@ -1308,71 +1051,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-=======
-          
-            <ul>
-<li>简述下innerText, textContent以及innerHTML的关系</li>
-<li>共性很明了，三者都可以读写操作，获取/改变对应DOM节点的内容</li>
-<li>差异体现以下几点：<ul>
-<li>是否触发浏览器重绘</li>
-<li>是否安全</li>
-<li>是否对特殊元素屏蔽</li>
-<li>在页面生命周期里是否起破坏作用</li>
-</ul>
-</li>
-<li>大致可以从下表看出三者特性[<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/textContent" target="_blank" rel="external">来源</a>]：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">innerHTML</th>
-<th style="text-align:center">innerText</th>
-<th style="text-align:center">textContent</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>触发重绘</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">×</td>
-</tr>
-<tr>
-<td>包含script,style标签</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√(IE7↑)</td>
-<td style="text-align:center">√</td>
-</tr>
-<tr>
-<td>hidden元素</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-</tr>
-<tr>
-<td>永久影响</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-</tr>
-<tr>
-<td>避免XSS</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>总结<ul>
-<li>innerText是IE引入的方法，所以会有兼容性问题，在IE9及以上版本同步了textContent的表现</li>
-</ul>
-</li>
-</ul>
-
-          
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
         
       
     </div>
@@ -1416,13 +1094,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/02/28/mouseEvent/" itemprop="url">
                   mouseEvent
-=======
-                <a class="post-title-link" href="/2016/12/22/WTDSwiper/" itemprop="url">
-                  WTDSwiper
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -1435,13 +1108,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-02-28T10:00:59+08:00" content="2017-02-28">
               2017-02-28
-=======
-            <time itemprop="dateCreated" datetime="2016-12-22T13:59:59+08:00" content="2016-12-22">
-              2016-12-22
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -1451,13 +1119,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/02/28/mouseEvent/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/mouseEvent/" itemprop="commentsCount"></span>
-=======
-                <a href="/2016/12/22/WTDSwiper/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/WTDSwiper/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -1480,7 +1143,6 @@
 
       
         
-<<<<<<< HEAD
           <h1 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h1><p>DOM3 级事件中定义了9个鼠标事件，分别是：</p>
 <ul>
 <li>click</li>
@@ -1503,45 +1165,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-=======
-          
-            <ul>
-<li>隐藏内部实现</li>
-<li><p>依靠你能控制的对象，好过依靠你不能控制的对象，以免日后受他控制</p>
-</li>
-<li><p>类</p>
-</li>
-</ul>
-<ul>
-<li>单一权责原则：只有一条修改理由</li>
-<li>开放-闭合原则：只许扩展，不许修改</li>
-<li>低耦合高内聚原则</li>
-<li>依赖倒置原则：依赖于抽象，而不是具体实现细节</li>
-</ul>
-<ul>
-<li>并发基础定义</li>
-</ul>
-<ul>
-<li>限定资源， 并发环境中有着固定尺寸或数量的资源</li>
-<li>互斥，每一时刻仅有一个县城能访问共享数据或共享资源</li>
-<li>线程饥饿，一个或一组线程在很长时间内或永久被禁止</li>
-<li>死锁 两个或多个线程互相等待执行结束</li>
-<li>活锁 执行次序一致的线程，每个都想要起步，但发现其他线程已经“在路上”</li>
-</ul>
-<ul>
-<li>并发模型</li>
-</ul>
-<ul>
-<li>生产者-消费者模型</li>
-<li>读者-作者模型</li>
-<li>宴席哲学家</li>
-</ul>
-<ul>
-<li>[<a href="https://zhuanlan.zhihu.com/p/21927991" target="_blank" rel="external">知乎</a>]</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//两点触控旋转角度和方向求解代码</span><br><span class="line">//这两个方法属于向量计算，具体原理请阅读本文最后的参考文献</span><br><span class="line"></span><br><span class="line">_getRotateDirection(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	return vector1.x * vector2.y - vector2.x * vector1.y;</span><br><span class="line"></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">_getRotateAngle(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	let direction = this._getRotateDirection(vector1,vector2);</span><br><span class="line"></span><br><span class="line">	direction = direction &gt; 0 ? -1 : 1;</span><br><span class="line"></span><br><span class="line">	let len1 = this._getDistance(vector1.x,vector1.y);</span><br><span class="line"></span><br><span class="line">	let len2 = this._getDistance(vector2.x,vector2.y);</span><br><span class="line"></span><br><span class="line">	let mr = len1 * len2;</span><br><span class="line"></span><br><span class="line">	if(mr === 0) return 0;</span><br><span class="line"></span><br><span class="line">	let dot = vector1.x * vector2.x + vector1.y * vector2.y;</span><br><span class="line"></span><br><span class="line">	let r = dot / mr;</span><br><span class="line"></span><br><span class="line">	if(r &gt; 1) r = 1;</span><br><span class="line"></span><br><span class="line">	if(r &lt; -1) r = -1;</span><br><span class="line"></span><br><span class="line">	return Math.acos(r) * direction * 180 / Math.PI;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
         
       
     </div>
@@ -1585,13 +1208,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/02/07/iframe-cross-domain/" itemprop="url">
                   iframe cross-domain
-=======
-                <a class="post-title-link" href="/2016/12/22/UMD/" itemprop="url">
-                  UMD
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               
             
@@ -1604,13 +1222,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-02-07T15:32:04+08:00" content="2017-02-07">
               2017-02-07
-=======
-            <time itemprop="dateCreated" datetime="2016-12-22T10:08:35+08:00" content="2016-12-22">
-              2016-12-22
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
             </time>
           </span>
 
@@ -1620,13 +1233,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/02/07/iframe-cross-domain/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/iframe-cross-domain/" itemprop="commentsCount"></span>
-=======
-                <a href="/2016/12/22/UMD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/UMD/" itemprop="commentsCount"></span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 </a>
               </span>
             
@@ -1649,7 +1257,6 @@
 
       
         
-<<<<<<< HEAD
           <ul>
 <li>这篇文章其实不是为解决跨域请求而写的，主要是为了处理相同顶级域名下，不同子域间如何沟通，以及iframe自适应自身内容高度的问题。</li>
 <li>主要思路是借用<code>document.domain</code>来统一域名，达到浏览器的<code>同源策略</code>要求。</li>
@@ -1657,20 +1264,6 @@
 <li>这里不展开介绍contentWindow、contentDocument以及ie兼容(attachEvent)的情况，可以自行查阅资料。
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/02/07/iframe-cross-domain/#more" rel="contents">
-=======
-          <p><a href="https://github.com/umdjs/umd">参考自github/umdjs</a></p>
-<ul>
-<li>UMD (Universal Module Define) ，即通用模块定义。目前已有的模块定义规范有commonJS,Node,AMD,CMD,全局挂载等方式，如何同时适配两种或多种，做到一劳永逸是有套路的，具体尝试如下：</li>
-<li><p>A:基于AMD和全局挂载的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(function(root, factory)&#123;</span><br><span class="line">	if(typeof define === &apos;functon&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">		define([&apos;b&apos;], factory);</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		root.amdWeb = factory(root.b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(this, function(b)&#123;</span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在A的基础上挂载全局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*当你使用AMD模式的时候，有些脚本还是</span><br><span class="line">要去加载全局变量，这时需要在AMD模式尾巴上挂载全局变量*/</span><br><span class="line">(function(root, factory)&#123;</span><br><span class="line">	if(typeof define === &apos;function&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">		define([&apos;b&apos;], function(b)&#123;</span><br><span class="line">			//do something</span><br><span class="line">			return (root.amdWebGlobal = factory(b))</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		root.amdWebGlobal = factory(root, b)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(this, function(b)&#123;</span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/22/UMD/#more" rel="contents">
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
               阅读全文 &raquo;
             </a>
           </div>
@@ -1741,11 +1334,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-<<<<<<< HEAD
               <span class="site-state-item-count">55</span>
-=======
-              <span class="site-state-item-count">52</span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1762,11 +1351,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-<<<<<<< HEAD
                 <span class="site-state-item-count">48</span>
-=======
-                <span class="site-state-item-count">51</span>
->>>>>>> 2fbc2c0671bed1bcd1a0ce2de50393e85b05b9e4
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
