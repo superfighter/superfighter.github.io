@@ -1,0 +1,615 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,memory," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/fs.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="前言
+最近在和新同事的沟通中被问到了javascript是如何管理内存的，以前虽有了解过，但没有系统的记忆，所以答的不理想，乘此机会在这里尽可能整理记忆下。
+内存什么是内存定义内存就是暂时存储程序和数据的地方。程序语言中低级语言一般都有低级的内存管理接口供开发者有选择性的释放内存，如C语言。高级语言则在创建变量时选择性的分配内存，然后在不使用的时候释放自动释放，这种『垃圾回收』机制并不意味着在高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The memory in javascript">
+<meta property="og:url" content="http://superfighter.github.io/2017/09/03/The-memory-in-javascript/index.html">
+<meta property="og:site_name" content="有道">
+<meta property="og:description" content="前言
+最近在和新同事的沟通中被问到了javascript是如何管理内存的，以前虽有了解过，但没有系统的记忆，所以答的不理想，乘此机会在这里尽可能整理记忆下。
+内存什么是内存定义内存就是暂时存储程序和数据的地方。程序语言中低级语言一般都有低级的内存管理接口供开发者有选择性的释放内存，如C语言。高级语言则在创建变量时选择性的分配内存，然后在不使用的时候释放自动释放，这种『垃圾回收』机制并不意味着在高级">
+<meta property="og:updated_time" content="2017-09-03T03:51:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The memory in javascript">
+<meta name="twitter:description" content="前言
+最近在和新同事的沟通中被问到了javascript是如何管理内存的，以前虽有了解过，但没有系统的记忆，所以答的不理想，乘此机会在这里尽可能整理记忆下。
+内存什么是内存定义内存就是暂时存储程序和数据的地方。程序语言中低级语言一般都有低级的内存管理接口供开发者有选择性的释放内存，如C语言。高级语言则在创建变量时选择性的分配内存，然后在不使用的时候释放自动释放，这种『垃圾回收』机制并不意味着在高级">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> The memory in javascript | 有道 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258398492&web_id=1258398492" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">有道</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">君子爱才，取之有道</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                The memory in javascript
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-03T09:20:00+08:00" content="2017-09-03">
+              2017-09-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/03/The-memory-in-javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/03/The-memory-in-javascript/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<p>最近在和新同事的沟通中被问到了javascript是如何管理内存的，以前虽有了解过，但没有系统的记忆，所以答的不理想，乘此机会在这里尽可能整理记忆下。</p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><h4 id="什么是内存"><a href="#什么是内存" class="headerlink" title="什么是内存"></a>什么是内存</h4><p>定义内存就是暂时存储程序和数据的地方。程序语言中低级语言一般都有低级的内存管理接口供开发者有选择性的释放内存，如C语言。高级语言则在创建变量时选择性的分配内存，然后在不使用的时候释放自动释放，这种『垃圾回收』机制并不意味着在高级语言开发中可以不顾内存管理因素肆意滥用。</p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>大体了解一个框架可以从生命周期入手，如React，Vue。其实了解任何已被定义的事物都可以如此。程序语言中的内存生命周期大体一致：</p>
+<ul>
+<li>分配所需要的内存</li>
+<li>（读，写）内存</li>
+<li>不使用时释放/归还内存<br>在所有语言中第一步和第二步都很清晰，但是在javascript中，第三步是隐藏的、不透明的，弄清楚第三步是如何执行的体现了差异性。</li>
+</ul>
+<h4 id="内存策略"><a href="#内存策略" class="headerlink" title="内存策略"></a>内存策略</h4><p>javascript中分堆内存和栈内存。</p>
+<ul>
+<li><p>堆内存<br>堆内存用于存放new创建的对象和数组，因为javascript无法确定声明的函数或者数组对象的具体内存大小，所以无法存放在栈内。它是由虚拟机自动垃圾回收来管理。通常会在栈中定义一个特殊变量，这个变量的取值等于数组或者对象在堆内存中的地址，这就创建了引用变量。数组和对象本身在堆中的分配即时程序在运行到new产生数组和对象的代码块之外，也不会被释放，数组和对象在没有引用变量指向它的时候，才变成垃圾，但只是不能被使用，仍然占用着堆内存，在随后的一个不确定时间被回收。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: null</span><br><span class="line">&#125;; // 给对象及其包含的值分配内存</span><br><span class="line"></span><br><span class="line">// 给数组及其包含的值分配内存（就像对象一样）</span><br><span class="line">var a = [1, null, &quot;a&quot;]; </span><br><span class="line"></span><br><span class="line">function f(a)&#123;</span><br><span class="line">  return a + 2;</span><br><span class="line">&#125; // 给函数（可调用的对象）分配内存</span><br><span class="line"></span><br><span class="line">// 函数表达式也能分配一个对象</span><br><span class="line">someElement.addEventListener(&apos;click&apos;, function()&#123;</span><br><span class="line">  someElement.style.backgroundColor = &apos;blue&apos;;</span><br><span class="line">&#125;, false);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>栈内存<br>基本类型的变量和对象都是在栈内存中分配。当在一个代码块中定义一个变量时，系统就为这个变量分配内存空间，在当前作用域不包含此变量时，释放栈内存空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var n = 1; // 给数值变量分配内存</span><br><span class="line">var s = &quot;a&quot;; // 给字符串分配内存</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="读写内存"><a href="#读写内存" class="headerlink" title="读写内存"></a>读写内存</h4><a id="more"></a>
+<p>读写内存实际上是使用或改变变量的值，可能是改变变量的当前值，可能是改变变量的一个属性值，可能是传入函数的参数。</p>
+<h4 id="释放内存"><a href="#释放内存" class="headerlink" title="释放内存"></a>释放内存</h4><p>前面也提到，释放内存就是在内存不被使用的情况下进行的。但就是最难的地方『被分配的内存确实不在被需要了』。javascript中如何确定一个内存不再被需要？那就是引用，一个对象没有被其他任何对象引用（零引用）,对象将会被回收。</p>
+<ul>
+<li>显式引用<br>  对象属性的引用。</li>
+<li>隐式引用<br>  对象原型的引用。</li>
+</ul>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
+<li>引用计数垃圾收集<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 对象值</span><br><span class="line">var o = &#123; </span><br><span class="line">  a: &#123;</span><br><span class="line">    b:2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;; </span><br><span class="line">// 两个对象被创建，一个『&#123;b:2&#125;』作为另一个的属性被引用，另一个『&#123;a:&#123;b:2&#125;&#125;对象值』被分配给变量o</span><br><span class="line">// 很显然，没有一个可以被垃圾收集</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var o2 = o; // o2变量是第二个对『对象值』的引用</span><br><span class="line"></span><br><span class="line">o = 1;      // 现在，『对象值』的原始引用o被o2替换了</span><br><span class="line"></span><br><span class="line">var oa = o2.a; // 引用『对象值』的a属性</span><br><span class="line">// 现在，『对象值』有两个引用了，一个是o2，一个是oa</span><br><span class="line"></span><br><span class="line">o2 = &quot;yo&quot;; // 最初的『对象值』现在已经是零引用了</span><br><span class="line">           // 他可以被垃圾回收了</span><br><span class="line">           // 然而它的属性a的对象还在被oa引用，所以还不能回收</span><br><span class="line"></span><br><span class="line">oa = null; // a属性的那个『对象值』现在也是零引用了</span><br><span class="line">           // 它可以被垃圾回收了</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面是来自MDN的简单引用计数案例，另外注意循环引用的处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// 常见的循环引用</span><br><span class="line">// DOM对象</span><br><span class="line">var div;</span><br><span class="line">window.onload = function()&#123;</span><br><span class="line">  div = document.getElementById(&quot;myDivElement&quot;);</span><br><span class="line">  div.circularReference = div; // circularReference 属性引用了DOM元素本身</span><br><span class="line">  div.lotsOfData = new Array(10000).join(&quot;*&quot;);</span><br><span class="line">&#125;;</span><br><span class="line">// 事件绑定</span><br><span class="line">function doClick() &#123;&#125;</span><br><span class="line">element.attachEvent(&quot;onclick&quot;, doClick); // 要记得页面卸载时detach</span><br><span class="line">// 对象属性</span><br><span class="line">var MyObject = &#123;&#125;;</span><br><span class="line">document.getElementByIdx_x(&apos;myDiv&apos;).myProp = MyObject;</span><br><span class="line">// 普通对象</span><br><span class="line">function f()&#123;</span><br><span class="line">  var o = &#123;&#125;;</span><br><span class="line">  var o2 = &#123;&#125;;</span><br><span class="line">  o.a = o2; // o 引用 o2</span><br><span class="line">  o2.a = o; // o2 引用 o</span><br><span class="line"></span><br><span class="line">  return &quot;...&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f();</span><br><span class="line">// 闭包</span><br><span class="line">var val = &apos;hello world&apos;;</span><br><span class="line">function foo() &#123;</span><br><span class="line">	return function() &#123;</span><br><span class="line">		return val;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;</span><br><span class="line">global.bar = foo();</span><br><span class="line">// 全局变量赋值</span><br><span class="line">function g() &#123;</span><br><span class="line">	var c = 1;</span><br><span class="line">	window.a = c;</span><br><span class="line">&#125;</span><br><span class="line">g();</span><br></pre></td></tr></table></figure></p>
+<p>针对循环引用，所有浏览器开发商都采用了『标记-清除算法』。这个算法假定设置一个根对象，垃圾回收器定期的从根出发，找所有从根开始引用的对象，然后再找这些对象的引用对象，最终垃圾回收器可以找到可以获得的对象和无法获得的对象，最终回收不可获得的对象。在javascript中，window对象就是root对象，因此一旦div和其事件处理无法从window中获取到，他们将被垃圾回收器回收。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>内存是在不断变化的，当变量或对象的值变动后，会重新申请新的内存，但是有上限值。V8的内存上限是732MB/1464MB。</li>
+<li>老外总结的绕过内存泄露的技巧，供参考。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function outerFunction()&#123;</span><br><span class="line">	var anotherObj = function innerFunction()&#123;</span><br><span class="line">           alert(&quot;Hi! I have avoided the leak&quot;);</span><br><span class="line">    	&#125;;</span><br><span class="line">    	(function anotherInnerFunction()&#123;</span><br><span class="line">        var obj =  document.getElementById(&quot;element&quot;);</span><br><span class="line">        obj.onclick=anotherObj &#125;)();</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   window.onload=function outerFunction()&#123;</span><br><span class="line">   	var obj = document.getElementById(&quot;element&quot;);</span><br><span class="line">    obj.onclick=function innerFunction()&#123;</span><br><span class="line">        alert(&quot;Hi! I have avoided the leak&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">   	obj.bigString=new Array(1000).join(new Array(2000).join(&quot;XXXXX&quot;));</span><br><span class="line">   	obj = null; //This breaks the circular reference</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   window.onload=function()&#123;</span><br><span class="line">    var obj = document.getElementById(&quot;element&quot;);</span><br><span class="line">    obj.onclick = doesNotLeak;</span><br><span class="line">&#125;</span><br><span class="line">function doesNotLeak()&#123;</span><br><span class="line">    alert(&quot;Hi! I have avoided the leak&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/memory/" rel="tag">#memory</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/27/Think-about-React/" rel="next" title="Think about React">
+                <i class="fa fa-chevron-left"></i> Think about React
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/03/The-memory-in-javascript/"
+           data-title="The memory in javascript" data-url="http://superfighter.github.io/2017/09/03/The-memory-in-javascript/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.gif"
+               alt="wangtuda" />
+          <p class="site-author-name" itemprop="name">wangtuda</p>
+          <p class="site-description motion-element" itemprop="description">新一天新积累</br>I Belive I Can.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">1.1.</span> <span class="nav-text">内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是内存"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期"><span class="nav-number">1.1.2.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存策略"><span class="nav-number">1.1.3.</span> <span class="nav-text">内存策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读写内存"><span class="nav-number">1.1.4.</span> <span class="nav-text">读写内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#释放内存"><span class="nav-number">1.1.5.</span> <span class="nav-text">释放内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">1.1.6.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.1.7.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Thu Mar 24 2016 08:00:00 GMT+0800 (CST) - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangtuda</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superfighter"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
