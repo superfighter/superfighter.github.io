@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,requirejs," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -57,16 +57,19 @@
 
 
 
-<meta name="description" content="定义常量reqsheadbaseElementdataMainsrcinteractiveScriptcurrentlyAddingScriptmainScriptsubPathversioncommentRegExpjsSuffixRegExpopostringhasOwnisBrowserisWebWorkerreadyRegExpdefContextNameisOperacontextscf">
+<meta name="description" content="前言近期在使用Array的sort api排序的遇到了问题，所以花了些时间研究它，这里记录下供参考。
+Demo12345678let ary = [90, 89, 44, 92, 123, 99];ary.sort((prev, next) =&amp;gt; &amp;#123;   return prev - next &amp;gt; 0 ? -1 : 1;&amp;#125;)console.log(ary); // [">
 <meta property="og:type" content="article">
-<meta property="og:title" content="analyse-requirejs">
-<meta property="og:url" content="http://superfighter.github.io/2016/04/26/analyse-requirejs/index.html">
+<meta property="og:title" content="Array sort">
+<meta property="og:url" content="http://superfighter.github.io/2017/09/09/Array-sort/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="定义常量reqsheadbaseElementdataMainsrcinteractiveScriptcurrentlyAddingScriptmainScriptsubPathversioncommentRegExpjsSuffixRegExpopostringhasOwnisBrowserisWebWorkerreadyRegExpdefContextNameisOperacontextscf">
-<meta property="og:updated_time" content="2017-08-13T03:16:53.000Z">
+<meta property="og:description" content="前言近期在使用Array的sort api排序的遇到了问题，所以花了些时间研究它，这里记录下供参考。
+Demo12345678let ary = [90, 89, 44, 92, 123, 99];ary.sort((prev, next) =&amp;gt; &amp;#123;   return prev - next &amp;gt; 0 ? -1 : 1;&amp;#125;)console.log(ary); // [">
+<meta property="og:updated_time" content="2017-09-16T08:26:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="analyse-requirejs">
-<meta name="twitter:description" content="定义常量reqsheadbaseElementdataMainsrcinteractiveScriptcurrentlyAddingScriptmainScriptsubPathversioncommentRegExpjsSuffixRegExpopostringhasOwnisBrowserisWebWorkerreadyRegExpdefContextNameisOperacontextscf">
+<meta name="twitter:title" content="Array sort">
+<meta name="twitter:description" content="前言近期在使用Array的sort api排序的遇到了问题，所以花了些时间研究它，这里记录下供参考。
+Demo12345678let ary = [90, 89, 44, 92, 123, 99];ary.sort((prev, next) =&amp;gt; &amp;#123;   return prev - next &amp;gt; 0 ? -1 : 1;&amp;#125;)console.log(ary); // [">
 
 
 
@@ -84,7 +87,7 @@
   };
 </script>
 
-  <title> analyse-requirejs | 有道 </title>
+  <title> Array sort | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -230,7 +233,7 @@
             
             
               
-                analyse-requirejs
+                Array sort
               
             
           </h1>
@@ -242,8 +245,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T08:51:03+08:00" content="2016-04-26">
-              2016-04-26
+            <time itemprop="dateCreated" datetime="2017-09-09T15:11:13+08:00" content="2017-09-09">
+              2017-09-09
             </time>
           </span>
 
@@ -253,8 +256,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/26/analyse-requirejs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/analyse-requirejs/" itemprop="commentsCount"></span>
+                <a href="/2017/09/09/Array-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/09/Array-sort/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,114 +279,29 @@
       
 
       
-        <h3 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h3><p>req<br>s<br>head<br>baseElement<br>dataMain<br>src<br>interactiveScript<br>currentlyAddingScript<br>mainScript<br>subPath<br>version<br>commentRegExp<br>jsSuffixRegExp<br>op<br>ostring<br>hasOwn<br>isBrowser<br>isWebWorker<br>readyRegExp<br>defContextName<br>isOpera<br>contexts<br>cfg<br>globalDefQueue<br>useInteractive<br>handlers<br><a id="more"></a></p>
-<h3 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h3><p>commentReplace<br>isFunction<br>isArray<br>each<br>eachReverse<br>hasProp<br>getOwn<br>eachProp<br>mixin<br>bind<br>scripts<br>defaultOnError<br>getGlobal<br>makeError<br>newContext</p>
-<h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><p>newContext</p>
-<pre><code>* inCheckLoaded
-* Module
-* context
-* handlers
-* checkLoadedTimeoutId
-* config
-    * waitSeconds
-    * baseUrl
-    * paths
-    * bundles
-    * pkgs
-    * shim
-    * config
-* registry
-* enabledRegistry
-* undefEvents
-* defQueue
-* defined
-* bundlesMap
-* requireCounter
-* unnormalizedCounter
-* fun trimDots
-* fun normalize ****
-* fun removeScript
-* fun hasPathFallback
-* fun splitPrefix
-* fun getModule
-* fun cleanRegistry
-* fun breakCycle
-* fun checkLoaded
-</code></pre><p>Module</p>
-<pre><code>* this.events
-* this.map
-* this.depExports
-* this.depMaps
-* this.depMatched
-* this.pluginMaps
-* this.depCount
-* init
-    * this.errback
-    * this.inited
-    * this.ignore
-    * this.factory
-* defineDep
-* fetch
-* on
-* emit
-* load
-* check
-* callPlugin
-* enable
-* intakeDefines
-* takeGlobalQueue
-</code></pre><p>context</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>近期在使用Array的sort api排序的遇到了问题，所以花了些时间研究它，这里记录下供参考。</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> ary = [<span class="number">90</span>, <span class="number">89</span>, <span class="number">44</span>, <span class="number">92</span>, <span class="number">123</span>, <span class="number">99</span>];</span><br><span class="line"></span><br><span class="line">ary.sort((prev, next) =&gt; &#123;</span><br><span class="line">   <span class="keyword">return</span> prev - next &gt; <span class="number">0</span> ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(ary); <span class="comment">// [123, 99, 92, 90, 89, 44]</span></span><br></pre></td></tr></table></figure>
+<p>上面的例子很简单，大家在日常业务中应该会用到，结果也显而易见，把 <code>ary</code> 按降序排列；如果改变排序条件<code>prev - nex &gt; 0 ? 1 : -1</code>, 结果就会变成把<code>ary</code>按升序排列。</p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><a id="more"></a>
+<p>这里逐步分析一种降序的情况。<code>array.sort</code>也是遍历<code>array</code>的过程，期间申请变量存放中间数据，最终将中间数据赋值给<code>array</code>改变原数据。<br>开始分析：</p>
 <ul>
-<li>config</li>
-<li>contextName</li>
-<li>registry</li>
-<li>defined</li>
-<li>urlFetched</li>
-<li>defQueue</li>
-<li>defQueueMap</li>
-<li>Module</li>
-<li>makeModuleMap</li>
-<li>nextTick</li>
-<li>onError</li>
-<li>makeShimExports</li>
-<li>makeRequire</li>
-<li>enable</li>
-<li>completeLoad</li>
-<li>nameToUrl</li>
-<li>load</li>
-<li>execCb</li>
-<li>onScriptLoad</li>
-<li>onScriptError</li>
-<li>configure<ul>
-<li>baseUrl</li>
-<li>urlArgs</li>
-<li>shim</li>
-<li>bundles</li>
-<li>packages</li>
-<li>deps</li>
-<li>callback</li>
-<li>skipDataMain<h3 id="从上至下逻辑"><a href="#从上至下逻辑" class="headerlink" title="从上至下逻辑"></a>从上至下逻辑</h3>检测是否存在AMD loder<br>检测是否存在requirejs接口<br>检测是否存在require配置对象<ul>
-<li>req.config 支持require.config协作其他AMD加载器</li>
-<li>req.nextTick 定时执行</li>
-<li>如果不存在require对象，赋值req</li>
-<li>req.version 版本</li>
-<li>req.jsExtRegExp</li>
-<li>req.isBrowser</li>
-<li>req.s</li>
-<li>req({}) 创建默认上下文</li>
-<li>给全局req对象导入一些人性化方法</li>
-<li>如果是浏览器环境，赋值s.head为head容器</li>
-<li>req.onError</li>
-<li>req.createNode</li>
-<li>req.load</li>
-<li>设定base路径</li>
-<li>req.exec<br>定义define<br>定义define.amd</li>
+<li>先赋值一个空数组对象<code>temp = []</code></li>
+<li>开始比较<code>prev = 90</code>, <code>next = 89</code>, <code>90 - 89 &gt; 0</code>, <code>return 1</code>, <code>temp = [90, 89]</code></li>
+<li>开始比较<code>prev = 89</code>, <code>next = 44</code>, <code>89 - 44 &gt; 0</code>, <code>return 1</code>, <code>temp = [90, 89, 44]</code></li>
+<li>开始比较<code>prev = 44</code>, <code>next = 92</code>, <code>44 - 92 &lt; 0</code>, <code>return -1</code>, <code>temp = [90, 89, 92, 44]</code></li>
+<li>开始比较<code>prev = 89</code>, <code>next = 92</code>, <code>89 - 92 &lt; 0</code>, <code>return -1</code>, <code>temp = [90, 92, 89, 44]</code></li>
+<li>开始比较<code>prev = 90</code>, <code>next = 92</code>, <code>90 - 92 &lt; 0</code>, <code>return -1</code>, <code>temp = [92, 90, 89, 44]</code></li>
+<li>开始比较<code>prev = 44</code>, <code>next = 123</code>, <code>44 - 123 &lt; 0</code>, <code>return -1</code>, <code>temp = [92, 90, 89, 123, 44]</code></li>
+<li>开始比较<code>prev = 89</code>, <code>next = 123</code>, <code>89 - 123 &lt; 0</code>, <code>return -1</code>, <code>temp = [92, 90, 123, 89, 44]</code></li>
+<li>开始比较<code>prev = 90</code>, <code>next = 123</code>, <code>90 - 123 &lt; 0</code>, <code>return -1</code>, <code>temp = [92, 123, 90, 89, 44]</code></li>
+<li>开始比较<code>prev = 92</code>, <code>next = 123</code>, <code>92 - 123 &lt; 0</code>, <code>return -1</code>, <code>temp = [123, 92, 90, 89, 44]</code></li>
+<li>开始比较<code>prev = 44</code>, <code>next = 99</code>, <code>44 - 99 &lt; 0</code>, <code>return -1</code>, <code>temp = [123, 92, 90, 89, 99, 44]</code></li>
+<li>开始比较<code>prev = 89</code>, <code>next = 99</code>, <code>89 - 99 &lt; 0</code>, <code>return -1</code>, <code>temp = [123, 92, 90, 99, 89, 44]</code></li>
+<li>开始比较<code>prev = 90</code>, <code>next = 99</code>, <code>90 - 99 &lt; 0</code>, <code>return -1</code>, <code>temp = [123, 92, 99, 90, 89, 44]</code></li>
+<li>开始比较<code>prev = 92</code>, <code>next = 99</code>, <code>92 - 99 &lt; 0</code>, <code>return -1</code>, <code>temp = [123, 99, 92, 90, 89, 44]</code></li>
+<li>遍历结束，得到结果<code>[123, 99, 92, 90, 89, 44]</code></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>加载完所需module后加载config.js执行require.config()?<br>normalize–&gt;name2url–&gt;enable–&gt;check–&gt;fetch–&gt;module.load–&gt;context.load–&gt;req.load最后加载map.url</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>原来是这么一个过程，大家了解一点是一点吧，还可以自己写一些排序方法，比<code>sort</code>更快更稳妥。</p>
 
       
     </div>
@@ -400,8 +318,6 @@
           
             <a href="/tags/javascript/" rel="tag">#javascript</a>
           
-            <a href="/tags/requirejs/" rel="tag">#requirejs</a>
-          
         </div>
       
 
@@ -409,17 +325,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/26/regex-base1/" rel="next" title="词法分析基础">
-                <i class="fa fa-chevron-left"></i> 词法分析基础
+              <a href="/2017/09/03/The-memory-in-javascript/" rel="next" title="The memory in javascript">
+                <i class="fa fa-chevron-left"></i> The memory in javascript
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/26/selenium-webdriver/" rel="prev" title="selenium-webdriver">
-                selenium-webdriver <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,8 +357,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/26/analyse-requirejs/"
-           data-title="analyse-requirejs" data-url="http://superfighter.github.io/2016/04/26/analyse-requirejs/">
+      <div class="ds-thread" data-thread-key="2017/09/09/Array-sort/"
+           data-title="Array sort" data-url="http://superfighter.github.io/2017/09/09/Array-sort/">
       </div>
     
   </div>
@@ -539,7 +451,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义常量"><span class="nav-number">1.</span> <span class="nav-text">定义常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义方法"><span class="nav-number">2.</span> <span class="nav-text">定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义类"><span class="nav-number">3.</span> <span class="nav-text">定义类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从上至下逻辑"><span class="nav-number">4.</span> <span class="nav-text">从上至下逻辑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">2.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">3.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
