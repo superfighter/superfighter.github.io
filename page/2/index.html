@@ -232,6 +232,109 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/10/node-PATH-NODE-PATH/" itemprop="url">
+                  node $PATH NODE_PATH
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-10T08:23:23+08:00" content="2017-06-10">
+              2017-06-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/10/node-PATH-NODE-PATH/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/10/node-PATH-NODE-PATH/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>设置全局变量文件夹</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: vue command not found</span><br><span class="line">export PATH=/user/local/bin:$PATH`</span><br><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置指定$NODE_PATH</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: Cannot find module &apos;inherits&apos;</span><br><span class="line">echo $NODE_PATH</span><br><span class="line">export $NODE_PATH=/user/local/lib/node_modules</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/03/Promise-ES5/" itemprop="url">
                   Promise Pollyfill
                 </a>
@@ -1241,113 +1344,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/22/UMD/" itemprop="url">
-                  UMD
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-22T10:08:35+08:00" content="2016-12-22">
-              2016-12-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/22/UMD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/UMD/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://github.com/umdjs/umd">参考自github/umdjs</a></p>
-<ul>
-<li>UMD (Universal Module Define) ，即通用模块定义。目前已有的模块定义规范有commonJS,Node,AMD,CMD,全局挂载等方式，如何同时适配两种或多种，做到一劳永逸是有套路的，具体尝试如下：</li>
-<li><p>A:基于AMD和全局挂载的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(function(root, factory)&#123;</span><br><span class="line">	if(typeof define === &apos;functon&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">		define([&apos;b&apos;], factory);</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		root.amdWeb = factory(root.b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(this, function(b)&#123;</span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在A的基础上挂载全局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*当你使用AMD模式的时候，有些脚本还是</span><br><span class="line">要去加载全局变量，这时需要在AMD模式尾巴上挂载全局变量*/</span><br><span class="line">(function(root, factory)&#123;</span><br><span class="line">	if(typeof define === &apos;function&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">		define([&apos;b&apos;], function(b)&#123;</span><br><span class="line">			//do something</span><br><span class="line">			return (root.amdWebGlobal = factory(b))</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		root.amdWebGlobal = factory(root, b)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(this, function(b)&#123;</span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/22/UMD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1393,7 +1389,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1410,7 +1406,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

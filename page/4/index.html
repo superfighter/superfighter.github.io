@@ -232,6 +232,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/30/Proxy-ES6/" itemprop="url">
+                  Proxy-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T14:10:26+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/30/Proxy-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/Proxy-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。<br>Proxy可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//ES6生成Proxy实例</span><br><span class="line">var proxy = new Proxy(target, handler);</span><br><span class="line"></span><br><span class="line">var obj = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function (target, key, receiver) &#123;</span><br><span class="line">    console.log(`getting $&#123;key&#125;!`);</span><br><span class="line">    return Reflect.get(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  set: function (target, key, value, receiver) &#123;</span><br><span class="line">    console.log(`setting $&#123;key&#125;!`);</span><br><span class="line">    return Reflect.set(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作;如果handler没有设置任何拦截，那就等同于直接通向原对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var target = &#123;&#125;;</span><br><span class="line">var handler = &#123;&#125;;</span><br><span class="line">var proxy = new Proxy(target, handler);</span><br><span class="line">proxy.a = &apos;b&apos;;</span><br><span class="line">target.a // &quot;b&quot;</span><br><span class="line">//技巧：将Proxy对象，设置到object.proxy属性，从而可以在object对象上调用</span><br><span class="line">var object = &#123; proxy: new Proxy(target, handler) &#125;;</span><br><span class="line">//Proxy实例也可以作为其他对象的原型对象</span><br><span class="line">var proxy = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function(target, property) &#123;</span><br><span class="line">    return 35;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let obj = Object.create(proxy);</span><br><span class="line">obj.time // 35</span><br><span class="line"></span><br><span class="line">//可以进行多操作拦截</span><br><span class="line">var handler = &#123;</span><br><span class="line">  get: function(target, name) &#123;</span><br><span class="line">    if (name === &apos;prototype&apos;) &#123;</span><br><span class="line">      return Object.prototype;</span><br><span class="line">    &#125;</span><br><span class="line">    return &apos;Hello, &apos; + name;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  apply: function(target, thisBinding, args) &#123;</span><br><span class="line">    return args[0];</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  construct: function(target, args) &#123;</span><br><span class="line">    return &#123;value: args[1]&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fproxy = new Proxy(function(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;, handler);</span><br><span class="line">fproxy(2,20);//apply ==&gt; 2</span><br><span class="line">new fproxy(1,11);//construct ==&gt; &#123;value: 11&#125;</span><br><span class="line">fproxy.hello;//get ==&gt; Hello, hello</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Proxy支持的拦截操作如下</p>
+<ul>
+<li>get(target, propKey, receiver)拦截对象属性的读取，比如proxy.foo和proxy[‘foo’]，返回类型不限。最后一个参数receiver可选，当target对象设置了propKey属性的get函数时，receiver对象会绑定get函数的this对象。</li>
+<li>set(target, propKey, value, receiver)拦截对象属性的设置，比如proxy.foo = v或proxy[‘foo’] = v，返回一个布尔值。</li>
+<li>has(target, propKey)拦截propKey in proxy的操作，以及对象的hasOwnProperty方法，返回一个布尔值。</li>
+<li>deleteProperty(target, propKey)拦截delete proxy[propKey]的操作，返回一个布尔值。</li>
+<li>ownKeys(target)拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)，返回一个数组。该方法返回对象所有自身的属性，而Object.keys()仅返回对象可遍历的属性。</li>
+<li>getOwnPropertyDescriptor(target, propKey)拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</li>
+<li>defineProperty(target, propKey, propDesc)拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</li>
+<li>preventExtensions(target)拦截Object.preventExtensions(proxy)，返回一个布尔值。</li>
+<li>isExtensible(target)拦截Object.isExtensible(proxy)，返回一个布尔值。</li>
+<li>setPrototypeOf(target, proto)拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。</li>
+<li>apply(target, object, args)拦截Proxy实例作为函数调用的操作，比如proxy(…args)、proxy.call(object, …args)、proxy.apply(…)。</li>
+<li>construct(target, args)拦截Proxy实例作为构造函数调用的操作，比如new proxy(…args)。</li>
+</ul>
+</li>
+<li><p>各拦截操作实战用途如下</p>
+<ul>
+<li>get 可以在读取不存在的属性时抛出一个错误，而不是仅仅返回无意义的undefined；可以在返回之前做逻辑处理，比如实现数组负数索引取值；可以创建链式调用。</li>
+<li>set 可以用来实施更新DOM</li>
+<li>has 可以对in运算符做特殊处理，如不让带大写A的属性被in发现；has方法拦截的是HasProperty操作，而不是HasOwnProperty操作，即has方法不判断一个属性是对象自身的属性，还是继承的属性。for…in操作内部也是用到HasProperty操作，所以has方法在for…in循环时也会生效。</li>
+<li><p>construct方法返回的必须是一个对象，否则会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//在返回真正的对象前可以加以处理，但返回值必须是对象</span><br><span class="line">var p = new Proxy(function() &#123;&#125;, &#123;</span><br><span class="line"> 	construct: function(target, args) &#123;</span><br><span class="line">    console.log(&apos;called: &apos; + args.join(&apos;, &apos;));</span><br><span class="line">    return &#123; value: args[0] * 30 &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">new p(10).value</span><br><span class="line">// &quot;called: 10&quot;</span><br><span class="line">// 300</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>getPrototypeOf用来拦截object.getPrototypeOf()运算符，以及Reflect.getPrototypeOf,instanceof运算符，Object.prototype.isPrototypeOf</p>
+</li>
+</ul>
+</li>
+<li>Proxy.revocable(),Proxy.revocable方法返回一个对象，该对象的proxy属性是Proxy实例，revoke属性是一个函数，可以取消Proxy实例。上面代码中，当执行revoke函数之后，再访问Proxy实例，就会抛出一个错误。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let target = &#123;&#125;;</span><br><span class="line">let handler = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">let &#123;proxy, revoke&#125; = Proxy.revocable(target, handler);</span><br><span class="line">proxy.foo = 123;</span><br><span class="line">proxy.foo //123</span><br><span class="line">revoke();</span><br><span class="line">proxy.foo // TypeError : Revoke</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/22/Pixel-puzzle/" itemprop="url">
                   Pixel puzzle
                 </a>
@@ -1336,139 +1469,6 @@ return factorial(n-1, n * total);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/Array-ES6/" itemprop="url">
-                  Array-ES6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T11:37:00+08:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/Array-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Array-ES6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>Array.from(obj, func, this)//类似Array和可Iterator的对象转为Array, func类似于map对每个元素进行处理，将处理后的值放入返回的数组</li>
-<li>[].slice.call({‘0’:’1’,length:1})// [1]</li>
-<li>… 扩展运算符 Symbol.iterator</li>
-<li><p>能正确处理Unicode，可以避免JavaScript将大于\uFFFF的Unicode字符，算作两个字符的bug</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function countSymbols(string) &#123;</span><br><span class="line">  return Array.from(string).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.of(‘3’) ,构造数组 new Array(‘3’)</p>
-</li>
-<li><p>Array.prototype.copyWithin(target, start = 0, end = this.length) //在数组内部进行替换元素, 在index为target的起始位置上，从index为start的元素开始复制，截到第end元素为止，数组总长度不变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let popo = Array.of(3,3,4,5,12);</span><br><span class="line">console.log(popo.copyWithin(0,2,4)); // [4,5,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,4)); // [3,4,5,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,1)); // [3,3,4,5,12]返回元素组</span><br><span class="line">console.log(popo.copyWithin(1,2,3)); // [3,4,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,-1));// [3,4,5,5,12] 负数从末尾算起</span><br><span class="line">console.log([1, 2, 3, 4, 5].copyWithin(0, -3, -2)); // [3,2,3,4,5] -3代表从末尾索引为-1开始算，-2代表末尾索引为0开始算</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.find</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//当前值，当前索引，当前数组</span><br><span class="line">[1, 5, 10, 15].find(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;,this) // 10</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.findIndex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NaN].findIndex(y =&gt; Object.is(NaN, y))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.fill填充一个数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.fill(string,start,end) //从start开始到end之前结束</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.entries(),Array.keys(),Array.values()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let letter = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">let entries = letter.entries();</span><br><span class="line">console.log(entries.next().value); // [0, &apos;a&apos;]</span><br><span class="line">console.log(entries.next().value); // [1, &apos;b&apos;]</span><br><span class="line">console.log(entries.next().value); // [2, &apos;c&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.prototype.includes()<br><code>Map结构的has方法，是用来查找键名的，比如Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。
-  Set结构的has方法，是用来查找值的，比如Set.prototype.has(value)、WeakSet.prototype.has(value)。</code></p>
-</li>
-<li><p>ES5数组对空位的处理</p>
-<ul>
-<li>forEach(), filter(), every() 和some()都会跳过空位。</li>
-<li>map()会跳过空位，但会保留这个值</li>
-<li>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// forEach方法</span><br><span class="line">[,&apos;a&apos;].forEach((x,i) =&gt; log(i)); // 1</span><br><span class="line"></span><br><span class="line">// filter方法</span><br><span class="line">[&apos;a&apos;,,&apos;b&apos;].filter(x =&gt; true) // [&apos;a&apos;,&apos;b&apos;]</span><br><span class="line"></span><br><span class="line">// every方法</span><br><span class="line">[,&apos;a&apos;].every(x =&gt; x===&apos;a&apos;) // true</span><br><span class="line"></span><br><span class="line">// some方法</span><br><span class="line">[,&apos;a&apos;].some(x =&gt; x !== &apos;a&apos;) // false</span><br><span class="line"></span><br><span class="line">// map方法</span><br><span class="line">[,&apos;a&apos;].map(x =&gt; 1) // [,1]</span><br><span class="line"></span><br><span class="line">// join方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].join(&apos;#&apos;) // &quot;#a##&quot;</span><br><span class="line"></span><br><span class="line">// toString方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].toString() // &quot;,a,,&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>ES6则是明确将空位转为undefined<br><code>Invalid attempt to destructure non-iterable instance</code></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1514,7 +1514,7 @@ return factorial(n-1, n * total);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1531,7 +1531,7 @@ return factorial(n-1, n * total);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

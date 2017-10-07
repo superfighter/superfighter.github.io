@@ -232,6 +232,104 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/15/Simple-Step/" itemprop="url">
+                  Simple-Step
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-15T00:22:40+08:00" content="2016-04-15">
+              2016-04-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/15/Simple-Step/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/Simple-Step/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>简单的分步例子，运用css3处理步骤切换~<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/15/Simple-Step/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/14/Media-query/" itemprop="url">
                   Media query
                 </a>
@@ -1187,102 +1285,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/30/json-parse/" itemprop="url">
-                  JSON两个api用法简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-30T09:17:05+08:00" content="2016-03-30">
-              2016-03-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/30/json-parse/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/30/json-parse/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var preJSON = &quot;&#123;\&quot;name\&quot;:\&quot;wang\&quot;,\&quot;age\&quot;:\&quot;23\&quot;&#125;&quot;;</span><br><span class="line">var simpleJSON = JSON.parse(preJSON);//简单的转换</span><br><span class="line">//第二个参数(官网称为reviver)是一个函数, 在每个键/值在每一级的最终结果后都会被调用. 每个值将会被替换为reviver函数的返回结果</span><br><span class="line">var dueJSON = JSON.parse(preJSON,function(key,value)&#123;</span><br><span class="line">if(key !== &quot;&quot;)&#123;//这里要判定key值是否为空，不然遍历到最后key为空，value值为Object</span><br><span class="line">value = value + &apos;!&apos;;</span><br><span class="line">&#125;</span><br><span class="line">return value;//这里必须返回value</span><br><span class="line">&#125;);</span><br><span class="line">var jsonToString1 = JSON.stringify(dueJSON, [&apos;name&apos;]);//第二个参数是筛选值，是个数组，这里返回&quot;&#123;&quot;name&quot;:&quot;wang&quot;&#125;&quot;</span><br><span class="line">var jsonToString2 = JSON.stringify(dueJSON, null);//第二个参数设置为null则全部转换</span><br><span class="line">var jsonToString3 = JSON.stringify(dueJSON, null, 4);//第三个参数为开头格式化值（空格），这里4就是以4个空格为准格式化转换后的字符串</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1328,7 +1330,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1345,7 +1347,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

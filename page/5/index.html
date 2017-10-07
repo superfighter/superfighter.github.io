@@ -232,6 +232,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/12/Array-ES6/" itemprop="url">
+                  Array-ES6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T11:37:00+08:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/Array-ES6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Array-ES6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>Array.from(obj, func, this)//类似Array和可Iterator的对象转为Array, func类似于map对每个元素进行处理，将处理后的值放入返回的数组</li>
+<li>[].slice.call({‘0’:’1’,length:1})// [1]</li>
+<li>… 扩展运算符 Symbol.iterator</li>
+<li><p>能正确处理Unicode，可以避免JavaScript将大于\uFFFF的Unicode字符，算作两个字符的bug</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function countSymbols(string) &#123;</span><br><span class="line">  return Array.from(string).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.of(‘3’) ,构造数组 new Array(‘3’)</p>
+</li>
+<li><p>Array.prototype.copyWithin(target, start = 0, end = this.length) //在数组内部进行替换元素, 在index为target的起始位置上，从index为start的元素开始复制，截到第end元素为止，数组总长度不变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let popo = Array.of(3,3,4,5,12);</span><br><span class="line">console.log(popo.copyWithin(0,2,4)); // [4,5,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,4)); // [3,4,5,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,1)); // [3,3,4,5,12]返回元素组</span><br><span class="line">console.log(popo.copyWithin(1,2,3)); // [3,4,4,5,12]</span><br><span class="line">console.log(popo.copyWithin(1,2,-1));// [3,4,5,5,12] 负数从末尾算起</span><br><span class="line">console.log([1, 2, 3, 4, 5].copyWithin(0, -3, -2)); // [3,2,3,4,5] -3代表从末尾索引为-1开始算，-2代表末尾索引为0开始算</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.find</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//当前值，当前索引，当前数组</span><br><span class="line">[1, 5, 10, 15].find(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;,this) // 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.findIndex</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NaN].findIndex(y =&gt; Object.is(NaN, y))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.fill填充一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.fill(string,start,end) //从start开始到end之前结束</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.entries(),Array.keys(),Array.values()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let letter = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">let entries = letter.entries();</span><br><span class="line">console.log(entries.next().value); // [0, &apos;a&apos;]</span><br><span class="line">console.log(entries.next().value); // [1, &apos;b&apos;]</span><br><span class="line">console.log(entries.next().value); // [2, &apos;c&apos;]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.prototype.includes()<br><code>Map结构的has方法，是用来查找键名的，比如Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。
+  Set结构的has方法，是用来查找值的，比如Set.prototype.has(value)、WeakSet.prototype.has(value)。</code></p>
+</li>
+<li><p>ES5数组对空位的处理</p>
+<ul>
+<li>forEach(), filter(), every() 和some()都会跳过空位。</li>
+<li>map()会跳过空位，但会保留这个值</li>
+<li>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// forEach方法</span><br><span class="line">[,&apos;a&apos;].forEach((x,i) =&gt; log(i)); // 1</span><br><span class="line"></span><br><span class="line">// filter方法</span><br><span class="line">[&apos;a&apos;,,&apos;b&apos;].filter(x =&gt; true) // [&apos;a&apos;,&apos;b&apos;]</span><br><span class="line"></span><br><span class="line">// every方法</span><br><span class="line">[,&apos;a&apos;].every(x =&gt; x===&apos;a&apos;) // true</span><br><span class="line"></span><br><span class="line">// some方法</span><br><span class="line">[,&apos;a&apos;].some(x =&gt; x !== &apos;a&apos;) // false</span><br><span class="line"></span><br><span class="line">// map方法</span><br><span class="line">[,&apos;a&apos;].map(x =&gt; 1) // [,1]</span><br><span class="line"></span><br><span class="line">// join方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].join(&apos;#&apos;) // &quot;#a##&quot;</span><br><span class="line"></span><br><span class="line">// toString方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].toString() // &quot;,a,,&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ES6则是明确将空位转为undefined<br><code>Invalid attempt to destructure non-iterable instance</code></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/12/Number-ES6/" itemprop="url">
                   Number-ES6
                 </a>
@@ -1211,104 +1344,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/15/Simple-Step/" itemprop="url">
-                  Simple-Step
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-15T00:22:40+08:00" content="2016-04-15">
-              2016-04-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/15/Simple-Step/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/Simple-Step/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>简单的分步例子，运用css3处理步骤切换~<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/15/Simple-Step/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1354,7 +1389,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1371,7 +1406,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
