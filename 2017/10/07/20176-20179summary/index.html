@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="有道">
 <meta property="og:description" content="前言
 鉴于产品竞争对手步步紧逼的优化升级，自身的服务质量亟需提升，决定拿业务使用频率高的业务线做重构优化，在界面不大变的前提下提高信息提取和展示速度，提升用户体验。">
-<meta property="og:updated_time" content="2017-10-07T14:26:32.000Z">
+<meta property="og:updated_time" content="2017-10-15T05:54:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20176-20179summary">
 <meta name="twitter:description" content="前言
@@ -289,6 +289,7 @@
 <li>对旧源码的理解程度影响整个重构质量。</li>
 <li>业务需求在重构期间没有冻结。这一点造成开发人员返工现象，例如公众号需求，在重构末段，提出交互、视觉、业务三方面重构，这造成的返工现象给开发人员带来困扰和压力。在整个项目中期，开发人员对于公众号的增删改投入了1-2d的工时，这部分工时的代码只有一部分可重用于末期的重构，大部分都被舍弃。</li>
 <li>开发人员调动导致中后期开发工时变数。一前端同事负责开发公众号、行业相关，开发未结束即被抽调至其他部门。这一变数使得原本2人负责的前端开发，归为1人负责，至最终工时可控度降低。</li>
+<li>重构涉及到第三方变动，例如第三方接口输出，第三方数据统计。</li>
 </ul>
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><hr>
 <ul>
@@ -321,6 +322,7 @@
 <li>正确处理setState warning，react只能对正在或已经处理完成的组件改变状态，无法对已卸载的组件改变状态</li>
 <li>shouldComponentUpdate方法使用要慎重，处理不当会出现该render的时候不render组件。</li>
 <li>ES6不要滥用，最终还是被ES5实现，反而用babel编译后加入一堆公用代码。</li>
+<li>多考虑一步会不会埋下不可控隐患，比如业务指定的节点不能用数组索引来定位，不然业务节点变换了原有业务逻辑就不可控。</li>
 </ul>
 <p>以上，项目还没有结束，战线拖的长了心累了。</p>
 
