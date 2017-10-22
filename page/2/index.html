@@ -232,6 +232,123 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/14/console-1/" itemprop="url">
+                  console%
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-14T15:25:28+08:00" content="2017-06-14">
+              2017-06-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/14/console-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/14/console-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>大约一年前介绍过一篇<code>console</code>API的文章<a href="/2016/08/11/console/">这里</a></li>
+<li>今天看到相关占位符的API，也记录下，供以后参考，内容直白不转弯，上代码；</li>
+<li><p><code>%c</code> 样式</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%cblue&apos;,&apos;color: blue&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>%d</code> 类型转换成整型，不四舍五入</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%dblue&apos;,&apos;3&apos;) // NaNblue</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%dblue&apos;, 3) // 3blue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>%f</code> 类型转成浮点型</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;,&apos;3.12&apos;) // NaNblue</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%fblue&apos;, 3.33) // 3.33blue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>%o</code> 类型转成对象</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%oblue&apos;,&apos;3.12&apos;) // &quot;3.12&quot;blue</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%oblue&apos;, [3.33]) // Arrayblue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>%s</code> 类型转成字符串</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%sblue&apos;,&apos;3.12&apos;) // 3.12blue</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%sblue&apos;, [3.33]) // Array(1)blue</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/10/node-PATH-NODE-PATH/" itemprop="url">
                   node $PATH NODE_PATH
                 </a>
@@ -1215,135 +1332,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/22/WTDSwiper/" itemprop="url">
-                  WTDSwiper
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-22T13:59:59+08:00" content="2016-12-22">
-              2016-12-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/22/WTDSwiper/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/WTDSwiper/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>隐藏内部实现</li>
-<li><p>依靠你能控制的对象，好过依靠你不能控制的对象，以免日后受他控制</p>
-</li>
-<li><p>类</p>
-</li>
-</ul>
-<ul>
-<li>单一权责原则：只有一条修改理由</li>
-<li>开放-闭合原则：只许扩展，不许修改</li>
-<li>低耦合高内聚原则</li>
-<li>依赖倒置原则：依赖于抽象，而不是具体实现细节</li>
-</ul>
-<ul>
-<li>并发基础定义</li>
-</ul>
-<ul>
-<li>限定资源， 并发环境中有着固定尺寸或数量的资源</li>
-<li>互斥，每一时刻仅有一个县城能访问共享数据或共享资源</li>
-<li>线程饥饿，一个或一组线程在很长时间内或永久被禁止</li>
-<li>死锁 两个或多个线程互相等待执行结束</li>
-<li>活锁 执行次序一致的线程，每个都想要起步，但发现其他线程已经“在路上”</li>
-</ul>
-<ul>
-<li>并发模型</li>
-</ul>
-<ul>
-<li>生产者-消费者模型</li>
-<li>读者-作者模型</li>
-<li>宴席哲学家</li>
-</ul>
-<ul>
-<li>[<a href="https://zhuanlan.zhihu.com/p/21927991" target="_blank" rel="external">知乎</a>]</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//两点触控旋转角度和方向求解代码</span><br><span class="line">//这两个方法属于向量计算，具体原理请阅读本文最后的参考文献</span><br><span class="line"></span><br><span class="line">_getRotateDirection(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	return vector1.x * vector2.y - vector2.x * vector1.y;</span><br><span class="line"></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">_getRotateAngle(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	let direction = this._getRotateDirection(vector1,vector2);</span><br><span class="line"></span><br><span class="line">	direction = direction &gt; 0 ? -1 : 1;</span><br><span class="line"></span><br><span class="line">	let len1 = this._getDistance(vector1.x,vector1.y);</span><br><span class="line"></span><br><span class="line">	let len2 = this._getDistance(vector2.x,vector2.y);</span><br><span class="line"></span><br><span class="line">	let mr = len1 * len2;</span><br><span class="line"></span><br><span class="line">	if(mr === 0) return 0;</span><br><span class="line"></span><br><span class="line">	let dot = vector1.x * vector2.x + vector1.y * vector2.y;</span><br><span class="line"></span><br><span class="line">	let r = dot / mr;</span><br><span class="line"></span><br><span class="line">	if(r &gt; 1) r = 1;</span><br><span class="line"></span><br><span class="line">	if(r &lt; -1) r = -1;</span><br><span class="line"></span><br><span class="line">	return Math.acos(r) * direction * 180 / Math.PI;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1389,7 +1377,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">64</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

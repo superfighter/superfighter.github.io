@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,es6," />
+  <meta name="keywords" content="summary," />
 
 
 
@@ -57,19 +57,19 @@
 
 
 
-<meta name="description" content="属性简写：允许只写对象属性名，不写属性值
-1234let foo = &amp;apos;hello&amp;apos;let bar = &amp;#123;foo&amp;#125; // bar.foo = &amp;apos;hello&amp;apos;function x(my,other)&amp;#123; return &amp;#123;my,other&amp;#125;&amp;#125;let o = x(1,2)// o.my = 1 , o.o">
+<meta name="description" content="前言
+这篇文字简单的实现了define方法，了解闭包的使用场景.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object-ES6 ">
-<meta property="og:url" content="http://superfighter.github.io/2016/05/22/Object-ES6/index.html">
+<meta property="og:title" content="20176-Simple-Modules">
+<meta property="og:url" content="http://superfighter.github.io/2017/10/22/Simple-Modules/index.html">
 <meta property="og:site_name" content="有道">
-<meta property="og:description" content="属性简写：允许只写对象属性名，不写属性值
-1234let foo = &amp;apos;hello&amp;apos;let bar = &amp;#123;foo&amp;#125; // bar.foo = &amp;apos;hello&amp;apos;function x(my,other)&amp;#123; return &amp;#123;my,other&amp;#125;&amp;#125;let o = x(1,2)// o.my = 1 , o.o">
-<meta property="og:updated_time" content="2017-08-13T03:16:53.000Z">
+<meta property="og:description" content="前言
+这篇文字简单的实现了define方法，了解闭包的使用场景.">
+<meta property="og:updated_time" content="2017-10-22T10:51:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Object-ES6 ">
-<meta name="twitter:description" content="属性简写：允许只写对象属性名，不写属性值
-1234let foo = &amp;apos;hello&amp;apos;let bar = &amp;#123;foo&amp;#125; // bar.foo = &amp;apos;hello&amp;apos;function x(my,other)&amp;#123; return &amp;#123;my,other&amp;#125;&amp;#125;let o = x(1,2)// o.my = 1 , o.o">
+<meta name="twitter:title" content="20176-Simple-Modules">
+<meta name="twitter:description" content="前言
+这篇文字简单的实现了define方法，了解闭包的使用场景.">
 
 
 
@@ -87,7 +87,7 @@
   };
 </script>
 
-  <title> Object-ES6  | 有道 </title>
+  <title> 20176-Simple-Modules | 有道 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +233,7 @@
             
             
               
-                Object-ES6 
+                20176-Simple-Modules
               
             
           </h1>
@@ -245,8 +245,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-22T09:55:02+08:00" content="2016-05-22">
-              2016-05-22
+            <time itemprop="dateCreated" datetime="2017-10-22T16:26:51+08:00" content="2017-10-22">
+              2017-10-22
             </time>
           </span>
 
@@ -256,8 +256,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/22/Object-ES6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/Object-ES6/" itemprop="commentsCount"></span>
+                <a href="/2017/10/22/Simple-Modules/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/22/Simple-Modules/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -279,43 +279,11 @@
       
 
       
-        <ul>
-<li><p>属性简写：允许只写对象属性名，不写属性值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let foo = &apos;hello&apos;</span><br><span class="line">let bar = &#123;foo&#125; // bar.foo = &apos;hello&apos;</span><br><span class="line">function x(my,other)&#123; return &#123;my,other&#125;&#125;</span><br><span class="line">let o = x(1,2)// o.my = 1 , o.other = 2</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法简写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">	method()&#123;</span><br><span class="line">		return &quot;hello~&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.method()) // hello~</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方括号定义对象变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//ES5</span><br><span class="line">var bar = &#123;&quot;foo&quot;:&quot;hello&quot;&#125;</span><br><span class="line">//ES6</span><br><span class="line">let f = &quot;foo&quot;</span><br><span class="line">let bar = &#123;[f]:&apos;hello&apos;&#125; // bar.foo = hello</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Object.is</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Object.defineProperty(Object, &apos;is&apos;, &#123;</span><br><span class="line">  value: function(x, y) &#123;</span><br><span class="line">    if (x === y) &#123;</span><br><span class="line">      // 针对+0 不等于 -0的情况</span><br><span class="line">      return x !== 0 || 1 / x === 1 / y;</span><br><span class="line">    &#125;</span><br><span class="line">    // 针对NaN的情况</span><br><span class="line">    return x !== x &amp;&amp; y !== y;</span><br><span class="line">  &#125;,</span><br><span class="line">  configurable: true,</span><br><span class="line">  enumerable: false,</span><br><span class="line">  writable: true</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Object.assin 合并可枚举对象</p>
-<ul>
-<li>为对象添加属性</li>
-<li>为对象添加方法</li>
-<li>克隆对象</li>
-<li>合并多个对象</li>
-<li>为属性指定默认值</li>
-</ul>
-</li>
-<li>Object.getOwnPropertyDescriptor 属性的可枚举性<ul>
-<li>ES5会有三个操作忽略enumerable为false的属性<ul>
-<li>for…in循环：只遍历对象自身的和继承的可枚举的属性</li>
-<li>Object.keys():返回对象自身的所有可枚举的属性键名</li>
-<li>JSON.stringify:只串行化对象自身的可枚举的属性</li>
-</ul>
-</li>
-<li>ES6新增会忽略enumerable为false的属性<ul>
-<li>Object.assign():只拷贝对象自身可枚举的属性</li>
-<li>Reflect.enumerate():返回所有for…in循环会遍历的属性</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<p>这篇文字简单的实现了<code>define</code>方法，了解<code>闭包</code>的使用场景.<br><a id="more"></a></p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyModuler = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> modules = &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">define</span>(<span class="params">name, deps, fact</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;deps.length; i++) &#123;</span><br><span class="line">            deps[i] = modules[deps[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        modules[name] = fact.apply(fact, deps);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> modules[name];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;define: define, get: get&#125;;</span><br><span class="line">&#125;());</span><br><span class="line"><span class="comment">// 定义</span></span><br><span class="line">MyModuler.define(<span class="string">'first'</span>, [], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'first name'</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">MyModuler.define(<span class="string">'second'</span>, [<span class="string">'first'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">First</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">'name'</span>: First.name + <span class="string">' brother'</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="built_in">console</span>.log(MyModuler.get(<span class="string">'second'</span>).name);</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>很像前端进化史中近代模块化开发的<code>require</code>吧，核心是通过<code>闭包</code>缓存了<code>modules</code>对象。</p>
 
       
     </div>
@@ -330,9 +298,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-            <a href="/tags/es6/" rel="tag">#es6</a>
+            <a href="/tags/summary/" rel="tag">#summary</a>
           
         </div>
       
@@ -341,17 +307,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/13/Function-ES6/" rel="next" title="Function-ES6">
-                <i class="fa fa-chevron-left"></i> Function-ES6
+              <a href="/2017/10/07/20176-20179summary/" rel="next" title="20176-20179summary">
+                <i class="fa fa-chevron-left"></i> 20176-20179summary
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/31/jQuery-Deferred/" rel="prev" title="jQuery-Deferred">
-                jQuery-Deferred <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -377,8 +339,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/22/Object-ES6/"
-           data-title="Object-ES6 " data-url="http://superfighter.github.io/2016/05/22/Object-ES6/">
+      <div class="ds-thread" data-thread-key="2017/10/22/Simple-Modules/"
+           data-title="20176-Simple-Modules" data-url="http://superfighter.github.io/2017/10/22/Simple-Modules/">
       </div>
     
   </div>
@@ -471,7 +433,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">2.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>

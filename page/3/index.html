@@ -232,6 +232,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/22/WTDSwiper/" itemprop="url">
+                  WTDSwiper
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-22T13:59:59+08:00" content="2016-12-22">
+              2016-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/22/WTDSwiper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/WTDSwiper/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>隐藏内部实现</li>
+<li><p>依靠你能控制的对象，好过依靠你不能控制的对象，以免日后受他控制</p>
+</li>
+<li><p>类</p>
+</li>
+</ul>
+<ul>
+<li>单一权责原则：只有一条修改理由</li>
+<li>开放-闭合原则：只许扩展，不许修改</li>
+<li>低耦合高内聚原则</li>
+<li>依赖倒置原则：依赖于抽象，而不是具体实现细节</li>
+</ul>
+<ul>
+<li>并发基础定义</li>
+</ul>
+<ul>
+<li>限定资源， 并发环境中有着固定尺寸或数量的资源</li>
+<li>互斥，每一时刻仅有一个县城能访问共享数据或共享资源</li>
+<li>线程饥饿，一个或一组线程在很长时间内或永久被禁止</li>
+<li>死锁 两个或多个线程互相等待执行结束</li>
+<li>活锁 执行次序一致的线程，每个都想要起步，但发现其他线程已经“在路上”</li>
+</ul>
+<ul>
+<li>并发模型</li>
+</ul>
+<ul>
+<li>生产者-消费者模型</li>
+<li>读者-作者模型</li>
+<li>宴席哲学家</li>
+</ul>
+<ul>
+<li>[<a href="https://zhuanlan.zhihu.com/p/21927991" target="_blank" rel="external">知乎</a>]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//两点触控旋转角度和方向求解代码</span><br><span class="line">//这两个方法属于向量计算，具体原理请阅读本文最后的参考文献</span><br><span class="line"></span><br><span class="line">_getRotateDirection(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	return vector1.x * vector2.y - vector2.x * vector1.y;</span><br><span class="line"></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">_getRotateAngle(vector1,vector2) &#123;</span><br><span class="line"></span><br><span class="line">	let direction = this._getRotateDirection(vector1,vector2);</span><br><span class="line"></span><br><span class="line">	direction = direction &gt; 0 ? -1 : 1;</span><br><span class="line"></span><br><span class="line">	let len1 = this._getDistance(vector1.x,vector1.y);</span><br><span class="line"></span><br><span class="line">	let len2 = this._getDistance(vector2.x,vector2.y);</span><br><span class="line"></span><br><span class="line">	let mr = len1 * len2;</span><br><span class="line"></span><br><span class="line">	if(mr === 0) return 0;</span><br><span class="line"></span><br><span class="line">	let dot = vector1.x * vector2.x + vector1.y * vector2.y;</span><br><span class="line"></span><br><span class="line">	let r = dot / mr;</span><br><span class="line"></span><br><span class="line">	if(r &gt; 1) r = 1;</span><br><span class="line"></span><br><span class="line">	if(r &lt; -1) r = -1;</span><br><span class="line"></span><br><span class="line">	return Math.acos(r) * direction * 180 / Math.PI;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/22/UMD/" itemprop="url">
                   UMD
                 </a>
@@ -1175,136 +1304,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/01/a-pixel-is-not-a-pixel/" itemprop="url">
-                  a pixel is not a pixel is not a pixel
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-01T20:18:16+08:00" content="2016-07-01">
-              2016-07-01
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/01/a-pixel-is-not-a-pixel/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/01/a-pixel-is-not-a-pixel/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原文<a href="http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html" target="_blank" rel="external">A pixel is not a pixel is not a pixel</a></p>
-<ul>
-<li>现在我正在深入研究移动端中跨浏览器手机的宽和高，得出的结论是在99%的情况下，这些因素不会影响到正常的web开发</li>
-<li>剩余的1%变得非常诡异，我期望苹果公司通过假如一个像素层来解决这个1%引起的问题</li>
-<li>开始之前，我先提示下：因为这些因素对那些我忽视的正规屏幕尺寸并不重要，并且我没有认真的去研究过展示、像素密度等其他复杂概念。所以，接下的内容我可能用错了很多专业术语，多多包涵。</li>
-</ul>
-<h4 id="Web开发者需要什么"><a href="#Web开发者需要什么" class="headerlink" title="Web开发者需要什么"></a>Web开发者需要什么</h4><ul>
-<li>我并不知道web开发者真正感兴趣的是什么，但是我知道他们需要CSS像素单位。就是在CSS表达式中声明的：width: 300px 或者是 font-size: 14px;</li>
-<li>CSS像素和设备像素密度没有任何关系，也跟即将产生的中间层没有任何关系。他们本质上是专门为我们web开发者创造的抽象构造。</li>
-<li>我们可以用zoom操作来做简单说明。当用户放大的时候，一个<code>width:300px</code>的元素占据了更大的屏幕，这使得被放大的元素在设备（物理）像素上就变得越来越宽。zoom的效果完全是通过尽可能的扩展CSS像素产生的，然而此时该元素的CSS像素值仍是300px。</li>
-<li>当zoom效果达到100%时，一个CSS像素等于一个设备像素（尽管中间层会替代设备像素层）我得说明下<code>zoom 100%</code>对于web开发者来说没有任何意义，Zoom层级对我们不重要，我们要关心的是适配当前屏幕需要多少CSS像素。</li>
-<li>我们想想当用户zoom操作时到底发生了什么？当用户缩小时，CSS像素变小，此时一个设备像素重叠了更多的CSS像素。当用户放大时，CSS像素变大，此时一个设备像素重叠更少的CSS像素。</li>
-<li>这样我们的<code>width:300px</code>元素的实际CSS像素总是300，另外由zoom因素决定多少设备像素呈现一个CSS像素。</li>
-<li>这种机制不会改变，如果改变了，所有iPhone网站会严重失控，苹果公司肯定不会让这一切发生的。</li>
-<li>因此，完全适配的网站扔展示980px，此时我们并不关心多少设备像素来呈现980px。</li>
-</ul>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
-<li>&lt;meta name=\”viewport\” width=\”device-width\”&gt;</li>
-<li>media query <code>device-width</code></li>
-<li>以上两种方案都作用于设备像素，而不是CSS像素，因为他们的上下文是网页，不是CSS内部运行环境。</li>
-</ul>
-<h4 id="media-query"><a href="#media-query" class="headerlink" title="media query"></a>media query</h4><ul>
-<li><code>device-width</code>代表设备的宽度。</li>
-<li><code>width</code>代表页面的宽度。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/*正常范围宽300*/</span><br><span class="line">div.sidebar &#123; width: 300px;&#125;</span><br><span class="line">/*小于320px设定宽100*/</span><br><span class="line">@media all and (max-device-width: 320px)&#123;</span><br><span class="line">	div.sidebar&#123; width: 100px&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="meta-tag"><a href="#meta-tag" class="headerlink" title="meta tag"></a>meta tag</h4><ul>
-<li>一般来说meta标签更有用。这起先是由苹果发布的属性，后来被许多移动浏览器实现，让layout viewport适配设备屏幕更容易。</li>
-<li>什么是Layout Viewport? 浏览器用它来计算元素的展示比例（CSS像素）,比如<code>div.sidebar{width: 20%}</code>,Layout Viewport总是比设备像素大一些。</li>
-<li>如果你添加了meta标签，layout viewport的宽度会限制在设备像素内：iPhone 是320</li>
-<li>即使你的页面小到足以适配屏幕，那也会有影响。应该加上<meta>标签，让文字适配当前屏幕。</li>
-</ul>
-<h4 id="other"><a href="#other" class="headerlink" title="other"></a>other</h4><ul>
-<li>dips: 谷歌提出一个概念，device-independent pixels，CSS像素作用于这一层 </li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1350,7 +1349,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">64</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
